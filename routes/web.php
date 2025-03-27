@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
@@ -15,7 +15,7 @@ Route::get('/LoginFinal', function() {
     return view('LoginFinal');
 });
 
-Route::get('/Home', function() {
+Route::get('/', function() {
     return view('Home');
 });
 
@@ -25,6 +25,18 @@ Route::get('/NewRes', function() {
 
 Route::get('/ResRec', function() {
     return view('ResRec');
+});
+
+Route::get('/PersonalInfo', function() {
+    return view('PersonalInfo');
+});
+
+Route::get('/OtherInfo', function() {
+    return view('OtherInfo');
+});
+
+Route::get('/Contacts', function() {
+    return view('Contacts');
 });
 
 Route::middleware('auth')->group(function () {

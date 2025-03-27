@@ -14,13 +14,12 @@
         }
         .container {
             margin-top: 20px; /* Adjusted margin to the top */
-            width: 500px; /* Set container width to 500px */
         }
     </style>
 </head>
 <body>
-<div class=" w-[1124px]"> <!-- Adjusted container -->
-    <div class="p-1 w-full h-auto mx-auto"> <!-- Removed background design -->
+<div class="w-[1124px]"> <!-- Adjusted container -->
+    <div class="p-1 h-auto mx-auto"> <!-- Removed background design -->
         <div class="flex flex-col md:flex-row gap-8">
             <!-- Profile Photo Section -->
             <div class="flex flex-col items-center">

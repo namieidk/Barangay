@@ -36,8 +36,7 @@
                     <x-resbar href="/OtherInfo" active="{{ request()->is('OtherInfo') }}" id="otherInfoBtn">Other Info</x-resbar>
                     <x-resbar href="/Contacts" active="{{ request()->is('Contacts') }}" id="contactsBtn">Contacts</x-resbar>
                 </div>
-
-                
+                <x-contacts></x-contacts>
             </div>
         </div>
     </div>

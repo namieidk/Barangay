@@ -211,7 +211,7 @@
                         <!-- Unscheduled Cases Card -->
                         <div class="border border-[#96bb7e] rounded-sm overflow-hidden bg-[#d1e2c4]">
                             <div class="bg-[#96bb7e] p-4 mt-4">
-                                <h2 class="text-lg font-bold text-black text-center">Unscheduled Cases</h2>
+                                <h2 class="text-sm font-bold text-black text-center">Unscheduled Cases</h2>
                             </div>
                             <div class="h-20 p-2"></div>
                         </div>

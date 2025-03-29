@@ -83,6 +83,14 @@ Route::get('/IncidentReport', function() {
     return view('BloterRec.IncidentReport');
 });
 
+Route::get('/Reslist', function() {
+    return view('Reslist.Reslist');
+});
+
+Route::get('/Reports', function() {
+    return view('Reports.Reports');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -18,11 +18,11 @@
     </style>
 </head>
 <body>
-<div class="w-[1124px]"> <!-- Adjusted container -->
+<div class="w-[1124px] h-[700px] ml-8"> <!-- Adjusted container -->
     <div class="p-1 h-auto mx-auto"> <!-- Removed background design -->
         <div class="flex flex-col md:flex-row gap-8">
             <!-- Profile Photo Section -->
-            <div class="flex flex-col items-center">
+            <div class="flex flex-col items-center ">
                 <div class="w-[300px] h-[300px] bg-gray-100 mb-2 relative">
                     <img src="/placeholder.svg?height=300&width=300" alt="Profile" class="w-full h-full object-cover" />
                 </div>
@@ -33,7 +33,7 @@
             <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
                 <!-- Left Column -->
                 <div class="space-y-4">
-                    <div class="space-y-1">
+                    <div class="space-y-1  ">
                         <label for="last-name" class="text-[#000000] font-medium">
                             Blood Type: <span class="text-red-500">*</span>
                         </label>
@@ -69,20 +69,16 @@
                     </div>
                 </div>
 
-                <!-- Right Column (Notes Section) -->
-                <div class="space-y-30">
-                    <div class="space-y-30">
-                        <label class="text-[#000000] font-medium">Notes:</label>
-                        <textarea class="w-full h-[250px] border border-[#000000] bg-white rounded-lg p-2 text-[#000000] outline-none focus:border-[#000000]" placeholder="Enter notes here"></textarea>
+                    <div class="ml-[-750px] mt-[350px]">
+                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Your message</label>
+                        <textarea id="message" rows="4" class="block p-2.5 w-[500px] text-sm text-black bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
                     </div>
-                </div>
+                
             </div>
         </div>
-
         <!-- Save Button -->
-        <div class="flex justify-end mt-[250px]">
-            <button class="bg-[#d1e2c4] text-[#000000] px-8 py-3 rounded-full text-lg">Save</button>
-        </div>
+    <div class="flex justify-end mt-[120px] mr-[80px]">
+        <button class="bg-[#d1e2c4] text-[#000000] px-8 py-3 rounded-full text-lg">Save</button>
     </div>
 </div>
 </body>

@@ -8,8 +8,9 @@
 </head>
 <body>
   
-<div class="w-[1124px] h-[700px]">
+<div class="w-[1124px] h-[700px] mt-[20px] ml-[30px]">
     <div class="flex flex-col md:flex-row gap-8">
+        
         <!-- Profile Photo Section -->
         <div class="flex flex-col items-center">
             <div class="w-[300px] h-[300px] bg-gray-100 mb-2 relative">
@@ -43,7 +44,7 @@
     </div>
 
     <!-- Save Button -->
-    <div class="flex justify-end mt-[-100px] mr-[50px]">
+    <div class="flex justify-end mt-[250px] mr-[80px]">
         <button class="bg-[#d1e2c4] text-[#000000] px-8 py-3 rounded-full text-lg">Save</button>
     </div>
 </div>

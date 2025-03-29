@@ -25,8 +25,7 @@
     <!-- Main Content Area -->
     <div class="flex-1 ml-20 pt-20">
         <div class="p-10 w-full max-w-5xl mx-auto">
-            <!-- Dashboard Heading -->
-            <h1 class="text-5xl font-bold mb-8 pl-0 mt-[-50px]">New Residents</h1>
+        <h1 class="text-5xl font-bold mb-8 pl-0 mt-[-50px]">New Residents</h1>
 
             <!-- Form Section -->
             <div class="bg-[#385327] mr-[-180px]">
@@ -36,7 +35,7 @@
                     <x-resbar href="/OtherInfo" active="{{ request()->is('OtherInfo') }}" id="otherInfoBtn">Other Info</x-resbar>
                     <x-resbar href="/Contacts" active="{{ request()->is('Contacts') }}" id="contactsBtn">Contacts</x-resbar>
                 </div>
-                <x-contacts></x-contacts>
+                <x-Other-Info></x-Other-Info>
             </div>
         </div>
     </div>

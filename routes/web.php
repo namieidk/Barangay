@@ -15,28 +15,72 @@ Route::get('/LoginFinal', function() {
     return view('LoginFinal');
 });
 
-Route::get('/', function() {
+Route::get('/Home', function() {
     return view('Home');
 });
 
 Route::get('/NewRes', function() {
-    return view('NewRes');
+    return view('NewRes.NewRes');
 });
 
 Route::get('/ResRec', function() {
-    return view('ResRec');
+    return view('ResRec.ResRec');
 });
 
 Route::get('/PersonalInfo', function() {
-    return view('PersonalInfo');
+    return view('NewRes.PersonalInfo');
 });
 
 Route::get('/OtherInfo', function() {
-    return view('OtherInfo');
+    return view('NewRes.OtherInfo');
 });
 
 Route::get('/Contacts', function() {
-    return view('Contacts');
+    return view('NewRes.Contacts');
+});
+
+Route::get('/ResRecPerInfo', function() {
+    return view('ResRec.ResRecPerInfo');
+});
+
+Route::get('/BrgyClear', function() {
+    return view('ResRec.BrgyClear');
+});
+
+Route::get('/ResRecOtherInfo', function() {
+    return view('ResRec.ResRecOtherInfo');
+});
+
+Route::get('/ResRecContacts', function() {
+    return view('ResRec.ResRecOtherInfo');
+});
+
+Route::get('/BloterRecView', function() {
+    return view('BloterRec.BloterRecView');
+});
+
+Route::get('/RepPersonData', function() {
+    return view('BloterRec.RepPersonData');
+});
+
+Route::get('/SuspectData', function() {
+    return view('BloterRec.SuspectData');
+});
+
+Route::get('/ChildLaw', function() {
+    return view('BloterRec.ChildLaw');
+});
+
+Route::get('/VictimData', function() {
+    return view('BloterRec.VictimData');
+});
+
+Route::get('/Narative', function() {
+    return view('BloterRec.Narative');
+});
+
+Route::get('/IncidentReport', function() {
+    return view('BloterRec.IncidentReport');
 });
 
 Route::middleware('auth')->group(function () {

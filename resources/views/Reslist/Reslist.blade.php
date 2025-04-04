@@ -14,28 +14,23 @@
 </head>
 <body class="bg-4A6936-50-opacity min-h-screen flex">
     <!-- Rest of your content goes here -->
-
-    <div class="fixed top-0 left-64 w-[calc(100%-16rem)] bg-[#5A7A46] text-white p-4 text-2xl font-bold z-50 text-center">
-        BRGY INCIO, DAVAO CITY SYSTEM
-    </div>
-
     <!-- Sidebar -->
     <x-sidebar></x-sidebar>
 
     <!-- Main Content Area -->
-    <div class="flex-1 ml-20 pt-20">
-        <div class="p-10 w-full max-w-5xl mx-auto">
+    <div class="flex-1 ml-20 pt-14">
+        <div class="p-6 w-full max-w-5xl mx-auto">
             <!-- Dashboard Heading -->
             <h1 class="text-5xl font-bold mb-8 pl-0 mt-[-50px]">Residence List</h1>
 
-    <div class="min-h-screen" style="width: 1124px; background-color: #4CAF50;">
+    <div class="min-h-screen bg-[#77a659]" style="width: 1124px; ">
         <!-- Header -->
-        <header class="flex items-center justify-between p-4 bg-green-700 text-white">
+        <header class="flex items-center justify-between p-4 bg-[#385327] text-white">
             <div class="flex items-center gap-4">
                 <h1 class="text-2xl font-bold">Find by Purok:</h1>
                 <form class="relative w-120">
                     <label for="underline_select" class="sr-only">Underline select</label>
-                    <select id="underline_select" class="block py-2.5 px-0 w-[300px] text-sm text-gray-500 bg-white border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-400">
+                    <select id="underline_select" class="block py-2.5 px-0 w-[300px] text-sm text-gray-500 bg-white border-0 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-400">
                         <option selected>Choose a Purok</option>
                         <option value="Purok1">Purok 1</option>
                         <option value="Purok2">Purok 2</option>
@@ -43,7 +38,7 @@
                         <option value="Purok4">Purok 4</option>
                     </select>
                 </form>
-                <button class="bg-yellow-500 text-primary-dark hover:bg-yellow-600 px-6 py-2 rounded-full text-lg font-medium border-2 border-white" style="background-color: #FFD700;">
+                <button class="bg-[#d1e2c4] text-black hover:bg-white px-6 py-2 rounded-full text-lg font-medium " >
                     Edit Details
                 </button>
                 <span class="text-white text-lg ml-4">Name when click</span>
@@ -54,7 +49,7 @@
             <div class="w-1/4" id="name-list-section">
                 <div class="flex items-center justify-between mb-4 gap-8">
                     <h2 class="text-lg font-bold text-primary-light">List of Names</h2>
-                    <button class="bg-yellow-500 text-primary-dark hover:bg-yellow-600 px-4 py-1 rounded-full text-md font-medium border-2 border-white" style="background-color: #FFD700;">
+                    <button class="bg-[#d1e2c4]  text-black hover:bg-white px-4 py-1 rounded-full text-md font-medium border-2 " >
                      Show All
                      </button>
                 </div>

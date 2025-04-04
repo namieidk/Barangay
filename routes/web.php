@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewResidenceController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -10,14 +11,6 @@ Route::get('/welcome', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/LoginFinal', function() {
-    return view('LoginFinal');
-});
-
-Route::get('/Home', function() {
-    return view('Home');
-});
 
 Route::get('/NewRes', function() {
     return view('NewRes.NewRes');
@@ -91,10 +84,20 @@ Route::get('/Reports', function() {
     return view('Reports.Reports');
 });
 
+Route::get('/FamMember', function() {
+    return view('NewRes.FamMem');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/new-residence/create', [NewResidenceController::class, 'create'])->name('new-residence.create');
+Route::post('/new-residence', [NewResidenceController::class, 'store'])->name('new-residence.store');
+Route::get('/new-residence/{newResidence}', [NewResidenceController::class, 'show'])->name('new-residence.show');
+Route::get('/new-residence/{newResidence}/edit', [NewResidenceController::class, 'edit'])->name('new-residence.edit');
+Route::put('/new-residence/{newResidence}', [NewResidenceController::class, 'update'])->name('new-residence.update');
 
 require __DIR__.'/auth.php';

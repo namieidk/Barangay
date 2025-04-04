@@ -7,7 +7,7 @@
     <title>Person Data</title>
 </head>
 <body>
-<div class="w-[1124px] ml-0  bg-[#5A7A46] " style="height: 550px;">
+<div class="w-[1124px] ml-0  bg-[#77a659]" style="height: 550px;">
     <form class="ml-4 " >
 
         <div class="text-center mb-10 flex items-center mr-10 space-x-10 justify-center">
@@ -19,41 +19,41 @@
 
         <div class="text-left mb-10" >
             <div class="inline-block mr-[50px]">
-            <label for="blotter-entry-number" class="block whitespace-nowrap">Blotter Entry Number </label>
+            <label for="blotter-entry-number" class="block whitespace-nowrap">Blotter Entry Number <span class="text-red-500">*</span>
             <input type="text" id="blotter-entry-number" name="blotter_entry_number" class="block border-b border-[#000000] bg-white outline-none text-[#000000]" style="width: 200px">
             </div>
             <div class="inline-block mr-[50px]">
-            <label for="incident-type" class="block whitespace-nowrap">Type of Incident </label>
+            <label for="incident-type" class="block whitespace-nowrap">Type of Incident<span class="text-red-500">*</span>
             <input type="text" id="incident-type" name="incident_type" class="block border-b border-[#000000] bg-white outline-none text-[#000000]" style="width: 200px">
             </div>
             <div class="inline-block mr-[50px]">
-            <label for="reporting-person-name" class="block whitespace-nowrap">Name of Reporting Person </label>
+            <label for="reporting-person-name" class="block whitespace-nowrap">Name of Reporting Person <span class="text-red-500">*</span>
             <input type="text" id="reporting-person-name" name="reporting_person_name" class="block border-b border-[#000000] bg-white outline-none text-[#000000]" style="width: 200px">
             </div>
             <div class="inline-block mr-[50px]">
-            <label for="reporting-person-address" class="block whitespace-nowrap">Address of Reporting Person</label>
+            <label for="reporting-person-address" class="block whitespace-nowrap">Address of Reporting Person<span class="text-red-500">*</span>
             <input type="text" id="reporting-person-address" name="reporting_person_address" class="block border-b border-[#000000] bg-white outline-none text-[#000000]" style="width: 200px">
             </div>
         </div>
 
         <div class="text-left mb-10">
             <div class="inline-block mr-[50px]">
-            <label for="report-date-time" class="block whitespace-nowrap">Date & Time of Report</label>
+            <label for="report-date-time" class="block whitespace-nowrap">Date & Time of Report<span class="text-red-500">*</span>
             <input type="datetime-local" id="report-date-time" name="report_date_time" class="block border-b border-[#000000] bg-white outline-none text-[#000000]" style="width: 200px">
             </div>
             <div class="inline-block mr-[50px]">
-            <label for="incident-date-time" class="block whitespace-nowrap">Date & Time of Incident</label>
+            <label for="incident-date-time" class="block whitespace-nowrap">Date & Time of Incident<span class="text-red-500">*</span>
             <input type="datetime-local" id="incident-date-time" name="incident_date_time" class="block border-b border-[#000000] bg-white outline-none text-[#000000]" style="width: 200px">
             </div>
              <div class="inline-block mr-[50px]">
-            <label for="incident-place" class="block whitespace-nowrap">Place of Incident</label>
+            <label for="incident-place" class="block whitespace-nowrap">Place of Incident<span class="text-red-500">*</span>
             <input type="text" id="incident-place" name="incident_place" class="block border-b border-[#000000] bg-white outline-none text-[#000000]" style="width: 250px">
             </div> 
         </div>
 
         <div class="text-left mb-10">
             <div class="inline-block mr-[50px]">
-                <label for="message" class="block mb-2 text-mg font-medium text-gray-900">This is to certifies that (Name of the Reportee) reported an incident to be recorded in the barangay blotter which involves</label>
+                <label for="message" class="block mb-2 text-mg font-medium text-gray-900">This is to certifies that (Name of the Reportee) reported an incident to be recorded in the barangay blotter which involves<span class="text-red-500">*</span>
             </div>
         </div>
 

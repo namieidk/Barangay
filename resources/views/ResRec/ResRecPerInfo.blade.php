@@ -27,8 +27,6 @@
                 <div class="flex text-white">
 
                     <x-resbar href="/ResRecPerInfo" active="{{ request()->is('PersonalInfo') }}" id="personalInfoBtn">Personal Info</x-resbar>
-                    <x-resbar href="/ResRecOtherInfo" active="{{ request()->is('OtherInfo') }}" id="otherInfoBtn">Other Info</x-resbar>
-                    <x-resbar href="/ResRecContacts" active="{{ request()->is('Contacts') }}" id="contactsBtn">Contacts</x-resbar>
                     <x-resbar href="/BrgyClear" active="{{ request()->is('BrgyClear') }}" id="brgyClearBtn">Brgy Clearance</x-resbar>
                 </div>
                 <x-Personal-Info></x-Personal-Info>

@@ -15,22 +15,18 @@
 <body class="bg-4A6936-50-opacity min-h-screen flex">
     <!-- Rest of your content goes here -->
 
-    <div class="fixed top-0 left-64 w-[calc(100%-16rem)] bg-[#5A7A46] text-white p-4 text-2xl font-bold z-50 text-center">
-        BRGY INCIO, DAVAO CITY SYSTEM
-    </div>
-
     <!-- Sidebar -->
     <x-sidebar></x-sidebar>
 
     <!-- Main Content Area -->
-    <div class="flex-1 ml-20 pt-20">
-        <div class="p-10 w-full max-w-5xl mx-auto">
+    <div class="flex-1 ml-20 pt-14">
+        <div class="p-6 w-full max-w-5xl mx-auto">
             <!-- Dashboard Heading -->
             <h1 class="text-5xl font-bold mb-8 pl-0 mt-[-50px]">Reports</h1>
 
-            <div class="w-[1124px] h-[500px] bg-green-700">
+            <div class="w-[1124px] h-[500px] bg-[#77a659]">
                 <!-- Content inside the container -->
-                <h1 class="ml-10 mt-10 text-white text-xl font-semibold">Select Reports:</h1>
+                <h1 class="ml-8 mt-8 text-white text-xl font-semibold p-2">Select Reports:</h1>
                 <div class="ml-10 mt-4 flex items-start">
                     <form class="p-4 w-[300px]" style="background-color: rgba(120, 150, 102, 0.5); backdrop-filter: blur(4px);">
                         <button type="button" class="block w-full text-left py-2 text-white hover:underline">
@@ -74,7 +70,7 @@
                         </div>
                         </div>
                         <div class="flex item-end mt-100 ml-10">
-                            <button class="bg-yellow-500 text-primary-dark hover:bg-yellow-600 px-6 py-2 rounded-full text-lg font-medium border-2 border-white" style="background-color: #FFD700;">
+                            <button class="bg-[#d1e2c4] text-black hover:bg-white  px-6 py-2 rounded-full text-lg font-medium " >
                                 Edit Details
                             </button>
                         </div>

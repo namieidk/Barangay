@@ -7,7 +7,7 @@
     <title>Person Data</title>
 </head>
 <body>
-<div class="w-[1124px] ml-0  bg-[#5A7A46] " style="height: 550px;">
+<div class="w-[1124px] ml-0  bg-[#77a659] " style="height: 550px;">
     <form class="ml-4 " >
         <div class="text-left mb-5" >
             <div class="inline-block mr-[50px]">

@@ -6,13 +6,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>BRGY INCIO, DAVAO CITY SYSTEM</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-        .bg-4A6936-50-opacity {
-            background-color: rgba(74, 105, 54, 0.5);
-        }
-    </style>
+  
 </head>
-<body class="bg-4A6936-50-opacity min-h-screen flex">
+<body class="bg-[#FBF5DF]  min-h-screen flex">
     <!-- Rest of your content goes here -->
 
     <div class="fixed top-0 left-64 w-[calc(100%-16rem)] h-20 bg-[#5A7A46] text-white p-4 text-xl font-bold z-50 flex items-center">
@@ -29,7 +25,7 @@
     <div class="flex-1 ml-20 pt-20">
         <div class="p-10 w-full  max-w-5xl mx-auto">
             <!-- Form Section -->
-            <div class="bg-[#385327] mr-[-180px]">
+            <div class="bg-[#301f17] mr-[-180px]">
                 <!-- Tab Navigation -->
                 <div class="flex text-white">
                     <x-resbar href="/RepPersonData" active="{{ request()->is('RepPerData') }}" id="repperdataBtn">Reporting Person Data</x-resbar>

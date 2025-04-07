@@ -24,7 +24,6 @@
             <!-- Tab Navigation -->
             <div class="flex text-white p-2 bg-[#301f17]">
                 <x-resbar>Head of The Family</x-resbar>
-                <x-resbar href="/FamMember" active="{{ request()->is('FamMem') }}" id="FamMemBtn">Family Member</x-resbar>
             </div>
             <x-Personal-Info></x-Personal-Info>
         </div>

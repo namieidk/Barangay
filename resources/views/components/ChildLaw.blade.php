@@ -10,7 +10,7 @@
 <div class="w-[1124px] ml-0  bg-[#77a659] " style="height: 550px;">
     <form class="ml-4 " >
         <div class="text-left mb-5" >
-            <div class="inline-block mr-[50px]">
+            <div class="inline-block mr-[50px] ">
             <label for="guardian-name" class="block whitespace-nowrap">Name of Guardian</label>
             <input type="text" id="guardian-name" name="guardian-name" class="block border-b border-[#000000] bg-white outline-none text-[#000000]" style="width: 170px">
             </div>

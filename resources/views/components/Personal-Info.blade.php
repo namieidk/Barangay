@@ -10,10 +10,10 @@
     <form action="{{ route('new-residence.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         
-        <div class="p-8 bg-[#FDFDFD]">
+        <div class="p-8 bg-[#FDFDFD] ">
             <!-- First Form Section -->
             <div id="form-section-1">
-                <div class="flex flex-col md:flex-row gap-8 ">
+                <div class="flex flex-col md:flex-row gap-8  ">
                     <!-- Profile Photo Section -->
 
                     <!-- Form Fields -->

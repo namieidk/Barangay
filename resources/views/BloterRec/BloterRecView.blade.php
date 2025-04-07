@@ -11,14 +11,14 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex">
+<body class=" min-h-screen flex">
     <!-- Header -->
 
     <!-- Sidebar -->
     <x-sidebar></x-sidebar>
 
     <!-- Main Content Area -->
-    <div class="flex-1 ml-64 pt-14 bg-4A6936-50-opacity">
+    <div class="flex-1 ml-64 pt-14 bg-[#FBF5DF] ">
         <div class="p-6 w-full max-w-5xl">
             <h1 class="text-5xl font-bold mb-4 mt-[-50px] ml-0">Blotter Records</h1>
 
@@ -46,7 +46,7 @@
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-[120%] mt-5">
     <table class="w-[120%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ml-auto">
-        <thead class="text-xs text-gray-700 uppercase bg-[#385327] text-white ">
+        <thead class="text-xs text-gray-700 uppercase bg-[#301f17] text-white ">
             <tr>
                 <th scope="col" class="px-6 py-3">
                     ResID

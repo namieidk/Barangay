@@ -6,13 +6,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>BRGY INCIO, DAVAO CITY SYSTEM</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-        .bg-4A6936-50-opacity {
-            background-color: rgba(74, 105, 54, 0.5);
-        }
-    </style>
+ 
 </head>
-<body class="bg-4A6936-50-opacity min-h-screen flex">
+<body class="bg-[#FBF5DF]  min-h-screen flex">
     <!-- Rest of your content goes here -->
     <!-- Sidebar -->
     <x-sidebar></x-sidebar>

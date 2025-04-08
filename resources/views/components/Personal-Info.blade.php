@@ -7,16 +7,19 @@
     <title>Personal Information</title>
 </head>
 <body>
+    @if (session('success'))
+        <div class="p-4 mb-4 text-green-800 bg-green-100 rounded">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <form action="{{ route('new-residence.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         
-        <div class="p-8 bg-[#FDFDFD] ">
+        <div class="p-8 bg-[#FDFDFD]">
             <!-- First Form Section -->
             <div id="form-section-1">
-                <div class="flex flex-col md:flex-row gap-8  ">
-                    <!-- Profile Photo Section -->
-
-                    <!-- Form Fields -->
+                <div class="flex flex-col md:flex-row gap-8">
                     <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
                         <!-- Left Column -->
                         <div class="space-y-4">
@@ -56,7 +59,7 @@
 
                             <div class="space-y-1">
                                 <label for="middle-name" class="text-[#000000] font-medium">
-                                    Middle Name: <span class="text-red-500">*</span>
+                                    Middle Name:
                                 </label>
                                 <input 
                                     type="text" 
@@ -72,7 +75,7 @@
 
                             <div class="space-y-1">
                                 <label for="alias-name" class="text-[#000000] font-medium">
-                                    Alias Name: <span class="text-red-500">*</span>
+                                    Alias Name:
                                 </label>
                                 <input 
                                     type="text" 
@@ -128,7 +131,7 @@
 
                             <div class="space-y-1">
                                 <label for="spouse-name" class="text-[#000000] font-medium">
-                                    Name of Spouse: <span class="text-red-500">*</span>
+                                    Name of Spouse:
                                 </label>
                                 <input 
                                     type="text" 
@@ -346,7 +349,7 @@
                 </div>
             </div>
 
-            <!-- Second Form Section (Initially Hidden) -->
+            <!-- Second Form Section -->
             <div id="form-section-2" class="hidden">
                 <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
                     <!-- Left Column -->
@@ -505,7 +508,6 @@
             }
         }
 
-        // Form navigation
         const formSection1 = document.getElementById('form-section-1');
         const formSection2 = document.getElementById('form-section-2');
         const nextBtn = document.getElementById('next-btn');

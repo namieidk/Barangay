@@ -103,6 +103,9 @@ Route::get('/new-residence/{newResidence}/edit', [NewResidenceController::class,
 Route::put('/new-residence/{newResidence}', [NewResidenceController::class, 'update'])->name('new-residence.update');
 
 Route::get('/ResRec', [ResidenceController::class, 'index'])->name('ResRec.ResRec');
+Route::get('/residents/{resident}/edit', [ResidenceController::class, 'edit'])->name('ResRec.edit');
+Route::put('/residents/{resident}', [ResidenceController::class, 'update'])->name('ResRec.update');
+Route::delete('/residents/{resident}/archive', [ResidenceController::class, 'archive'])->name('ResRec.archive');
 
 Route::post('/family/store', [FamilyMemberController::class, 'store'])->name('family.store');
 

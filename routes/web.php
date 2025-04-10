@@ -6,6 +6,7 @@ use App\Http\Controllers\NewResidenceController;
 use App\Http\Controllers\FamilyMemberController;
 use App\Http\Controllers\ResidenceController;
 use App\Http\Controllers\SuspectDataController;
+use App\Http\Controllers\VictimDataController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -120,5 +121,10 @@ Route::post('/RepPersonData/store', [App\Http\Controllers\ResPersonDataControlle
     Route::get('/blotter/suspect-data/create', [SuspectDataController::class, 'create'])->name('blotter.suspect.create');
     Route::post('/blotter/suspect-data', [SuspectDataController::class, 'store'])->name('blotter.suspect.store');
     Route::post('/blotter/suspect-data/search', [SuspectDataController::class, 'search'])->name('blotter.suspect.search');
+
+    Route::get('/blotter/victim-data', [VictimDataController::class, 'index'])->name('blotter.victim.index');
+Route::get('/blotter/victim-data/create', [VictimDataController::class, 'create'])->name('blotter.victim.create');
+Route::post('/blotter/victim-data', [VictimDataController::class, 'store'])->name('blotter.victim.store');
+Route::post('/blotter/victim-data/search', [VictimDataController::class, 'search'])->name('blotter.victim.search');
 
 require __DIR__.'/auth.php';

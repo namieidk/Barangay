@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class ResPersonData extends Model
 {
@@ -54,5 +56,10 @@ class ResPersonData extends Model
     public function suspects()
     {
         return $this->hasMany(SuspectData::class, 'res_person_data_id', 'id');
+    }
+
+    public function victims()
+    {
+        return $this->hasMany(VictimData::class, 'res_person_data_id', 'id');
     }
 }

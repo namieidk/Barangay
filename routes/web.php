@@ -109,6 +109,11 @@ Route::delete('/residents/{resident}/archive', [ResidenceController::class, 'arc
 
 Route::post('/family/store', [FamilyMemberController::class, 'store'])->name('family.store');
 
+Route::get('/RepPersonData', [App\Http\Controllers\ResPersonDataController::class, 'create'])
+    ->name('BloterRec.ResPersonData');
+
+Route::post('/RepPersonData/store', [App\Http\Controllers\ResPersonDataController::class, 'store'])
+    ->name('BloterRec.ResPersonData.store');
 //Route::get('/residence-records', [ResidenceController::class, 'index'])->name('residence.index');
 
 require __DIR__.'/auth.php';

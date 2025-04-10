@@ -195,8 +195,15 @@
             .ml-64 {
                 margin-left: 0;
             }
+            header {
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                height: auto;
+                padding: 1rem;
+            }
             .flex-1 {
-                padding-top: 2rem;
+                padding-top: 8rem;
             }
             nav {
                 flex-wrap: wrap;
@@ -209,11 +216,56 @@
     </style>
 </head>
 <body class="min-h-screen bg-gray-100 flex font-sans">
+    <!-- Sidebar -->
     <x-sidebar></x-sidebar>
 
-    <div class="flex-1 ml-64 pt-10">
+    <!-- Main Content Area -->
+    <div class="flex-1 ml-64 pt-20">
+        <!-- Header Section -->
+        <header class="fixed top-0 left-64 w-[calc(100%-16rem)] h-20 bg-[#5A7A46] text-white flex items-center justify-between px-6 shadow-lg z-50">
+            <form id="headerForm" method="GET" action="{{ route('BloterRec.ResPersonData') }}" class="flex items-center space-x-4">
+                <label for="search" class="text-sm font-medium">Blotter Entry Number:</label>
+                <input 
+                    type="text" 
+                    id="search" 
+                    name="search" 
+                    class="p-2 rounded-lg bg-white text-gray-800 w-40 h-9 focus:outline-none focus:ring-2 focus:ring-[#3d8257] transition" 
+                    value="{{ $blotterEntryNumber ?? 'N/A' }}" 
+                    readonly
+                >
+                <label for="filter" class="text-sm font-medium">Type of Incident:</label>
+                <select 
+                    id="filter" 
+                    name="filter" 
+                    class="p-2 rounded-lg bg-white text-gray-800 w-60 h-9 focus:outline-none focus:ring-2 focus:ring-[#3d8257] transition"
+                    onchange="document.getElementById('headerForm').submit()"
+                >
+                    <option value="">Select incident type</option>
+                    <option value="Property damage" {{ $typeOfIncident == 'Property damage' ? 'selected' : '' }}>Property damage</option>
+                    <option value="Near misses" {{ $typeOfIncident == 'Near misses' ? 'selected' : '' }}>Near misses</option>
+                    <option value="Environmental incidents" {{ $typeOfIncident == 'Environmental incidents' ? 'selected' : '' }}>Environmental incidents</option>
+                    <option value="Fatalities" {{ $typeOfIncident == 'Fatalities' ? 'selected' : '' }}>Fatalities</option>
+                    <option value="Fire incident" {{ $typeOfIncident == 'Fire incident' ? 'selected' : '' }}>Fire incident</option>
+                    <option value="Minor incidents" {{ $typeOfIncident == 'Minor incidents' ? 'selected' : '' }}>Minor incidents</option>
+                    <option value="Minor injuries" {{ $typeOfIncident == 'Minor injuries' ? 'selected' : '' }}>Minor injuries</option>
+                    <option value="Accident report" {{ $typeOfIncident == 'Accident report' ? 'selected' : '' }}>Accident report</option>
+                    <option value="Security incident" {{ $typeOfIncident == 'Security incident' ? 'selected' : '' }}>Security incident</option>
+                    <option value="Hazard" {{ $typeOfIncident == 'Hazard' ? 'selected' : '' }}>Hazard</option>
+                    <option value="Human incidents" {{ $typeOfIncident == 'Human incidents' ? 'selected' : '' }}>Human incidents</option>
+                    <option value="Positive observations" {{ $typeOfIncident == 'Positive observations' ? 'selected' : '' }}>Positive observations</option>
+                    <option value="Unsafe acts" {{ $typeOfIncident == 'Unsafe acts' ? 'selected' : '' }}>Unsafe acts</option>
+                    <option value="Vehicle injuries" {{ $typeOfIncident == 'Vehicle injuries' ? 'selected' : '' }}>Vehicle injuries</option>
+                    <option value="Worker injury incident" {{ $typeOfIncident == 'Worker injury incident' ? 'selected' : '' }}>Worker injury incident</option>
+                    <option value="Workplace accidents" {{ $typeOfIncident == 'Workplace accidents' ? 'selected' : '' }}>Workplace accidents</option>
+                    <option value="Workplace violence" {{ $typeOfIncident == 'Workplace violence' ? 'selected' : '' }}>Workplace violence</option>
+                </select>
+            </form>
+        </header>
+
+        <!-- Main Content -->
         <div class="p-10 w-full max-w-6xl mx-auto">
             <div class="bg-white rounded-xl shadow-xl overflow-hidden">
+                <!-- Tab Navigation -->
                 <nav class="flex border-b border-gray-200 bg-[#301f17] text-white">
                     <x-resbar href="/RepPersonData" active="{{ request()->is('RepPersonData') }}" id="repperdataBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#4a2f25] transition-colors">
                         Reporting Person Data
@@ -235,23 +287,16 @@
                     </x-resbar>
                 </nav>
 
+                <!-- Content Area -->
                 <div class="p-6 bg-gray-50">
                     @if (session('success'))
                         <div class="text-green-600 font-semibold mb-4">{{ session('success') }}</div>
                     @endif
-                    @if ($errors->any())
-                        <div class="text-red-500 mb-4">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
+                    
                     <form id="personForm" method="POST" action="{{ route('BloterRec.ResPersonData.store') }}">
                         @csrf
 
+                        <!-- Stepper Header -->
                         <div class="stepper">
                             <div class="step active" data-step="1">
                                 <div class="step-number">1</div>
@@ -272,32 +317,17 @@
                         </div>
 
                         <div class="form-content">
+                            <!-- Step 1: Personal Information -->
                             <div class="step-content active" data-step="1">
                                 <h2 class="text-xl font-semibold mb-4">Personal Information</h2>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <!-- Blotter Entry Number and Type of Incident added here -->
                                     <div class="input-group">
-                                        <label for="blotter_entry_number" class="form-label">Blotter Entry Number<span class="required">*</span></label>
-                                        <input 
-                                            type="text" 
-                                            id="blotter_entry_number" 
-                                            name="blotter_entry_number" 
-                                            class="form-input @error('blotter_entry_number') border-red-500 @enderror" 
-                                            value="{{ $blotterEntryNumber ?? 'N/A' }}" 
-                                            readonly
-                                        >
-                                        @error('blotter_entry_number')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
+                                        <label for="id" class="form-label">Blotter Entry Number<span class="required">*</span></label>
+                                        <input type="text" id="id" name="id" class="form-input" value="{{ $blotterEntryNumber ?? 'N/A' }}" readonly>
                                     </div>
                                     <div class="input-group">
                                         <label for="type_of_incident" class="form-label">Type of Incident<span class="required">*</span></label>
-                                        <select 
-                                            id="type_of_incident" 
-                                            name="type_of_incident" 
-                                            class="form-input @error('type_of_incident') border-red-500 @enderror" 
-                                            required
-                                        >
+                                        <select id="type_of_incident" name="type_of_incident" class="form-input @error('type_of_incident') border-red-500 @enderror" required>
                                             <option value="">Select incident type</option>
                                             <option value="Property damage" {{ old('type_of_incident', $typeOfIncident) == 'Property damage' ? 'selected' : '' }}>Property damage</option>
                                             <option value="Near misses" {{ old('type_of_incident', $typeOfIncident) == 'Near misses' ? 'selected' : '' }}>Near misses</option>
@@ -321,7 +351,6 @@
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <!-- First Name and Last Name follow -->
                                     <div class="input-group">
                                         <label for="first_name" class="form-label">First Name<span class="required">*</span></label>
                                         <input type="text" id="first_name" name="first_name" class="form-input @error('first_name') border-red-500 @enderror" value="{{ old('first_name') }}" required>
@@ -401,6 +430,7 @@
                                 </div>
                             </div>
 
+                            <!-- Step 2: Current Address -->
                             <div class="step-content" data-step="2">
                                 <h2 class="text-xl font-semibold mb-4">Current Address</h2>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -442,6 +472,7 @@
                                 </div>
                             </div>
 
+                            <!-- Step 3: Other Address -->
                             <div class="step-content" data-step="3">
                                 <h2 class="text-xl font-semibold mb-4">Other Address</h2>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -483,6 +514,7 @@
                                 </div>
                             </div>
 
+                            <!-- Step 4: Additional Information -->
                             <div class="step-content" data-step="4">
                                 <h2 class="text-xl font-semibold mb-4">Additional Information</h2>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -532,10 +564,12 @@
                                 </div>
                             </div>
 
+                            <!-- Progress Bar -->
                             <div class="progress-bar-container">
                                 <div class="progress-bar" style="width: 25%;"></div>
                             </div>
 
+                            <!-- Navigation Buttons -->
                             <div class="navigation-buttons">
                                 <button type="button" class="btn btn-secondary prev-step" style="display: none;">Previous</button>
                                 <button type="button" class="btn btn-primary next-step">Next</button>
@@ -639,31 +673,6 @@
             });
             
             showStep(currentStep);
-        });
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const birthdateInput = document.getElementById('birthdate');
-            const ageInput = document.getElementById('age');
-            
-            function calculateAge(birthdate) {
-                const today = new Date();
-                const birthDate = new Date(birthdate);
-                let age = today.getFullYear() - birthDate.getFullYear();
-                const monthDiff = today.getMonth() - birthDate.getMonth();
-                
-                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-                    age--;
-                }
-                
-                return age;
-            }
-            
-            birthdateInput.addEventListener('change', function() {
-                if (this.value) {
-                    const calculatedAge = calculateAge(this.value);
-                    ageInput.value = calculatedAge;
-                }
-            });
         });
     </script>
 </body>

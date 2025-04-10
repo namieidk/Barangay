@@ -54,11 +54,11 @@ class ResPersonDataController extends Controller
                 'barangay' => 'required|string|max:255',
                 'town_city' => 'required|string|max:255',
                 'province' => 'required|string|max:255',
-                'other_house_no' => 'required|string|max:255',
-                'other_village' => 'required|string|max:255',
-                'other_barangay' => 'required|string|max:255',
-                'other_town_city' => 'required|string|max:255',
-                'other_province' => 'required|string|max:255',
+                'other_house_no' => 'nullable|string|max:255', // Changed to optional
+                'other_village' => 'nullable|string|max:255', // Changed to optional
+                'other_barangay' => 'nullable|string|max:255', // Changed to optional
+                'other_town_city' => 'nullable|string|max:255', // Changed to optional
+                'other_province' => 'nullable|string|max:255', // Changed to optional
                 'date_reported' => 'required|date_format:Y-m-d\TH:i', // Ensure this matches datetime-local
                 'date_incident' => 'required|date_format:Y-m-d\TH:i', // Ensure this matches datetime-local
                 'email_address' => 'required|email|max:255',

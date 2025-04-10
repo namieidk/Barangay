@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewResidenceController;
 use App\Http\Controllers\FamilyMemberController;
 use App\Http\Controllers\ResidenceController;
+use App\Http\Controllers\SuspectDataController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -114,6 +115,10 @@ Route::get('/RepPersonData', [App\Http\Controllers\ResPersonDataController::clas
 
 Route::post('/RepPersonData/store', [App\Http\Controllers\ResPersonDataController::class, 'store'])
     ->name('BloterRec.ResPersonData.store');
-//Route::get('/residence-records', [ResidenceController::class, 'index'])->name('residence.index');
+
+    Route::get('/blotter/suspect-data', [SuspectDataController::class, 'index'])->name('blotter.suspect.index');
+    Route::get('/blotter/suspect-data/create', [SuspectDataController::class, 'create'])->name('blotter.suspect.create');
+    Route::post('/blotter/suspect-data', [SuspectDataController::class, 'store'])->name('blotter.suspect.store');
+    Route::post('/blotter/suspect-data/search', [SuspectDataController::class, 'search'])->name('blotter.suspect.search');
 
 require __DIR__.'/auth.php';

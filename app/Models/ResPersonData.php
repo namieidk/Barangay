@@ -50,4 +50,9 @@ class ResPersonData extends Model
         'date_incident' => 'datetime',
         'age' => 'integer',
     ];
+
+    public function suspects()
+    {
+        return $this->hasMany(SuspectData::class, 'res_person_data_id', 'id');
+    }
 }

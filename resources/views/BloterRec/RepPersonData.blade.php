@@ -275,7 +275,6 @@
                             <div class="step-content active" data-step="1">
                                 <h2 class="text-xl font-semibold mb-4">Personal Information</h2>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <!-- Blotter Entry Number and Type of Incident added here -->
                                     <div class="input-group">
                                         <label for="blotter_entry_number" class="form-label">Blotter Entry Number<span class="required">*</span></label>
                                         <input 
@@ -321,7 +320,6 @@
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <!-- First Name and Last Name follow -->
                                     <div class="input-group">
                                         <label for="first_name" class="form-label">First Name<span class="required">*</span></label>
                                         <input type="text" id="first_name" name="first_name" class="form-input @error('first_name') border-red-500 @enderror" value="{{ old('first_name') }}" required>
@@ -443,39 +441,39 @@
                             </div>
 
                             <div class="step-content" data-step="3">
-                                <h2 class="text-xl font-semibold mb-4">Other Address</h2>
+                                <h2 class="text-xl font-semibold mb-4">Other Address (Optional)</h2>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div class="input-group">
-                                        <label for="other_house_no" class="form-label">House No.<span class="required">*</span></label>
-                                        <input type="text" id="other_house_no" name="other_house_no" class="form-input @error('other_house_no') border-red-500 @enderror" value="{{ old('other_house_no') }}" required>
+                                        <label for="other_house_no" class="form-label">House No.</label>
+                                        <input type="text" id="other_house_no" name="other_house_no" class="form-input @error('other_house_no') border-red-500 @enderror" value="{{ old('other_house_no') }}">
                                         @error('other_house_no')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="input-group">
-                                        <label for="other_village" class="form-label">Village/Sitio<span class="required">*</span></label>
-                                        <input type="text" id="other_village" name="other_village" class="form-input @error('other_village') border-red-500 @enderror" value="{{ old('other_village') }}" required>
+                                        <label for="other_village" class="form-label">Village/Sitio</label>
+                                        <input type="text" id="other_village" name="other_village" class="form-input @error('other_village') border-red-500 @enderror" value="{{ old('other_village') }}">
                                         @error('other_village')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="input-group">
-                                        <label for="other_barangay" class="form-label">Barangay<span class="required">*</span></label>
-                                        <input type="text" id="other_barangay" name="other_barangay" class="form-input @error('other_barangay') border-red-500 @enderror" value="{{ old('other_barangay') }}" required>
+                                        <label for="other_barangay" class="form-label">Barangay</label>
+                                        <input type="text" id="other_barangay" name="other_barangay" class="form-input @error('other_barangay') border-red-500 @enderror" value="{{ old('other_barangay') }}">
                                         @error('other_barangay')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="input-group">
-                                        <label for="other_town_city" class="form-label">Town/City<span class="required">*</span></label>
-                                        <input type="text" id="other_town_city" name="other_town_city" class="form-input @error('other_town_city') border-red-500 @enderror" value="{{ old('other_town_city') }}" required>
+                                        <label for="other_town_city" class="form-label">Town/City</label>
+                                        <input type="text" id="other_town_city" name="other_town_city" class="form-input @error('other_town_city') border-red-500 @enderror" value="{{ old('other_town_city') }}">
                                         @error('other_town_city')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="input-group">
-                                        <label for="other_province" class="form-label">Province<span class="required">*</span></label>
-                                        <input type="text" id="other_province" name="other_province" class="form-input @error('other_province') border-red-500 @enderror" value="{{ old('other_province') }}" required>
+                                        <label for="other_province" class="form-label">Province</label>
+                                        <input type="text" id="other_province" name="other_province" class="form-input @error('other_province') border-red-500 @enderror" value="{{ old('other_province') }}">
                                         @error('other_province')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror

@@ -8,6 +8,8 @@ use App\Http\Controllers\ResidenceController;
 use App\Http\Controllers\SuspectDataController;
 use App\Http\Controllers\VictimDataController;
 use App\Http\Controllers\ChildLawController;
+use App\Http\Controllers\NarrativeController;
+use App\Http\Controllers\BlotterRecordController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -118,6 +120,9 @@ Route::get('/RepPersonData', [App\Http\Controllers\ResPersonDataController::clas
 Route::post('/RepPersonData/store', [App\Http\Controllers\ResPersonDataController::class, 'store'])
     ->name('BloterRec.ResPersonData.store');
 
+// Add these routes after your existing blotter-related routes
+Route::get('/reporting-person/{id}/edit', [App\Http\Controllers\ResPersonDataController::class, 'edit'])->name('reporting-person.edit');
+
     Route::get('/blotter/suspect-data', [SuspectDataController::class, 'index'])->name('blotter.suspect.index');
     Route::get('/blotter/suspect-data/create', [SuspectDataController::class, 'create'])->name('blotter.suspect.create');
     Route::post('/blotter/suspect-data', [SuspectDataController::class, 'store'])->name('blotter.suspect.store');
@@ -132,5 +137,11 @@ Route::get('/blotter/childlaw', [ChildLawController::class, 'index'])->name('blo
 Route::get('/blotter/childlaw/create', [ChildLawController::class, 'create'])->name('blotter.childlaw.create');
 Route::post('/blotter/childlaw', [ChildLawController::class, 'store'])->name('blotter.childlaw.store');
 Route::post('/blotter/childlaw/search', [ChildLawController::class, 'search'])->name('blotter.childlaw.search');
+
+Route::get('/Narrative', [NarrativeController::class, 'index'])->name('blotter.narrative.index');
+Route::post('/Narrative/store', [NarrativeController::class, 'store'])->name('blotter.narrative.store');
+Route::post('/Narrative/search', [NarrativeController::class, 'search'])->name('blotter.narrative.search');
+
+Route::get('/blotter', [BlotterRecordController::class, 'index'])->name('blotter.index');
 
 require __DIR__.'/auth.php';

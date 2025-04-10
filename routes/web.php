@@ -7,6 +7,7 @@ use App\Http\Controllers\FamilyMemberController;
 use App\Http\Controllers\ResidenceController;
 use App\Http\Controllers\SuspectDataController;
 use App\Http\Controllers\VictimDataController;
+use App\Http\Controllers\ChildLawController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -126,5 +127,10 @@ Route::post('/RepPersonData/store', [App\Http\Controllers\ResPersonDataControlle
 Route::get('/blotter/victim-data/create', [VictimDataController::class, 'create'])->name('blotter.victim.create');
 Route::post('/blotter/victim-data', [VictimDataController::class, 'store'])->name('blotter.victim.store');
 Route::post('/blotter/victim-data/search', [VictimDataController::class, 'search'])->name('blotter.victim.search');
+
+Route::get('/blotter/childlaw', [ChildLawController::class, 'index'])->name('blotter.childlaw.index');
+Route::get('/blotter/childlaw/create', [ChildLawController::class, 'create'])->name('blotter.childlaw.create');
+Route::post('/blotter/childlaw', [ChildLawController::class, 'store'])->name('blotter.childlaw.store');
+Route::post('/blotter/childlaw/search', [ChildLawController::class, 'search'])->name('blotter.childlaw.search');
 
 require __DIR__.'/auth.php';

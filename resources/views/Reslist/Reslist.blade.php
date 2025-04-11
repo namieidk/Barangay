@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>BRGY INCIO, DAVAO CITY SYSTEM</title>
     <style>
         :root {
@@ -151,7 +153,7 @@
         .card-body {
             padding: 1.5rem;
             display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-columns: 1fr 2fr;
             gap: 2rem;
         }
         
@@ -231,30 +233,6 @@
             box-shadow: 0 0 0 3px rgba(59, 130, 87, 0.2);
         }
         
-        .profile-section {
-            padding-left: 1rem;
-            border-left: 1px solid var(--border-color);
-        }
-        
-        .profile-photo {
-            width: 100%;
-            height: 240px;
-            background-color: #e9ecef;
-            border: 1px dashed var(--border-color);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-        }
-        
-        .profile-photo img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
-        }
-        
         .action-buttons {
             display: flex;
             justify-content: flex-end;
@@ -278,6 +256,15 @@
         
         .btn-save:hover {
             background-color: var(--primary-light);
+        }
+
+        .family-members {
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .family-members.active {
+            display: block;
         }
 
         /* Custom scrollbar */
@@ -318,16 +305,32 @@
             </div>
         </div>
 
+        @if (session('success'))
+            <div class="alert alert-success" style="padding: 1rem; background-color: #d4edda; color: #155724; border-radius: 4px; margin-bottom: 1rem;">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger" style="padding: 1rem; background-color: #f8d7da; color: #721c24; border-radius: 4px; margin-bottom: 1rem;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="content-card">
             <div class="card-header">
                 <div class="purok-filter">
                     <h2>Find by Purok:</h2>
                     <select id="purok-filter">
-                        <option selected>Choose a Purok</option>
-                        <option value="Purok1">Purok 1</option>
-                        <option value="Purok2">Purok 2</option>
-                        <option value="Purok3">Purok 3</option>
-                        <option value="Purok4">Purok 4</option>
+                        <option value="">Choose a Purok</option>
+                        <option value="purok1">Purok 1</option>
+                        <option value="purok2">Purok 2</option>
+                        <option value="purok3">Purok 3</option>
+                        <option value="purok4">Purok 4</option>
                     </select>
                 </div>
                 <button class="btn btn-primary" id="edit-details-btn" disabled>
@@ -357,94 +360,102 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Dynamic content will be populated via Blade or JavaScript -->
-                                @forelse($residences ?? [] as $resident)
-                                    <tr onclick="showResidentDetails('{{ $resident->id }}')" class="resident-row" data-id="{{ $resident->id }}">
-                                        <td>{{ $resident->id }}</td>
-                                        <td>{{ $resident->first_name }} {{ $resident->last_name }}</td>
-                                    </tr>
-                                @empty
+                                @if (isset($residences) && $residences->count() > 0)
+                                    @foreach ($residences as $resident)
+                                        <tr onclick="showResidentDetails('{{ $resident->id }}')" class="resident-row" data-id="{{ $resident->id }}">
+                                            <td>{{ $resident->id }}</td>
+                                            <td>{{ $resident->first_name }} {{ $resident->last_name }}</td>
+                                        </tr>
+                                    @endforeach
+                                @else
                                     <tr>
-                                        <td colspan="2">No residents available</td>
+                                        <td colspan="2">No residents available in the database.</td>
                                     </tr>
-                                @endforelse
+                                @endif
                             </tbody>
                         </table>
+                        <button class="btn btn-outline" id="family-members-btn" onclick="toggleFamilyMembers()" style="margin-top: 1rem; width: 100%;" disabled>Family Members</button>
+                        <div class="family-members" id="family-members-list">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Relationship</th>
+                                        <th>Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="family-members-table">
+                                    <!-- Populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Middle Column - Resident Info -->
+                <!-- Right Column - Resident Info -->
                 <div class="resident-info">
                     <div>
                         <div class="form-group">
                             <label class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="first_name" readonly>
+                            <input type="text" class="form-control" id="first_name" name="first_name" readonly>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="last_name" readonly>
+                            <input type="text" class="form-control" id="last_name" name="last_name" readonly>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Middle Name</label>
-                            <input type="text" class="form-control" id="middle_name" readonly>
+                            <input type="text" class="form-control" id="middle_name" name="middle_name" readonly>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Alias Name</label>
-                            <input type="text" class="form-control" id="alias_name" readonly>
+                            <input type="text" class="form-control" id="alias_name" name="alias_name" readonly>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Gender</label>
-                            <input type="text" class="form-control" id="gender" readonly>
+                            <input type="text" class="form-control" id="gender" name="gender" readonly>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Marital Status</label>
-                            <input type="text" class="form-control" id="marital_status" readonly>
+                            <input type="text" class="form-control" id="marital_status" name="marital_status" readonly>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Spouse Name</label>
-                            <input type="text" class="form-control" id="spouse_name" readonly>
+                            <input type="text" class="form-control" id="spouse_name" name="spouse_name" readonly>
                         </div>
                     </div>
                     <div>
                         <div class="form-group">
                             <label class="form-label">Purok</label>
-                            <input type="text" class="form-control" id="purok" readonly>
+                            <input type="text" class="form-control" id="purok" name="purok" readonly>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Employment Status</label>
-                            <input type="text" class="form-control" id="employment_status" readonly>
+                            <input type="text" class="form-control" id="employment_status" name="employment_status" readonly>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Birth Date</label>
-                            <input type="text" class="form-control" id="birth_date" readonly>
+                            <input type="text" class="form-control" id="birth_date" name="birth_date" readonly>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Height (cm)</label>
-                            <input type="text" class="form-control" id="height" readonly>
+                            <input type="text" class="form-control" id="height" name="height" readonly>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Weight (kg)</label>
-                            <input type="text" class="form-control" id="weight" readonly>
+                            <input type="text" class="form-control" id="weight" name="weight" readonly>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Religion</label>
-                            <input type="text" class="form-control" id="religion" readonly>
+                            <input type="text" class="form-control" id="religion" name="religion" readonly>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Right Column - Profile Section -->
-                <div class="profile-section">
-                    <div class="profile-photo">
-                        <img id="profile_photo" src="/placeholder.svg?height=240&width=240" alt="Profile Photo">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Age</label>
-                        <input type="text" class="form-control" id="age" readonly>
+                        <div class="form-group">
+                            <label class="form-label">Age</label>
+                            <input type="text" class="form-control" id="age" readonly>
+                        </div>
                     </div>
                     <div class="action-buttons">
                         <button class="btn btn-secondary" onclick="clearResidentDetails()">Clear</button>
-                        <button class="btn btn-save" onclick="saveResidentDetails()" disabled>Save</button>
+                        <button class="btn btn-save" id="save-btn" onclick="saveResidentDetails()" disabled>Save</button>
                     </div>
                 </div>
             </div>
@@ -453,17 +464,18 @@
 
     <script>
         let selectedResidentId = null;
+        let isEditing = false;
 
         function showResidentDetails(residentId) {
             selectedResidentId = residentId;
             document.getElementById('edit-details-btn').disabled = false;
+            document.getElementById('family-members-btn').disabled = false;
             document.querySelectorAll('.resident-row').forEach(row => {
                 row.classList.remove('selected');
             });
             document.querySelector(`.resident-row[data-id="${residentId}"]`).classList.add('selected');
 
-            // Fetch resident details (assuming an API endpoint)
-            fetch(`/residents/${residentId}/edit`)
+            fetch(`/residents/${residentId}`)
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('first_name').value = data.first_name || '';
@@ -482,49 +494,104 @@
                     const birthDate = new Date(data.birth_date);
                     const age = new Date().getFullYear() - birthDate.getFullYear();
                     document.getElementById('age').value = age || '';
-                    // Update profile photo if available
-                    document.getElementById('profile_photo').src = data.photo_url || '/placeholder.svg?height=240&width=240';
                 })
                 .catch(error => console.error('Error fetching resident:', error));
         }
 
+        function toggleFamilyMembers() {
+            const familyList = document.getElementById('family-members-list');
+            if (familyList.classList.contains('active')) {
+                familyList.classList.remove('active');
+            } else if (selectedResidentId) {
+                fetch(`/residents/${selectedResidentId}/family-members`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const tbody = document.getElementById('family-members-table');
+                        tbody.innerHTML = '';
+                        data.forEach(member => {
+                            const tr = document.createElement('tr');
+                            tr.innerHTML = `
+                                <td>${member.relationship}</td>
+                                <td>${member.first_name} ${member.last_name}</td>
+                            `;
+                            tbody.appendChild(tr);
+                        });
+                        familyList.classList.add('active');
+                    })
+                    .catch(error => console.error('Error fetching family members:', error));
+            }
+        }
+
         function clearResidentDetails() {
             selectedResidentId = null;
+            isEditing = false;
             document.getElementById('edit-details-btn').disabled = true;
+            document.getElementById('family-members-btn').disabled = true;
+            document.getElementById('save-btn').disabled = true;
             document.querySelectorAll('.resident-row').forEach(row => row.classList.remove('selected'));
-            document.querySelectorAll('.resident-info .form-control').forEach(input => input.value = '');
-            document.getElementById('age').value = '';
-            document.getElementById('profile_photo').src = '/placeholder.svg?height=240&width=240';
+            document.querySelectorAll('.resident-info .form-control').forEach(input => {
+                input.value = '';
+                input.setAttribute('readonly', 'true');
+            });
+            document.getElementById('family-members-list').classList.remove('active');
         }
 
         function showAllResidents() {
             clearResidentDetails();
-            // Logic to reset filters and show all residents could go here
+            document.querySelectorAll('#resident-table tbody tr').forEach(row => {
+                row.style.display = '';
+            });
         }
 
         document.getElementById('edit-details-btn').addEventListener('click', () => {
-            if (selectedResidentId) {
-                // Redirect or open modal for editing
-                window.location.href = `/residents/${selectedResidentId}/edit`;
+            if (selectedResidentId && !isEditing) {
+                isEditing = true;
+                document.querySelectorAll('.resident-info .form-control').forEach(input => {
+                    if (input.id !== 'age') input.removeAttribute('readonly');
+                });
+                document.getElementById('save-btn').disabled = false;
             }
         });
 
         function saveResidentDetails() {
-            // Placeholder for save functionality if editing inline
-            console.log('Save functionality not implemented yet');
+            if (!isEditing || !selectedResidentId) return;
+
+            const formData = new FormData();
+            document.querySelectorAll('.resident-info .form-control').forEach(input => {
+                if (input.name) formData.append(input.name, input.value);
+            });
+
+            fetch(`/residents/${selectedResidentId}`, {
+                method: 'PUT',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Accept': 'application/json',
+                },
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        isEditing = false;
+                        document.querySelectorAll('.resident-info .form-control').forEach(input => input.setAttribute('readonly', 'true'));
+                        document.getElementById('save-btn').disabled = true;
+                        alert('Resident details updated successfully!');
+                    } else {
+                        alert('Failed to update resident details.');
+                    }
+                })
+                .catch(error => console.error('Error saving resident:', error));
         }
 
-        // Filter by Purok
         document.getElementById('purok-filter').addEventListener('change', function() {
             const selectedPurok = this.value;
             const rows = document.querySelectorAll('#resident-table tbody tr');
             rows.forEach(row => {
                 const residentId = row.dataset.id;
-                // Fetch resident data or use preloaded data to filter
-                fetch(`/residents/${residentId}/edit`)
+                fetch(`/residents/${residentId}`)
                     .then(response => response.json())
                     .then(data => {
-                        if (selectedPurok === 'Choose a Purok' || data.purok === selectedPurok) {
+                        if (!selectedPurok || data.purok === selectedPurok) {
                             row.style.display = '';
                         } else {
                             row.style.display = 'none';
@@ -533,7 +600,6 @@
             });
         });
 
-        // Search functionality
         document.getElementById('resident-search').addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
             const rows = document.querySelectorAll('#resident-table tbody tr');

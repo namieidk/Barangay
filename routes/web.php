@@ -113,8 +113,16 @@ Route::get('/residents/{resident}/edit', [ResidenceController::class, 'edit'])->
 Route::put('/residents/{resident}', [ResidenceController::class, 'update'])->name('ResRec.update');
 Route::delete('/residents/{resident}/archive', [ResidenceController::class, 'archive'])->name('ResRec.archive');
 
-Route::post('/family/store', [FamilyMemberController::class, 'store'])->name('family.store');
-
+Route::get('/family-members', [FamilyMemberController::class, 'index'])->name('family-members.index');
+    
+    // Get family member data for edit form (AJAX)
+    Route::get('/family-members/{famMember}/edit', [FamilyMemberController::class, 'edit'])->name('family-members.edit');
+    
+    // Update family member data
+    Route::put('/family-members/{famMember}', [FamilyMemberController::class, 'update'])->name('family-members.update');
+    
+    // Existing store route (kept as is)
+    Route::post('/family/store', [FamilyMemberController::class, 'store'])->name('family.store');
 Route::get('/RepPersonData', [App\Http\Controllers\ResPersonDataController::class, 'create'])
     ->name('BloterRec.ResPersonData');
 
@@ -148,5 +156,6 @@ Route::post('/IncidentReport/store', [IncidentReportController::class, 'store'])
 Route::post('/IncidentReport/search', [IncidentReportController::class, 'search'])->name('blotter.incident.search');
 
 Route::get('/BloterRecView', [BlotterRecordsController::class, 'index'])->name('blotter.records.index');
+
 
 require __DIR__.'/auth.php';

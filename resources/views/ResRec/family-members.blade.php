@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>BRGY INCIO, DAVAO CITY SYSTEM</title>
+    <title>BRGY INCIO, DAVAO CITY SYSTEM - Family Member List</title>
     <style>
         :root {
             --primary: #385327;
@@ -314,6 +314,18 @@
             @endif
         </div>
 
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="text-2xl font-bold text-gray-800">Family Member List</h1>
+            <a href="{{ route('family-members.index') }}" class="add-new-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>Add New Family Member</span>
+            </a>
+        </div>
+
         <!-- Search Bar -->
         <div class="card mb-6">
             <div class="search-container">
@@ -321,7 +333,7 @@
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
-                <input type="search" id="resident-search" class="search-input" placeholder="Search by name, ID, or purok..." />
+                <input type="search" id="family-search" class="search-input" placeholder="Search by name, ID, or purok..." />
             </div>
         </div>
 
@@ -342,21 +354,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($residences as $residence)
+                        @forelse($familyMembers as $member)
                             <tr>
-                                <td>{{ $residence->id }}</td>
+                                <td>{{ $member->id }}</td>
                                 <td>
                                     <div>
-                                        <div class="font-medium">{{ $residence->first_name }} {{ $residence->middle_name }} {{ $residence->last_name }}</div>
-                                        <div class="text-xs text-gray-500">{{ $residence->alias_name }}</div>
+                                        <div class="font-medium">{{ $member->first_name }} {{ $member->middle_name }} {{ $member->last_name }}</div>
+                                        <div class="text-xs text-gray-500">{{ $member->alias_name }}</div>
                                     </div>
                                 </td>
-                                <td>{{ ucfirst($residence->gender) }}</td>
-                                <td>{{ now()->diffInYears($residence->birth_date) }}</td>
-                                <td>{{ ucfirst($residence->purok) }}</td>
-                                <td>{{ ucfirst($residence->marital_status) }}</td>
+                                <td>{{ ucfirst($member->gender) }}</td>
+                                <td>{{ now()->diffInYears($member->birth_date) }}</td>
+                                <td>{{ ucfirst($member->purok) }}</td>
+                                <td>{{ ucfirst($member->marital_status) }}</td>
                                 <td>
-                                    @if($residence->voters_status == 'registered')
+                                    @if($member->voters_status == 'registered')
                                         <span class="badge badge-green">Registered</span>
                                     @else
                                         <span class="badge badge-red">Not Registered</span>
@@ -364,38 +376,20 @@
                                 </td>
                                 <td>
                                     <div class="flex space-x-3">
-                                        <button onclick="showModal('{{ $residence->id }}')" class="btn-action">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                <circle cx="8.5" cy="7" r="4"></circle>
-                                                <line x1="20" y1="8" x2="20" y2="14"></line>
-                                                <line x1="23" y1="11" x2="17" y2="11"></line>
-                                            </svg>
-                                            <span class="sr-only">Add Family</span>
-                                        </button>
-                                        <button onclick="showEditModal('{{ $residence->id }}')" class="btn-action">
+                                        <button onclick="showEditModal('{{ $member->id }}')" class="btn-action">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                             </svg>
                                             <span class="sr-only">Edit</span>
                                         </button>
-                                        <a href="{{ route('family-members.index', ['residence_id' => $residence->id]) }}" class="btn-action">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                <circle cx="9" cy="7" r="4"></circle>
-                                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                            </svg>
-                                            <span class="sr-only">Show Family</span>
-                                        </a>
                                     </div>
                                 </td>
                             </tr>
                         @empty
                             <tr>
                                 <td colspan="8" class="text-center py-6 text-gray-500">
-                                    No residents found
+                                    No family members found
                                 </td>
                             </tr>
                         @endforelse
@@ -404,40 +398,25 @@
             </div>
         </div>
 
-        <!-- Add Family Modal -->
-        <div id="addFamilyModal" class="modal">
+        <!-- Edit Modal -->
+        <div id="editModal" class="modal">
             <div class="modal-content">
-                <span class="close" onclick="hideModal()">×</span>
-                <h2 class="text-2xl font-bold mb-6">Add Family Member</h2>
-                
-                <div class="progress-bar">
-                    <div class="progress-step active" id="step0">
-                        <div class="step-circle">1</div>
-                        <div class="step-text">Relationship</div>
-                    </div>
-                    <div class="progress-step" id="step1">
-                        <div class="step-circle">2</div>
-                        <div class="step-text">Personal Info</div>
-                    </div>
-                    <div class="progress-step" id="step2">
-                        <div class="step-circle">3</div>
-                        <div class="step-text">Details</div>
-                    </div>
-                    <div class="progress-step" id="step3">
-                        <div class="step-circle">4</div>
-                        <div class="step-text">Contact</div>
-                    </div>
-                </div>
-                
-                <form id="familyMemberForm" method="POST" action="{{ route('family.store') }}">
+                <span class="close" onclick="hideEditModal()">×</span>
+                <h2 class="text-2xl font-bold mb-6">Edit Family Member</h2>
+                <form id="editFamilyForm" method="POST" action="">
                     @csrf
-                    <input type="hidden" name="residence_id" id="residence_id">
+                    @method('PUT')
+                    <input type="hidden" name="family_member_id" id="edit_family_member_id">
 
-                    <div class="form-page active" id="page0">
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Personal Information -->
                         <div class="form-control">
-                            <label class="form-label required">Relationship to Head of Family</label>
-                            <select name="relationship" id="relationship" class="form-select" required>
-                                <option value="" disabled selected>Select Relationship</option>
+                            <label class="form-label required">Residence ID</label>
+                            <input type="text" name="residence_id" id="edit_residence_id" class="form-input" required>
+                        </div>
+                        <div class="form-control">
+                            <label class="form-label required">Relationship</label>
+                            <select name="relationship" id="edit_relationship" class="form-select" required>
                                 <option value="wife">Wife</option>
                                 <option value="husband">Husband</option>
                                 <option value="son">Son</option>
@@ -448,188 +427,6 @@
                                 <option value="other">Other</option>
                             </select>
                         </div>
-                        <button type="button" onclick="nextPage(1)" class="btn-primary">Next</button>
-                    </div>
-
-                    <div class="form-page" id="page1">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="form-control">
-                                <label class="form-label required">First Name</label>
-                                <input type="text" name="first_name" class="form-input" required>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Last Name</label>
-                                <input type="text" name="last_name" class="form-input" required>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label">Middle Name</label>
-                                <input type="text" name="middle_name" class="form-input">
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label">Nickname</label>
-                                <input type="text" name="alias_name" class="form-input">
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Gender</label>
-                                <select name="gender" class="form-select" required>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Marital Status</label>
-                                <select name="marital_status" class="form-select" required>
-                                    <option value="married">Married</option>
-                                    <option value="single">Single</option>
-                                    <option value="divorced">Divorced</option>
-                                    <option value="widowed">Widowed</option>
-                                </select>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label">Spouse Name</label>
-                                <input type="text" name="spouse_name" class="form-input">
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Purok</label>
-                                <select name="purok" class="form-select" required>
-                                    <option value="purok1">Purok 1</option>
-                                    <option value="purok2">Purok 2</option>
-                                    <option value="purok3">Purok 3</option>
-                                    <option value="purok4">Purok 4</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="flex justify-between mt-4">
-                            <button type="button" onclick="nextPage(0)" class="btn-secondary">Previous</button>
-                            <button type="button" onclick="nextPage(2)" class="btn-primary">Next</button>
-                        </div>
-                    </div>
-
-                    <div class="form-page" id="page2">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="form-control">
-                                <label class="form-label required">Employment Status</label>
-                                <select name="employment_status" class="form-select" required>
-                                    <option value="worker">Worker</option>
-                                    <option value="self-employed">Self-employed</option>
-                                    <option value="employee">Employee</option>
-                                </select>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Birth Date</label>
-                                <input type="date" name="birth_date" class="form-input" required>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Birth Place</label>
-                                <input type="text" name="birth_place" class="form-input" required>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Current Place</label>
-                                <input type="text" name="place" class="form-input" required>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Height (cm)</label>
-                                <input type="number" name="height" class="form-input" required>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Weight (kg)</label>
-                                <input type="number" name="weight" class="form-input" required>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Religion</label>
-                                <input type="text" name="religion" class="form-input" required>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label">Other Religion</label>
-                                <input type="text" name="religion_other" class="form-input">
-                            </div>
-                        </div>
-                        <div class="flex justify-between mt-4">
-                            <button type="button" onclick="nextPage(1)" class="btn-secondary">Previous</button>
-                            <button type="button" onclick="nextPage(3)" class="btn-primary">Next</button>
-                        </div>
-                    </div>
-
-                    <div class="form-page" id="page3">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="form-control">
-                                <label class="form-label required">Voter Status</label>
-                                <select name="voters_status" class="form-select" required>
-                                    <option value="registered">Registered</option>
-                                    <option value="not_registered">Not Registered</option>
-                                </select>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label">Has Disability</label>
-                                <select name="has_disability" class="form-select">
-                                    <option value="0">No</option>
-                                    <option value="1">Yes</option>
-                                </select>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Blood Type</label>
-                                <select name="blood_type" class="form-select" required>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
-                                </select>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Occupation</label>
-                                <input type="text" name="occupation" class="form-input" required>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Educational Attainment</label>
-                                <select name="educational_attainment" class="form-select" required>
-                                    <option value="elementary">Elementary</option>
-                                    <option value="highschool">Highschool</option>
-                                    <option value="college">College</option>
-                                    <option value="postgraduate">Postgraduate</option>
-                                </select>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label required">Phone Number</label>
-                                <input type="text" name="phone_number" class="form-input" required>
-                            </div>
-                            <div class="form-control">
-                                <label class="form-label">Landline Number</label>
-                                <input type="text" name="land_number" class="form-input">
-                            </div>
-                            <div class="form-control col-span-2">
-                                <label class="form-label required">Email</label>
-                                <input type="email" name="email" class="form-input" required>
-                            </div>
-                            <div class="form-control col-span-2">
-                                <label class="form-label required">Address</label>
-                                <input type="text" name="address" class="form-input" required>
-                            </div>
-                        </div>
-                        <div class="flex justify-between mt-4">
-                            <button type="button" onclick="nextPage(2)" class="btn-secondary">Previous</button>
-                            <button type="submit" class="btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Edit Modal -->
-        <div id="editModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="hideEditModal()">×</span>
-                <h2 class="text-2xl font-bold mb-6">Edit Resident</h2>
-                <form id="editResidentForm" method="POST" action="">
-                    @csrf
-                    @method('PUT')
-                    <input type="hidden" name="resident_id" id="edit_resident_id">
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <!-- Personal Information -->
                         <div class="form-control">
                             <label class="form-label required">First Name</label>
                             <input type="text" name="first_name" id="edit_first_name" class="form-input" required>
@@ -668,14 +465,18 @@
                         </div>
                         <div class="form-control">
                             <label class="form-label required">Purok</label>
-                            <input type="text" name="purok" id="edit_purok" class="form-input" required>
+                            <select name="purok" id="edit_purok" class="form-select" required>
+                                <option value="purok1">Purok 1</option>
+                                <option value="purok2">Purok 2</option>
+                                <option value="purok3">Purok 3</option>
+                                <option value="purok4">Purok 4</option>
+                            </select>
                         </div>
 
                         <!-- Additional Details -->
                         <div class="form-control">
-                            <label class="form-label">Employment Status</label>
-                            <select name="employment_status" id="edit_employment_status" class="form-select">
-                                <option value="">Select Employment Status</option>
+                            <label class="form-label required">Employment Status</label>
+                            <select name="employment_status" id="edit_employment_status" class="form-select" required>
                                 <option value="worker">Worker</option>
                                 <option value="self-employed">Self-employed</option>
                                 <option value="employee">Employee</option>
@@ -776,72 +577,23 @@
                 </form>
             </div>
         </div>
-
-        <!-- Archive Confirmation Modal -->
-        <div id="archiveModal" class="modal">
-            <div class="modal-content modal-sm">
-                <span class="close" onclick="hideArchiveModal()">×</span>
-                <h2 class="text-2xl font-bold mb-6">Archive Resident</h2>
-                <p class="mb-6">Are you sure you want to archive this resident? This action can be undone later.</p>
-                <form id="archiveResidentForm" method="POST" action="">
-                    @csrf
-                    @method('DELETE')
-                    <input type="hidden" name="resident_id" id="archive_resident_id">
-                    <div class="flex justify-between">
-                        <button type="button" onclick="hideArchiveModal()" class="btn-secondary">Cancel</button>
-                        <button type="submit" class="btn-primary bg-red-500 hover:bg-red-600">Archive</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
 
     <script>
-        // Add Family Modal Functions
-        function showModal(residenceId) {
-            document.getElementById('addFamilyModal').style.display = 'block';
-            document.getElementById('residence_id').value = residenceId;
-            updateProgress(0);
-        }
-
-        function hideModal() {
-            document.getElementById('addFamilyModal').style.display = 'none';
-            document.getElementById('familyMemberForm').reset();
-            updateProgress(0);
-        }
-
-        function nextPage(pageNum) {
-            document.querySelectorAll('.form-page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(`page${pageNum}`).classList.add('active');
-            updateProgress(pageNum);
-        }
-
-        function updateProgress(currentStep) {
-            const steps = document.querySelectorAll('.progress-step');
-            steps.forEach((step, index) => {
-                step.classList.remove('active', 'completed');
-                if (index < currentStep) {
-                    step.classList.add('completed');
-                } else if (index === currentStep) {
-                    step.classList.add('active');
-                }
-            });
-        }
-
         // Edit Modal Functions
-        function showEditModal(residenceId) {
+        function showEditModal(memberId) {
             const modal = document.getElementById('editModal');
-            const form = document.getElementById('editResidentForm');
-            const residentIdInput = document.getElementById('edit_resident_id');
+            const form = document.getElementById('editFamilyForm');
+            const memberIdInput = document.getElementById('edit_family_member_id');
             
-            form.action = `/residents/${residenceId}`;
-            residentIdInput.value = residenceId;
+            form.action = `/residence-records/family-members/${memberId}`;
+            memberIdInput.value = memberId;
 
-            fetch(`/residents/${residenceId}/edit`)
+            fetch(`/residence-records/family-members/${memberId}/edit`)
                 .then(response => response.json())
                 .then(data => {
+                    document.getElementById('edit_residence_id').value = data.residence_id || '';
+                    document.getElementById('edit_relationship').value = data.relationship || '';
                     document.getElementById('edit_first_name').value = data.first_name || '';
                     document.getElementById('edit_last_name').value = data.last_name || '';
                     document.getElementById('edit_middle_name').value = data.middle_name || '';
@@ -874,33 +626,13 @@
 
         function hideEditModal() {
             document.getElementById('editModal').style.display = 'none';
-            document.getElementById('editResidentForm').reset();
+            document.getElementById('editFamilyForm').reset();
         }
 
-        // Archive Modal Functions
-        function showArchiveModal(residenceId) {
-            const modal = document.getElementById('archiveModal');
-            const form = document.getElementById('archiveResidentForm');
-            const residentIdInput = document.getElementById('archive_resident_id');
-            
-            form.action = `/residents/${residenceId}/archive`;
-            residentIdInput.value = residenceId;
-            modal.style.display = 'block';
-        }
-
-        function hideArchiveModal() {
-            document.getElementById('archiveModal').style.display = 'none';
-        }
-
-        // Close modals when clicking outside
+        // Close modal when clicking outside
         window.onclick = function(event) {
-            const addModal = document.getElementById('addFamilyModal');
             const editModal = document.getElementById('editModal');
-            const archiveModal = document.getElementById('archiveModal');
-            
-            if (event.target === addModal) hideModal();
             if (event.target === editModal) hideEditModal();
-            if (event.target === archiveModal) hideArchiveModal();
         }
     </script>
 </body>

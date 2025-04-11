@@ -10,6 +10,7 @@ use App\Http\Controllers\VictimDataController;
 use App\Http\Controllers\ChildLawController;
 use App\Http\Controllers\NarrativeController;
 use App\Http\Controllers\BlotterRecordController;
+use App\Http\Controllers\IncidentReportController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -141,6 +142,10 @@ Route::post('/blotter/childlaw/search', [ChildLawController::class, 'search'])->
 Route::get('/Narrative', [NarrativeController::class, 'index'])->name('blotter.narrative.index');
 Route::post('/Narrative/store', [NarrativeController::class, 'store'])->name('blotter.narrative.store');
 Route::post('/Narrative/search', [NarrativeController::class, 'search'])->name('blotter.narrative.search');
+
+Route::get('/IncidentReport', [IncidentReportController::class, 'create'])->name('blotter.incident.create');
+Route::post('/IncidentReport/store', [IncidentReportController::class, 'store'])->name('blotter.incident.store');
+Route::post('/IncidentReport/search', [IncidentReportController::class, 'search'])->name('blotter.incident.search');
 
 Route::get('/blotter', [BlotterRecordController::class, 'index'])->name('blotter.index');
 

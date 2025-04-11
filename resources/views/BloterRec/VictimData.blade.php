@@ -334,7 +334,7 @@
                         <x-resbar href="/ChildLaw" active="{{ request()->is('ChildLaw') }}" id="ChildLawBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
                             For Children in Conflict with the Law
                         </x-resbar>
-                        <x-resbar href="/Narative" active="{{ request()->is('NarativeData') }}" id="NarativeBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
+                        <x-resbar href="{{ route('blotter.narrative.index') }}" active="{{ request()->routeIs('blotter.narrative.*') }}" id="NarrativeBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
                             Narrative
                         </x-resbar>
                         <x-resbar href="/IncidentReport" active="{{ request()->is('IncidentReport') }}" id="IncidentReporteBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">

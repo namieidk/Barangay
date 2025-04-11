@@ -296,19 +296,19 @@
                 <div class="form-container">
                     <!-- Tab Navigation -->
                     <nav class="flex bg-[#1f2a44] text-white border-b border-gray-700">
-                        <x-resbar href="/RepPersonData" active="{{ request()->is('RepPerData') }}" id="repperdataBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
+                    <x-resbar href="{{ route('BloterRec.ResPersonData') }}" active="{{ request()->routeIs('blotter.reporting.*') }}" id="repperdataBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
                             Reporting Person Data
                         </x-resbar>
-                        <x-resbar href="/SuspectData" active="{{ request()->is('SusData') }}" id="SusDataBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
+                        <x-resbar href="{{ route('blotter.suspect.index') }}" active="{{ request()->routeIs('blotter.suspect.*') }}" id="SusDataBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
                             Suspect Data
                         </x-resbar>
-                        <x-resbar href="/VictimData" active="{{ request()->is('VicData') }}" id="SVicDataBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
+                        <x-resbar href="{{ route('blotter.victim.index') }}" active="{{ request()->routeIs('blotter.victim.*') }}" id="VicDataBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
                             Victim Data
                         </x-resbar>
-                        <x-resbar href="{{ route('blotter.childlaw.index') }}" active="{{ request()->routeIs('blotter.childlaw.*') }}" id="ChildLawBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
+                        <x-resbar href="/ChildLaw" active="{{ request()->is('ChildLaw') }}" id="ChildLawBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
                             For Children in Conflict with the Law
                         </x-resbar>
-                        <x-resbar href="/Narative" active="{{ request()->is('NarativeData') }}" id="NarativeBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
+                        <x-resbar href="{{ route('blotter.narrative.index') }}" active="{{ request()->routeIs('blotter.narrative.*') }}" id="NarrativeBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
                             Narrative
                         </x-resbar>
                         <x-resbar href="/IncidentReport" active="{{ request()->is('IncidentReport') }}" id="IncidentReporteBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">

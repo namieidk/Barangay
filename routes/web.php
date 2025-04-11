@@ -11,6 +11,7 @@ use App\Http\Controllers\ChildLawController;
 use App\Http\Controllers\NarrativeController;
 use App\Http\Controllers\IncidentReportController;
 use App\Http\Controllers\BlotterRecordsController;
+use App\Http\Controllers\DocumentController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -156,6 +157,11 @@ Route::post('/IncidentReport/store', [IncidentReportController::class, 'store'])
 Route::post('/IncidentReport/search', [IncidentReportController::class, 'search'])->name('blotter.incident.search');
 
 Route::get('/BloterRecView', [BlotterRecordsController::class, 'index'])->name('blotter.records.index');
+
+Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index');
+Route::post('/documents/search-residents', [DocumentController::class, 'searchResidents'])->name('documents.search-residents');
+Route::post('/documents/request-certificate', [DocumentController::class, 'requestCertificate'])->name('documents.request-certificate');
+Route::post('/documents/request-clearance', [DocumentController::class, 'requestClearance'])->name('documents.request-clearance');
 
 
 require __DIR__.'/auth.php';

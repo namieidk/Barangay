@@ -9,8 +9,8 @@ use App\Http\Controllers\SuspectDataController;
 use App\Http\Controllers\VictimDataController;
 use App\Http\Controllers\ChildLawController;
 use App\Http\Controllers\NarrativeController;
-use App\Http\Controllers\BlotterRecordController;
 use App\Http\Controllers\IncidentReportController;
+use App\Http\Controllers\BlotterRecordsController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -147,6 +147,6 @@ Route::get('/IncidentReport', [IncidentReportController::class, 'create'])->name
 Route::post('/IncidentReport/store', [IncidentReportController::class, 'store'])->name('blotter.incident.store');
 Route::post('/IncidentReport/search', [IncidentReportController::class, 'search'])->name('blotter.incident.search');
 
-Route::get('/blotter', [BlotterRecordController::class, 'index'])->name('blotter.index');
+Route::get('/BloterRecView', [BlotterRecordsController::class, 'index'])->name('blotter.records.index');
 
 require __DIR__.'/auth.php';

@@ -12,6 +12,7 @@ use App\Http\Controllers\NarrativeController;
 use App\Http\Controllers\IncidentReportController;
 use App\Http\Controllers\BlotterRecordsController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\OfficialController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -97,6 +98,10 @@ Route::get('/FamMember', function() {
     return view('NewRes.FamMem');
 });
 
+Route::get('/Officials', function() {
+    return view('Officials.Officials');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -162,6 +167,14 @@ Route::get('/documents', [DocumentController::class, 'index'])->name('documents.
 Route::post('/documents/search-residents', [DocumentController::class, 'searchResidents'])->name('documents.search-residents');
 Route::post('/documents/request-certificate', [DocumentController::class, 'requestCertificate'])->name('documents.request-certificate');
 Route::post('/documents/request-clearance', [DocumentController::class, 'requestClearance'])->name('documents.request-clearance');
+
+Route::get('/officials', [OfficialController::class, 'index'])->name('officials.index');
+Route::get('/officials/create', [OfficialController::class, 'create'])->name('officials.create');
+Route::post('/officials', [OfficialController::class, 'store'])->name('officials.store');
+Route::get('/officials/{official}/edit', [OfficialController::class, 'edit'])->name('officials.edit');
+Route::put('/officials/{official}', [OfficialController::class, 'update'])->name('officials.update');
+Route::delete('/officials/{official}', [OfficialController::class, 'destroy'])->name('officials.destroy');
+Route::get('/officials/{official}', [OfficialController::class, 'show'])->name('officials.show');
 
 
 require __DIR__.'/auth.php';

@@ -5,18 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>BRGY INCIO, DAVAO CITY SYSTEM</title>
-    <style>
-        .bg-4A6936-50-opacity {
-            background-color: rgba(74, 105, 54, 0.5);
-        }
-    </style>
+   
 </head>
-<body class="min-h-screen flex">
+<body class="min-h-screen flex bg-[FAF9F6]">
     <!-- Sidebar -->
     <x-sidebar></x-sidebar>
 
     <!-- Main Content Area -->
-    <div class="flex-1 ml-64 pt-14 bg-[#FBF5DF]">
+    <div class="flex-1 ml-64 pt-14 bg-[FAF9F6]">
         <div class="p-6 w-full max-w-5xl">
             <h1 class="text-5xl font-bold mb-4 mt-[-50px] ml-0">Blotter Records</h1>
 
@@ -39,7 +35,7 @@
             </form>
 
             <!-- Add Blotter Button -->
-            <a href="{{ route('BloterRec.ResPersonData') }}" class="bg-[#d1e2c4] text-black hover:bg-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 mb-6">
+            <a href="{{ route('BloterRec.ResPersonData') }}" class="bg-blue-600 hover:bg-blue-700 text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 mb-6">
                 Add Blotter
             </a>
 
@@ -62,7 +58,7 @@
             <!-- Table -->
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-[120%] mt-5">
                 <table class="w-[120%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ml-auto">
-                    <thead class="text-xs text-gray-700 uppercase bg-[#301f17] text-white">
+                    <thead class="text-xs text-gray-700 uppercase bg-[#F0F8FF] text-black">
                         <tr>
                             <th scope="col" class="px-6 py-3">ResID</th>
                             <th scope="col" class="px-6 py-3">First Name</th>

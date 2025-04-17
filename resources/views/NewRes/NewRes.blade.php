@@ -7,7 +7,7 @@
     <title>BRGY INCIO, DAVAO CITY SYSTEM</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-green-700 min-h-screen flex">
+<body class="bg-[FAF9F6] min-h-screen flex">
     <!-- Sidebar -->
     <x-sidebar></x-sidebar>
 
@@ -18,7 +18,7 @@
             <h1 class="text-5xl font-bold mb-8 pl-0 mt-[-50px]">New Residents</h1>
 
             <!-- Form Section -->
-            <div class="bg-[#FDF5E6] mr-[-180px] shadow-md rounded-lg overflow-hidden">
+            <div class="bg-[#F0F8FF] mr-[-180px] shadow-md rounded-lg overflow-hidden">
                 <form action="{{ route('new-residence.store') }}" method="POST" enctype="multipart/form-data" class="p-8">
                     @csrf
                     
@@ -132,6 +132,7 @@
                                             <option value="" disabled {{ old('gender') == '' ? 'selected' : '' }}>Select gender</option>
                                             <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
                                             <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+                                            <option value="LGBTQ+" {{ old('gender') == 'LGBTQ+' ? 'selected' : '' }}>LGBTQ+</option>
                                         </select>
                                         @error('gender')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>

@@ -20,7 +20,7 @@
                     <div class="p-8">
                         <div class="flex justify-between items-center mb-6">
                             <h2 class="text-2xl font-semibold text-gray-800">Barangay Officials Management</h2>
-                            <a href="{{ route('officials.create') }}" class="bg-primary-600 text-white px-5 py-2.5 rounded-lg hover:bg-primary-700 transition-all duration-300 shadow-md flex items-center">
+                            <a href="{{ route('officials.create') }}" class="bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-md flex items-center">
                                 <span class="material-symbols-outlined mr-2">add</span> Add New Official
                             </a>
                         </div>
@@ -38,7 +38,7 @@
                             </div>
                         @endif
 
-                        <div class="bg-white rounded-xl shadow-md p-6 mb-8 border border-gray-200">
+                        <div class="bg-[#F0F8FF] rounded-xl shadow-md p-6 mb-8 border border-gray-200">
                             <h3 class="text-xl font-medium text-gray-800 mb-4">{{ isset($official) ? 'Edit Barangay Official' : 'Add New Barangay Official' }}</h3>
                             <form action="{{ isset($official) ? route('officials.update', $official) : route('officials.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                                 @csrf
@@ -152,7 +152,7 @@
 
                                 <div class="mt-8 flex justify-end space-x-4">
                                     <a href="{{ route('officials.index') }}" class="px-5 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all duration-300">Cancel</a>
-                                    <button type="submit" class="bg-primary-600 text-white px-5 py-2.5 rounded-lg hover:bg-primary-700 transition-all duration-300 shadow-md">
+                                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white  px-5 py-2.5 rounded-lg  transition-all duration-300 shadow-md">
                                         {{ isset($official) ? 'Update Official' : 'Save Official' }}
                                     </button>
                                 </div>
@@ -165,14 +165,14 @@
                         </div>
 
                         <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
-                            <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
+                            <div class="px-6 py-4 bg-[#F0F8FF] border-b border-gray-200">
                                 <h3 class="text-lg font-medium text-gray-800">Current Barangay Officials</h3>
                             </div>
                             <div class="overflow-x-auto">
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
                                         <tr>
-                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Photo</th>
+                                           
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Term Period</th>
@@ -184,15 +184,7 @@
                                         @if(isset($officials) && $officials->isNotEmpty())
                                             @foreach ($officials as $official)
                                                 <tr class="hover:bg-gray-50 transition-colors duration-150">
-                                                    <td class="px-6 py-4 whitespace-nowrap">
-                                                        @if($official->photo)
-                                                            <img src="{{ Storage::url($official->photo) }}" alt="{{ $official->first_name }}" class="h-10 w-10 rounded-full object-cover">
-                                                        @else
-                                                            <div class="h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center">
-                                                                <span class="material-symbols-outlined text-primary-600">person</span>
-                                                            </div>
-                                                        @endif
-                                                    </td>
+                                                    
                                                     <td class="px-6 py-4 whitespace-nowrap">
                                                         <div class="text-sm font-medium text-gray-900">{{ $official->first_name }} {{ $official->middle_name ? $official->middle_name . ' ' : '' }}{{ $official->last_name }}</div>
                                                     </td>
@@ -209,7 +201,7 @@
                                                             <form action="{{ route('officials.destroy', $official) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this official?');">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="text-red-600 hover:text-red-800 transition-colors duration-150">
+                                                                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-150">
                                                                     <span class="material-symbols-outlined">delete</span>
                                                                 </button>
                                                             </form>

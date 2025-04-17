@@ -8,14 +8,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js" rel="stylesheet" />
     <style>
         :root {
-            --primary: #2D5F2E;
-            --primary-light: #4A7D4B;
-            --primary-dark: #1D4D1F;
+            --primary:rgb(231, 238, 232);
+            --primary-light:rgb(243, 249, 243);
+            --primary-dark:rgb(244, 249, 244);
             --secondary: #8FB98A;
-            --secondary-light: #C5E2C1;
+            --secondary-light:rgb(253, 254, 252);
             --text-light: #FFFFFF;
             --text-dark: #1A1A1A;
-            --accent: #FFCD29;
+            --accent:rgb(236, 233, 223);
             --bg-light: #F8FFF5;
             --border-radius: 8px;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

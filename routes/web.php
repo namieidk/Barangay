@@ -13,6 +13,7 @@ use App\Http\Controllers\IncidentReportController;
 use App\Http\Controllers\BlotterRecordsController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\OfficialController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -175,6 +176,12 @@ Route::get('/officials/{official}/edit', [OfficialController::class, 'edit'])->n
 Route::put('/officials/{official}', [OfficialController::class, 'update'])->name('officials.update');
 Route::delete('/officials/{official}', [OfficialController::class, 'destroy'])->name('officials.destroy');
 Route::get('/officials/{official}', [OfficialController::class, 'show'])->name('officials.show');
+
+Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+Route::post('/reports/generate', [ReportController::class, 'generate'])->name('reports.generate');
+Route::get('/reports/{report}/preview', [ReportController::class, 'preview'])->name('reports.preview');
+Route::get('/reports/{report}/download', [ReportController::class, 'download'])->name('reports.download');
+Route::post('/reports/{report}/status', [ReportController::class, 'updateStatus'])->name('reports.updateStatus');
 
 
 require __DIR__.'/auth.php';

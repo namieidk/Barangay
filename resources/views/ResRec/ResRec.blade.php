@@ -7,11 +7,11 @@
     <title>BRGY INCIO, DAVAO CITY SYSTEM</title>
     <style>
         :root {
-            --primary: #385327;
-            --primary-light: rgba(56, 83, 39, 0.8);
-            --primary-lighter: rgba(56, 83, 39, 0.1);
+            --primary: #F0F8FF;
+            --primary-light: rgba(71, 47, 180, 0.8);
+            --primary-lighter: rgba(90, 24, 222, 0.1);
             --accent: #6A994E;
-            --light: #F2F2F2;
+            --light: rgb(246, 246, 248);
             --dark: #333333;
         }
         
@@ -23,7 +23,7 @@
         .bg-primary { background-color: var(--primary); }
         .bg-primary-light { background-color: var(--primary-light); }
         .bg-primary-lighter { background-color: var(--primary-lighter); }
-        .text-primary { color: var(--primary); }
+        .text-primary { color: #000000; }
         .text-accent { color: var(--accent); }
         
         .btn-primary {
@@ -93,7 +93,7 @@
         
         table th {
             background-color: var(--primary);
-            color: white;
+            color: #000000; /* Changed to black */
             font-weight: 600;
             text-transform: uppercase;
             font-size: 0.75rem;
@@ -274,7 +274,7 @@
             to { opacity: 1; transform: translateX(0); }
         }
         
-        .notification-success { border-left: 4px solid #48BB78; }
+        .notification-success { border-left: 4px solid rgb(84, 77, 131); }
         .notification-error { border-left: 4px solid #F56565; }
         
         .content-area { margin-left: 250px; padding: 2rem; min-height: 100vh; }
@@ -295,7 +295,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen bg-gray-50">
+<body class="min-h-screen bg-[FAF9F6]">
     <!-- Sidebar Component -->
     <x-sidebar></x-sidebar>
 
@@ -352,7 +352,7 @@
                                     </div>
                                 </td>
                                 <td>{{ ucfirst($residence->gender) }}</td>
-                                <td>{{ now()->diffInYears($residence->birth_date) }}</td>
+                                <td>{{ sprintf('%02d', now()->diffInYears($residence->birth_date)) }}</td>
                                 <td>{{ ucfirst($residence->purok) }}</td>
                                 <td>{{ ucfirst($residence->marital_status) }}</td>
                                 <td>

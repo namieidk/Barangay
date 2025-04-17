@@ -2,14 +2,27 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    protected $fillable = ['type', 'resident_id', 'purpose', 'date_requested', 'status'];
+    use HasFactory;
+
+    protected $fillable = [
+        'type',
+        'resident_id',
+        'purpose',
+        'status',
+        'date_requested',
+    ];
+
+    protected $casts = [
+        'date_requested' => 'datetime',
+    ];
 
     public function resident()
     {
-        return $this->belongsTo(NewResidence::class, 'resident_id', 'id');
+        return $this->belongsTo(NewResidence::class, 'resident_id');
     }
 }

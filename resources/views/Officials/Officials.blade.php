@@ -20,7 +20,7 @@
                     <div class="p-8">
                         <div class="flex justify-between items-center mb-6">
                             <h2 class="text-2xl font-semibold text-gray-800">Barangay Officials Management</h2>
-                            <a href="{{ route('officials.create') }}" class="bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-md flex items-center">
+                            <a href="{{ route('officials.create') }}" class="text-[#333] bg-[#e6ffe6] hover:bg-[#d4f7d4] px-5 py-2.5 rounded-lg transition-all duration-300 shadow-md flex items-center">
                                 <span class="material-symbols-outlined mr-2">add</span> Add New Official
                             </a>
                         </div>
@@ -152,7 +152,7 @@
 
                                 <div class="mt-8 flex justify-end space-x-4">
                                     <a href="{{ route('officials.index') }}" class="px-5 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all duration-300">Cancel</a>
-                                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white  px-5 py-2.5 rounded-lg  transition-all duration-300 shadow-md">
+                                    <button type="submit" class="text-[#333] bg-[#e6ffe6] hover:bg-[#d4f7d4]  px-5 py-2.5 rounded-lg  transition-all duration-300 shadow-md">
                                         {{ isset($official) ? 'Update Official' : 'Save Official' }}
                                     </button>
                                 </div>

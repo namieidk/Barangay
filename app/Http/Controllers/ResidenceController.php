@@ -29,7 +29,7 @@ class ResidenceController extends Controller
             'last_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
             'alias_name' => 'nullable|string|max:255',
-            'gender' => 'required|in:male,female',
+            'gender' => 'required|in:male,female,LGBTQA+',
             'marital_status' => 'required|in:married,single,divorced,widowed',
             'spouse_name' => 'nullable|string|max:255',
             'purok' => 'required|string',

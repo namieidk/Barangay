@@ -11,8 +11,8 @@ class NewResidence extends Model
 {
     protected $table = 'new_residence';
     protected $primaryKey = 'id';
-    public $incrementing = false; // Disable auto-incrementing since we’re using a custom string ID
-    protected $keyType = 'string'; // Set the primary key type to string
+    public $incrementing = false; 
+    protected $keyType = 'string'; 
 
     protected $fillable = [
         'id', 'first_name', 'last_name', 'middle_name', 'alias_name',

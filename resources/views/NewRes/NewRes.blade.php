@@ -120,24 +120,23 @@
                                     </div>
 
                                     <div class="space-y-2">
-                                        <label for="gender" class="block text-gray-700 font-medium">
-                                            Gender <span class="text-red-500">*</span>
-                                        </label>
-                                        <select 
-                                            id="gender" 
-                                            name="gender"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                            required
-                                        >
-                                            <option value="" disabled {{ old('gender') == '' ? 'selected' : '' }}>Select gender</option>
-                                            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
-                                            <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
-                                            <option value="LGBTQ+" {{ old('gender') == 'LGBTQ+' ? 'selected' : '' }}>LGBTQ+</option>
-                                        </select>
-                                        @error('gender')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+    <label for="gender" class="block text-gray-700 font-medium">
+        Gender <span class="text-red-500">*</span>
+    </label>
+    <select 
+        id="gender" 
+        name="gender" 
+        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        required
+    >
+        <option value="" disabled {{ old('gender') == '' ? 'selected' : '' }}>Select gender</option>
+        <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+        <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+    </select>
+    @error('gender')
+        <span class="text-red-500 text-sm">{{ $message }}</span>
+    @enderror
+</div>
                                 </div>
 
                                 <!-- Right Column -->
@@ -363,20 +362,26 @@
                         </div>
 
                         <div class="mt-8">
-                            <label class="inline-flex items-center">
-                                <input 
-                                    type="checkbox" 
-                                    id="disability" 
-                                    name="has_disability"
-                                    class="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                                    {{ old('has_disability') ? 'checked' : '' }}
-                                />
-                                <span class="ml-2 text-gray-700 font-medium">Person with Disability</span>
-                            </label>
-                            @error('has_disability')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                            @enderror
-                        </div>
+    <label class="inline-flex items-center">
+        <input 
+            type="hidden" 
+            name="has_disability" 
+            value="0"
+        >
+        <input 
+            type="checkbox" 
+            id="disability" 
+            name="has_disability" 
+            value="1"
+            class="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            {{ old('has_disability') == '1' ? 'checked' : '' }}
+        />
+        <span class="ml-2 text-gray-700 font-medium">Person with Disability</span>
+    </label>
+    @error('has_disability')
+        <span class="text-red-500 text-sm">{{ $message }}</span>
+    @enderror
+</div>
 
                         <div class="mt-8 flex justify-end">
                             <button type="button" id="next-btn" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150">

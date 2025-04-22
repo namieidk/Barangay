@@ -46,6 +46,8 @@ class SuspectDataController extends Controller
         ]);
     }
 
+    
+
     public function store(Request $request)
     {
         try {

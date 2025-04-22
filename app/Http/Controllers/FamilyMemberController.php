@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FamMember;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class FamilyMemberController extends Controller
 {
@@ -14,45 +15,51 @@ class FamilyMemberController extends Controller
         return view('ResRec.family-members', ['familyMembers' => $familyMembers]);
     }
 
-    // Return family member data for editing (AJAX)
-    public function edit(FamMember $famMember)
-    {
-        return response()->json([
-            'residence_id' => $famMember->residence_id,
-            'relationship' => $famMember->relationship,
-            'first_name' => $famMember->first_name,
-            'last_name' => $famMember->last_name,
-            'middle_name' => $famMember->middle_name,
-            'alias_name' => $famMember->alias_name,
-            'gender' => $famMember->gender,
-            'marital_status' => $famMember->marital_status,
-            'spouse_name' => $famMember->spouse_name,
-            'purok' => $famMember->purok,
-            'employment_status' => $famMember->employment_status,
-            'birth_date' => $famMember->birth_date->format('Y-m-d'), // Format for HTML date input
-            'birth_place' => $famMember->birth_place,
-            'place' => $famMember->place,
-            'height' => $famMember->height,
-            'weight' => $famMember->weight,
-            'religion' => $famMember->religion,
-            'religion_other' => $famMember->religion_other,
-            'voters_status' => $famMember->voters_status,
-            'has_disability' => $famMember->has_disability ? 1 : 0,
-            'blood_type' => $famMember->blood_type,
-            'occupation' => $famMember->occupation,
-            'educational_attainment' => $famMember->educational_attainment,
-            'phone_number' => $famMember->phone_number,
-            'land_number' => $famMember->land_number,
-            'email' => $famMember->email,
-            'address' => $famMember->address,
-        ]);
-    }
-
-    // Update family member data
-    public function update(Request $request, FamMember $famMember)
-    {
-        $validated = $request->validate([
-            'residence_id' => 'required|string|exists:new_residence,id',
+    public function edit($id)
+{
+    // Find the family member by ID explicitly
+    $famMember = FamMember::findOrFail($id);
+    
+    // Log for debugging
+    Log::info('Fetching family member with ID: ' . $id);
+    Log::info('Family member data: ' . json_encode($famMember));
+    
+    return response()->json([
+        'residence_id' => $famMember->residence_id ?? '',
+        'relationship' => $famMember->relationship ?? '',
+        'first_name' => $famMember->first_name ?? '',
+        'last_name' => $famMember->last_name ?? '',
+        'middle_name' => $famMember->middle_name ?? '',
+        'alias_name' => $famMember->alias_name ?? '',
+        'gender' => $famMember->gender ?? '',
+        'marital_status' => $famMember->marital_status ?? '',
+        'spouse_name' => $famMember->spouse_name ?? '',
+        'purok' => $famMember->purok ?? '',
+        'employment_status' => $famMember->employment_status ?? '',
+        'birth_date' => $famMember->birth_date ? $famMember->birth_date->format('Y-m-d') : '',
+        'birth_place' => $famMember->birth_place ?? '',
+        'place' => $famMember->place ?? '',
+        'height' => $famMember->height ?? '',
+        'weight' => $famMember->weight ?? '',
+        'religion' => $famMember->religion ?? '',
+        'religion_other' => $famMember->religion_other ?? '',
+        'voters_status' => $famMember->voters_status ?? '',
+        'has_disability' => $famMember->has_disability ? 1 : 0,
+        'blood_type' => $famMember->blood_type ?? '',
+        'occupation' => $famMember->occupation ?? '',
+        'educational_attainment' => $famMember->educational_attainment ?? '',
+        'phone_number' => $famMember->phone_number ?? '',
+        'land_number' => $famMember->land_number ?? '',
+        'email' => $famMember->email ?? '',
+        'address' => $famMember->address ?? '',
+    ]);
+}
+public function update(Request $request, $id)
+{
+    $famMember = FamMember::findOrFail($id);
+    
+    $validated = $request->validate([
+        'residence_id' => 'required|string|exists:new_residence,id',
             'relationship' => 'required|string|in:wife,husband,son,daughter,mother,father,sibling,other',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -82,7 +89,7 @@ class FamilyMemberController extends Controller
         ]);
 
         $famMember->update($validated);
-
+    
         return redirect()->route('family-members.index')
             ->with('success', 'Family member updated successfully');
     }

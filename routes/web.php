@@ -14,6 +14,7 @@ use App\Http\Controllers\BlotterRecordsController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\OfficialController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ResPersonDataController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -109,7 +110,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/new-residence/create', [NewResidenceController::class, 'create'])->name('new-residence.create');
+Route::get('/new-residence', [NewResidenceController::class, 'create'])->name('new-residence.create');
 Route::post('/new-residence', [NewResidenceController::class, 'store'])->name('new-residence.store');
 Route::get('/new-residence/{newResidence}', [NewResidenceController::class, 'show'])->name('new-residence.show');
 Route::get('/new-residence/{newResidence}/edit', [NewResidenceController::class, 'edit'])->name('new-residence.edit');
@@ -121,56 +122,48 @@ Route::put('/residents/{resident}', [ResidenceController::class, 'update'])->nam
 Route::delete('/residents/{resident}/archive', [ResidenceController::class, 'archive'])->name('ResRec.archive');
 
 Route::get('/family-members', [FamilyMemberController::class, 'index'])->name('family-members.index');
-    
-    // Get family member data for edit form (AJAX)
-    Route::get('/family-members/{famMember}/edit', [FamilyMemberController::class, 'edit'])->name('family-members.edit');
-    
-    // Update family member data
-    Route::put('/family-members/{famMember}', [FamilyMemberController::class, 'update'])->name('family-members.update');
-    
-    // Existing store route (kept as is)
-    Route::post('/family/store', [FamilyMemberController::class, 'store'])->name('family.store');
-Route::get('/RepPersonData', [App\Http\Controllers\ResPersonDataController::class, 'create'])
+Route::get('/family-members/{id}/edit', [FamilyMemberController::class, 'edit'])->name('family-members.edit');
+Route::put('/family-members-update', [FamilyMemberController::class, 'update'])->name('family-members.update');
+Route::post('/family/store', [FamilyMemberController::class, 'store'])->name('family.store');
+
+Route::get('/RepPersonData', [ResPersonDataController::class, 'create'])
     ->name('BloterRec.ResPersonData');
-
-Route::post('/RepPersonData/store', [App\Http\Controllers\ResPersonDataController::class, 'store'])
+Route::post('/RepPersonData/store', [ResPersonDataController::class, 'store'])
     ->name('BloterRec.ResPersonData.store');
+Route::get('/reporting-person/{id}/edit', [ResPersonDataController::class, 'edit'])->name('reporting-person.edit');
 
-// Add these routes after your existing blotter-related routes
-Route::get('/reporting-person/{id}/edit', [App\Http\Controllers\ResPersonDataController::class, 'edit'])->name('reporting-person.edit');
+    Route::get('/suspect-data', [SuspectDataController::class, 'index'])->name('blotter.suspect.index');
+    Route::get('/suspect-data-create', [SuspectDataController::class, 'create'])->name('blotter.suspect.create');
+    Route::post('/suspect-data-store', [SuspectDataController::class, 'store'])->name('blotter.suspect.store');
+    Route::post('/suspect-data-search', [SuspectDataController::class, 'search'])->name('blotter.suspect.search');
 
-    Route::get('/blotter/suspect-data', [SuspectDataController::class, 'index'])->name('blotter.suspect.index');
-    Route::get('/blotter/suspect-data/create', [SuspectDataController::class, 'create'])->name('blotter.suspect.create');
-    Route::post('/blotter/suspect-data', [SuspectDataController::class, 'store'])->name('blotter.suspect.store');
-    Route::post('/blotter/suspect-data/search', [SuspectDataController::class, 'search'])->name('blotter.suspect.search');
+    Route::get('/victim-data', [VictimDataController::class, 'index'])->name('blotter.victim.index');
+Route::get('/victim-data-create', [VictimDataController::class, 'create'])->name('blotter.victim.create');
+Route::post('/victim-data-store', [VictimDataController::class, 'store'])->name('blotter.victim.store');
+Route::post('/victim-data-search', [VictimDataController::class, 'search'])->name('blotter.victim.search');
 
-    Route::get('/blotter/victim-data', [VictimDataController::class, 'index'])->name('blotter.victim.index');
-Route::get('/blotter/victim-data/create', [VictimDataController::class, 'create'])->name('blotter.victim.create');
-Route::post('/blotter/victim-data', [VictimDataController::class, 'store'])->name('blotter.victim.store');
-Route::post('/blotter/victim-data/search', [VictimDataController::class, 'search'])->name('blotter.victim.search');
-
-Route::get('/blotter/childlaw', [ChildLawController::class, 'index'])->name('blotter.childlaw.index');
-Route::get('/blotter/childlaw/create', [ChildLawController::class, 'create'])->name('blotter.childlaw.create');
-Route::post('/blotter/childlaw', [ChildLawController::class, 'store'])->name('blotter.childlaw.store');
-Route::post('/blotter/childlaw/search', [ChildLawController::class, 'search'])->name('blotter.childlaw.search');
+Route::get('/childlaw', [ChildLawController::class, 'index'])->name('blotter.childlaw.index');
+Route::get('/childlaw-create', [ChildLawController::class, 'create'])->name('blotter.childlaw.create');
+Route::post('/childlaw', [ChildLawController::class, 'store'])->name('blotter.childlaw.store');
+Route::post('/childlaw-search', [ChildLawController::class, 'search'])->name('blotter.childlaw.search');
 
 Route::get('/Narrative', [NarrativeController::class, 'index'])->name('blotter.narrative.index');
 Route::post('/Narrative/store', [NarrativeController::class, 'store'])->name('blotter.narrative.store');
-Route::post('/Narrative/search', [NarrativeController::class, 'search'])->name('blotter.narrative.search');
+Route::post('/Narrative-search', [NarrativeController::class, 'search'])->name('blotter.narrative.search');
 
 Route::get('/IncidentReport', [IncidentReportController::class, 'create'])->name('blotter.incident.create');
 Route::post('/IncidentReport/store', [IncidentReportController::class, 'store'])->name('blotter.incident.store');
-Route::post('/IncidentReport/search', [IncidentReportController::class, 'search'])->name('blotter.incident.search');
+Route::post('/IncidentReport-search', [IncidentReportController::class, 'search'])->name('blotter.incident.search');
 
 Route::get('/BloterRecView', [BlotterRecordsController::class, 'index'])->name('blotter.records.index');
 
 Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index');
-Route::post('/documents/search-residents', [DocumentController::class, 'searchResidents'])->name('documents.search-residents');
-Route::post('/documents/request-certificate', [DocumentController::class, 'requestCertificate'])->name('documents.request-certificate');
-Route::post('/documents/request-clearance', [DocumentController::class, 'requestClearance'])->name('documents.request-clearance');
+Route::post('/search-residents', [DocumentController::class, 'searchResidents'])->name('documents.search-residents');
+Route::post('/request-certificate', [DocumentController::class, 'requestCertificate'])->name('documents.request-certificate');
+Route::post('/request-clearance', [DocumentController::class, 'requestClearance'])->name('documents.request-clearance');
 
 Route::get('/officials', [OfficialController::class, 'index'])->name('officials.index');
-Route::get('/officials/create', [OfficialController::class, 'create'])->name('officials.create');
+Route::get('/officials-create', [OfficialController::class, 'create'])->name('officials.create');
 Route::post('/officials', [OfficialController::class, 'store'])->name('officials.store');
 Route::get('/officials/{official}/edit', [OfficialController::class, 'edit'])->name('officials.edit');
 Route::put('/officials/{official}', [OfficialController::class, 'update'])->name('officials.update');
@@ -178,7 +171,7 @@ Route::delete('/officials/{official}', [OfficialController::class, 'destroy'])->
 Route::get('/officials/{official}', [OfficialController::class, 'show'])->name('officials.show');
 
 Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-Route::post('/reports/generate', [ReportController::class, 'generate'])->name('reports.generate');
+Route::post('/reports-generate', [ReportController::class, 'generate'])->name('reports.generate');
 Route::get('/reports/{report}/preview', [ReportController::class, 'preview'])->name('reports.preview');
 Route::get('/reports/{report}/download', [ReportController::class, 'download'])->name('reports.download');
 Route::post('/reports/{report}/status', [ReportController::class, 'updateStatus'])->name('reports.updateStatus');

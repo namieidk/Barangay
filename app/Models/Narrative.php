@@ -18,7 +18,9 @@ class Narrative extends Model
         'incident_narrative',
     ];
 
-    protected $dates = ['date_time'];
+    protected $casts = [
+        'date_time' => 'datetime',
+    ];
 
     public function reportingPerson()
     {

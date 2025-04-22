@@ -40,7 +40,6 @@ class NewResidenceController extends Controller
             'address' => 'required|string|max:255',
         ]);
 
-        // Generate custom ID (e.g., '0001', '0002', etc.)
         $lastResidence = NewResidence::orderBy('id', 'desc')->first();
         $newId = $lastResidence ? sprintf('%04d', (int)$lastResidence->id + 1) : '0001';
 

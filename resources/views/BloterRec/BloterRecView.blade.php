@@ -35,7 +35,7 @@
             </form>
 
             <!-- Add Blotter Button -->
-            <a href="{{ route('BloterRec.ResPersonData') }}" class="bg-blue-600 hover:bg-blue-700 text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 mb-6">
+            <a href="{{ route('BloterRec.ResPersonData') }}" class="text-[#333] bg-[#e6ffe6] hover:bg-[#d4f7d4] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 mb-6">
                 Add Blotter
             </a>
 
@@ -58,7 +58,7 @@
             <!-- Table -->
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-[120%] mt-5">
                 <table class="w-[120%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ml-auto">
-                    <thead class="text-xs text-gray-700 uppercase bg-[#F0F8FF] text-black">
+                    <thead class="text-xs text-gray-700 uppercase bg-[#e6ffe6] text-black">
                         <tr>
                             <th scope="col" class="px-6 py-3">ResID</th>
                             <th scope="col" class="px-6 py-3">First Name</th>

@@ -46,7 +46,7 @@ class ResPersonDataController extends Controller
                 'gender' => 'required|string|in:male,female,non-binary,other',
                 'citizenship' => 'required|string|max:255',
                 'birthdate' => 'required|date',
-                'age' => 'required|integer|min:0|max:150', // Added max age for sanity
+                'age' => 'required|integer|min:0|max:150', 
                 'place_of_birth' => 'required|string|max:255',
                 'telephone' => 'required|string|max:20',
                 'house_no' => 'required|string|max:255',
@@ -54,8 +54,8 @@ class ResPersonDataController extends Controller
                 'barangay' => 'required|string|max:255',
                 'town_city' => 'required|string|max:255',
                 'province' => 'required|string|max:255',
-                'other_house_no' => 'nullable|string|max:255', // Changed to optional
-                'other_village' => 'nullable|string|max:255', // Changed to optional
+                'other_house_no' => 'nullable|string|max:255', 
+                'other_village' => 'nullable|string|max:255', 
                 'other_barangay' => 'nullable|string|max:255', // Changed to optional
                 'other_town_city' => 'nullable|string|max:255', // Changed to optional
                 'other_province' => 'nullable|string|max:255', // Changed to optional

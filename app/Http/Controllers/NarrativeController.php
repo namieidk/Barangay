@@ -46,36 +46,49 @@ class NarrativeController extends Controller
     }
 
     public function search(Request $request)
-    {
-        $search = $request->input('search');
+{
+    $search = $request->input('search');
 
-        $query = Narrative::with('reportingPerson');
+    // Initialize variables
+    $res_person_data_id = $search;
+    $type_of_incident = null;
+    $narrative_data = null;
+    $narratives = collect(); // Empty collection by default
 
-        if ($search) {
-            $query->where('res_person_data_id', $search); // Exact match for ID
-        }
-
-        $narratives = $query->get();
-
-        // If a search was performed, pass the res_person_data_id and type_of_incident to the form
-        $res_person_data_id = $search;
-        $type_of_incident = null;
-        if ($search) {
-            $reportingPerson = ResPersonData::find($search);
-            if ($reportingPerson) {
-                $type_of_incident = $reportingPerson->type_of_incident;
+    if ($search) {
+        // Find reporting person
+        $reportingPerson = ResPersonData::find($search);
+        if ($reportingPerson) {
+            $type_of_incident = $reportingPerson->type_of_incident;
+            
+            // Find associated narrative
+            $narrative = Narrative::where('res_person_data_id', $search)->first();
+            if ($narrative) {
+                $narratives = collect([$narrative]); // Add to collection for display
+                $narrative_data = $narrative; // Pass the full narrative object
             }
         }
-
-        return view('BloterRec.Narative', compact('narratives', 'res_person_data_id', 'type_of_incident'));
     }
 
-    public function fetchTypeOfIncident($id)
+    return view('BloterRec.Narative', compact(
+        'narratives', 
+        'res_person_data_id', 
+        'type_of_incident',
+        'narrative_data' // Pass the narrative data to the view
+    ));
+}
+
+    public function fetchData($id)
     {
         $reportingPerson = ResPersonData::find($id);
-        if ($reportingPerson) {
-            return response()->json(['type_of_incident' => $reportingPerson->type_of_incident]);
-        }
-        return response()->json(['type_of_incident' => null], 404);
+        $narrative = Narrative::where('res_person_data_id', $id)->first();
+        
+        $response = [
+            'type_of_incident' => $reportingPerson ? $reportingPerson->type_of_incident : null,
+            'date_time' => $narrative ? $narrative->date_time : null,
+            'place_of_incident' => $narrative ? $narrative->place_of_incident : null,
+        ];
+        
+        return response()->json($response);
     }
 }

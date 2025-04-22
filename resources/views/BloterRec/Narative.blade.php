@@ -105,11 +105,11 @@
             border: none;
         }
         .btn-primary {
-            background-color: #2d6a4f;
-            color: #ffffff;
+            background-color: #e6ffe6;
+            color: #333;
         }
         .btn-primary:hover {
-            background-color: #1f4b38;
+            background-color: #d4f7d4;
         }
         .btn-secondary {
             background-color: #f1f5f9;
@@ -211,26 +211,26 @@
         <main class="pt-10 pb-10 px-8 flex-1">
             <div class="w-full max-w-6xl mx-auto">
                 <div class="form-container">
-                    <nav class="flex bg-[#1f2a44] text-white border-b border-gray-700">
-                        <x-resbar href="{{ route('BloterRec.ResPersonData') }}" active="{{ request()->routeIs('blotter.reporting.*') }}" id="repperdataBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
-                            Reporting Person Data
-                        </x-resbar>
-                        <x-resbar href="{{ route('blotter.suspect.index') }}" active="{{ request()->routeIs('blotter.suspect.*') }}" id="SusDataBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
-                            Suspect Data
-                        </x-resbar>
-                        <x-resbar href="{{ route('blotter.victim.index') }}" active="{{ request()->routeIs('blotter.victim.*') }}" id="VicDataBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
-                            Victim Data
-                        </x-resbar>
-                        <x-resbar href="/ChildLaw" active="{{ request()->is('ChildLaw') }}" id="ChildLawBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
-                            For Children in Conflict with the Law
-                        </x-resbar>
-                        <x-resbar href="{{ route('blotter.narrative.index') }}" active="{{ request()->routeIs('blotter.narrative.*') }}" id="NarrativeBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
-                            Narrative
-                        </x-resbar>
-                        <x-resbar href="/IncidentReport" active="{{ request()->is('IncidentReport') }}" id="IncidentReportBtn" class="px-6 py-4 text-sm font-medium hover:bg-[#2d3748] transition-all duration-200">
-                            Incident Report Receipt
-                        </x-resbar>
-                    </nav>
+                <nav class="flex border-b border-gray-200 bg-[#e6ffe6] text-[#333]">
+    <x-resbar href="{{ route('BloterRec.ResPersonData') }}" active="{{ request()->routeIs('blotter.reporting.*') }}" id="repperdataBtn" class="px-6 py-4 text-sm font-medium text-[#333] bg-[#e6ffe6] hover:bg-[#d4f7d4] transition-all duration-200">
+        Reporting Person Data
+    </x-resbar>
+    <x-resbar href="{{ route('blotter.suspect.index') }}" active="{{ request()->routeIs('blotter.suspect.*') }}" id="SusDataBtn" class="px-6 py-4 text-sm font-medium text-[#333] bg-[#e6ffe6] hover:bg-[#d4f7d4] transition-all duration-200">
+        Suspect Data
+    </x-resbar>
+    <x-resbar href="{{ route('blotter.victim.index') }}" active="{{ request()->routeIs('blotter.victim.*') }}" id="VicDataBtn" class="px-6 py-4 text-sm font-medium text-[#333] bg-[#e6ffe6] hover:bg-[#d4f7d4] transition-all duration-200">
+        Victim Data
+    </x-resbar>
+    <x-resbar href="/ChildLaw" active="{{ request()->is('ChildLaw') }}" id="ChildLawBtn" class="px-6 py-4 text-sm font-medium text-[#333] bg-[#e6ffe6] hover:bg-[#d4f7d4] transition-all duration-200">
+        For Children in Conflict with the Law
+    </x-resbar>
+    <x-resbar href="{{ route('blotter.narrative.index') }}" active="{{ request()->routeIs('blotter.narrative.*') }}" id="NarrativeBtn" class="px-6 py-4 text-sm font-medium text-[#333] bg-[#e6ffe6] hover:bg-[#d4f7d4] transition-all duration-200">
+        Narrative
+    </x-resbar>
+    <x-resbar href="/IncidentReport" active="{{ request()->is('IncidentReport') }}" id="IncidentReporteBtn" class="px-6 py-4 text-sm font-medium text-[#333] bg-[#e6ffe6] hover:bg-[#d4f7d4] transition-all duration-200">
+        Incident Report Receipt
+    </x-resbar>
+</nav>
 
                     <div class="form-content">
                         <!-- Search Section -->
@@ -254,8 +254,52 @@
                             </form>
                         </div>
 
-                        <!-- Search Results -->
-                        @if(isset($narratives) && $narratives->isNotEmpty())
+                       
+
+                        <!-- Form -->
+                        <form id="narrativeForm" method="POST" action="{{ route('blotter.narrative.store') }}">
+                            @csrf
+                            <h2 class="step-title ">Narrative</h2>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="res_person_data_id" class="form-label">Reporting Person ID<span>*</span></label>
+                                    <input type="text" id="res_person_data_id" name="res_person_data_id" class="form-control" value="{{ $res_person_data_id ?? old('res_person_data_id') }}" required>
+                                    @error('res_person_data_id')
+                                        <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="type_of_incident" class="form-label">Type of Incident</label>
+                                    <input type="text" id="type_of_incident" name="type_of_incident" class="form-control" value="{{ $type_of_incident ?? old('type_of_incident') }}" readonly>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="date_time" class="form-label">Date & Time of Incident<span>*</span></label>
+                                    <input type="datetime-local" id="date_time" name="date_time" class="form-control" value="{{ old('date_time', isset($narrative_data) ? date('Y-m-d\TH:i', strtotime($narrative_data->date_time)) : '') }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="place_of_incident" class="form-label">Place of Incident<span>*</span></label>
+                                    <input type="text" id="place_of_incident" name="place_of_incident" class="form-control" value="{{ old('place_of_incident', isset($narrative_data) ? $narrative_data->place_of_incident : '') }}" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group w-full">
+                                    <label for="incident_narrative" class="form-label">Narrative<span>*</span></label>
+                                    <textarea id="incident_narrative" name="incident_narrative" class="form-control" placeholder="Detail the WHO, WHAT, WHEN, WHERE, WHY, and HOW of the incident..." required>{{ old('incident_narrative') }}</textarea>
+                                    @error('incident_narrative')
+                                        <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="navigation-buttons">
+                                <button type="button" class="btn btn-secondary" onclick="window.close()">Close</button>
+                                <button type="submit" class="btn btn-primary">Save Narrative</button>
+                            </div>
+                        </form>
+
+                         <!-- Search Results -->
+                         @if(isset($narratives) && $narratives->isNotEmpty())
                             <div class="search-results">
                                 <h2 class="step-title">Search Results</h2>
                                 <table>
@@ -274,7 +318,7 @@
                                                 <td>{{ $narrative->id }}</td>
                                                 <td>{{ $narrative->res_person_data_id }}</td>
                                                 <td>{{ $narrative->reportingPerson->type_of_incident ?? 'N/A' }}</td>
-                                                <td>{{ $narrative->date_time->format('Y-m-d H:i') }}</td>
+                                                <td>{{ is_string($narrative->date_time) ? $narrative->date_time : $narrative->date_time->format('Y-m-d H:i') }}</td>
                                                 <td>{{ $narrative->place_of_incident }}</td>
                                             </tr>
                                         @endforeach
@@ -302,54 +346,6 @@
                                 </ul>
                             </div>
                         @endif
-
-                        <!-- Form -->
-                        <form id="narrativeForm" method="POST" action="{{ route('blotter.narrative.store') }}">
-                            @csrf
-                            <h2 class="step-title">Narrative</h2>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="res_person_data_id" class="form-label">Reporting Person ID<span>*</span></label>
-                                    <input type="text" id="res_person_data_id" name="res_person_data_id" class="form-control" value="{{ $res_person_data_id ?? old('res_person_data_id') }}" required>
-                                    @error('res_person_data_id')
-                                        <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="type_of_incident" class="form-label">Type of Incident</label>
-                                    <input type="text" id="type_of_incident" name="type_of_incident" class="form-control" value="{{ $type_of_incident ?? old('type_of_incident') }}" readonly>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="date_time" class="form-label">Date & Time of Incident<span>*</span></label>
-                                    <input type="datetime-local" id="date_time" name="date_time" class="form-control" value="{{ old('date_time') }}" required>
-                                    @error('date_time')
-                                        <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="place_of_incident" class="form-label">Place of Incident<span>*</span></label>
-                                    <input type="text" id="place_of_incident" name="place_of_incident" class="form-control" value="{{ old('place_of_incident') }}" required>
-                                    @error('place_of_incident')
-                                        <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group w-full">
-                                    <label for="incident_narrative" class="form-label">Narrative<span>*</span></label>
-                                    <textarea id="incident_narrative" name="incident_narrative" class="form-control" placeholder="Detail the WHO, WHAT, WHEN, WHERE, WHY, and HOW of the incident..." required>{{ old('incident_narrative') }}</textarea>
-                                    @error('incident_narrative')
-                                        <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="navigation-buttons">
-                                <button type="button" class="btn btn-secondary" onclick="window.close()">Close</button>
-                                <button type="submit" class="btn btn-primary">Save Narrative</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

@@ -27,12 +27,12 @@
                         <div class="flex items-center justify-between">
                             <div class="w-full flex items-center">
                                 <div class="relative z-10">
-                                    <div id="step-1-indicator" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600 text-white font-semibold">
+                                    <div id="step-1-indicator" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#e6ffe6] text-black font-semibold">
                                         1
                                     </div>
                                 </div>
                                 <div class="w-full h-1 bg-gray-200">
-                                    <div id="progress-bar" class="h-full bg-blue-600 w-0 transition-all duration-300"></div>
+                                    <div id="progress-bar" class="h-full bg-[#e6ffe6] w-0 transition-all duration-300"></div>
                                 </div>
                                 <div class="relative z-10">
                                     <div id="step-2-indicator" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 text-gray-600 font-semibold">
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="flex justify-between mt-2">
-                            <span class="text-sm font-medium text-blue-600">Personal Details</span>
+                            <span class="text-sm font-medium text-[#e6ffe6]">Personal Details</span>
                             <span class="text-sm font-medium text-gray-500">Contact & Additional Info</span>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                                             type="text" 
                                             id="first-name" 
                                             name="first_name" 
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]" 
                                             value="{{ old('first_name') }}"
                                             required
                                         >
@@ -78,7 +78,7 @@
                                             type="text" 
                                             id="last-name" 
                                             name="last_name" 
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]" 
                                             value="{{ old('last_name') }}"
                                             required
                                         >
@@ -95,7 +95,7 @@
                                             type="text" 
                                             id="middle-name" 
                                             name="middle_name"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                             value="{{ old('middle_name') }}"
                                         >
                                         @error('middle_name')
@@ -111,7 +111,7 @@
                                             type="text" 
                                             id="alias-name" 
                                             name="alias_name"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                             value="{{ old('alias_name') }}"
                                         >
                                         @error('alias_name')
@@ -120,23 +120,23 @@
                                     </div>
 
                                     <div class="space-y-2">
-    <label for="gender" class="block text-gray-700 font-medium">
-        Gender <span class="text-red-500">*</span>
-    </label>
-    <select 
-        id="gender" 
-        name="gender" 
-        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        required
-    >
-        <option value="" disabled {{ old('gender') == '' ? 'selected' : '' }}>Select gender</option>
-        <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
-        <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
-    </select>
-    @error('gender')
-        <span class="text-red-500 text-sm">{{ $message }}</span>
-    @enderror
-</div>
+                                        <label for="gender" class="block text-gray-700 font-medium">
+                                            Gender <span class="text-red-500">*</span>
+                                        </label>
+                                        <select 
+                                            id="gender" 
+                                            name="gender" 
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                            required
+                                        >
+                                            <option value="" disabled {{ old('gender') == '' ? 'selected' : '' }}>Select gender</option>
+                                            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                                            <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+                                        </select>
+                                        @error('gender')
+                                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
 
                                 <!-- Right Column -->
@@ -149,7 +149,7 @@
                                             type="date" 
                                             id="birth-date" 
                                             name="birth_date"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                             value="{{ old('birth_date') }}"
                                             required
                                         >
@@ -166,7 +166,7 @@
                                             type="text" 
                                             id="birth-place" 
                                             name="birth_place"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                             value="{{ old('birth_place') }}"
                                             required
                                         >
@@ -182,7 +182,7 @@
                                         <select 
                                             id="marital-status" 
                                             name="marital_status"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                             required
                                         >
                                             <option value="" disabled {{ old('marital_status') == '' ? 'selected' : '' }}>Select Status</option>
@@ -204,7 +204,7 @@
                                             type="text" 
                                             id="spouse-name" 
                                             name="spouse_name"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                             value="{{ old('spouse_name') }}"
                                         >
                                         @error('spouse_name')
@@ -219,7 +219,7 @@
                                         <select 
                                             id="purok" 
                                             name="purok"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                             required
                                         >
                                             <option value="" disabled {{ old('purok') == '' ? 'selected' : '' }}>Select Purok</option>
@@ -245,7 +245,7 @@
                                     type="text" 
                                     id="place" 
                                     name="place"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                     value="{{ old('place') }}"
                                     required
                                 >
@@ -262,7 +262,7 @@
                                     type="text" 
                                     id="height" 
                                     name="height"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                     value="{{ old('height') }}"
                                     required
                                 >
@@ -279,7 +279,7 @@
                                     type="text" 
                                     id="weight" 
                                     name="weight"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                     value="{{ old('weight') }}"
                                     required
                                 >
@@ -297,7 +297,7 @@
                                 <select 
                                     id="religionSelect" 
                                     name="religion"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]" 
                                     onchange="toggleReligionInput()"
                                     required
                                 >
@@ -312,7 +312,7 @@
                                     type="text" 
                                     id="religionInput" 
                                     name="religion_other"
-                                    class="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hidden" 
+                                    class="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6] hidden" 
                                     placeholder="Enter your religion"
                                     value="{{ old('religion_other') }}"
                                 >
@@ -328,7 +328,7 @@
                                 <select 
                                     id="voters-status" 
                                     name="voters_status"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                     required
                                 >
                                     <option value="" disabled {{ old('voters_status') == '' ? 'selected' : '' }}>Select Voters Status</option>
@@ -347,7 +347,7 @@
                                 <select 
                                     id="employment-status" 
                                     name="employment_status"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                     required
                                 >
                                     <option value="" disabled {{ old('employment_status') == '' ? 'selected' : '' }}>Select Employment Status</option>
@@ -362,29 +362,29 @@
                         </div>
 
                         <div class="mt-8">
-    <label class="inline-flex items-center">
-        <input 
-            type="hidden" 
-            name="has_disability" 
-            value="0"
-        >
-        <input 
-            type="checkbox" 
-            id="disability" 
-            name="has_disability" 
-            value="1"
-            class="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-            {{ old('has_disability') == '1' ? 'checked' : '' }}
-        />
-        <span class="ml-2 text-gray-700 font-medium">Person with Disability</span>
-    </label>
-    @error('has_disability')
-        <span class="text-red-500 text-sm">{{ $message }}</span>
-    @enderror
-</div>
+                            <label class="inline-flex items-center">
+                                <input 
+                                    type="hidden" 
+                                    name="has_disability" 
+                                    value="0"
+                                >
+                                <input 
+                                    type="checkbox" 
+                                    id="disability" 
+                                    name="has_disability" 
+                                    value="1"
+                                    class="h-5 w-5 rounded border-gray-300 text-[#e6ffe6] focus:ring-[#e6ffe6]"
+                                    {{ old('has_disability') == '1' ? 'checked' : '' }}
+                                />
+                                <span class="ml-2 text-gray-700 font-medium">Person with Disability</span>
+                            </label>
+                            @error('has_disability')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
 
                         <div class="mt-8 flex justify-end">
-                            <button type="button" id="next-btn" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150">
+                            <button type="button" id="next-btn" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-black bg-[#e6ffe6] hover:bg-[#d4ffd4] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#e6ffe6] transition duration-150">
                                 Next Step
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -406,7 +406,7 @@
                                         <select 
                                             id="blood-type" 
                                             name="blood_type"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                             required
                                         >
                                             <option value="" disabled {{ old('blood_type') == '' ? 'selected' : '' }}>Select Blood Type</option>
@@ -431,7 +431,7 @@
                                             type="text" 
                                             id="occupation" 
                                             name="occupation"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]" 
                                             placeholder="Enter occupation"
                                             value="{{ old('occupation') }}"
                                             required
@@ -447,7 +447,7 @@
                                         <select 
                                             id="education" 
                                             name="educational_attainment"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                             required
                                         >
                                             <option value="" disabled {{ old('educational_attainment') == '' ? 'selected' : '' }}>Select Educational Attainment</option>
@@ -478,7 +478,7 @@
                                                 type="text" 
                                                 id="phone" 
                                                 name="phone_number"
-                                                class="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                                class="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                                 placeholder="+63 XXX XXX XXXX"
                                                 value="{{ old('phone_number') }}"
                                                 required
@@ -502,7 +502,7 @@
                                                 type="text" 
                                                 id="land" 
                                                 name="land_number"
-                                                class="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:column-gap-blue-500"
+                                                class="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                                 value="{{ old('land_number') }}"
                                             >
                                         </div>
@@ -516,7 +516,7 @@
                                         </label>
                                         <div class="relative">
                                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 NODATA NODATA" fill="currentColor">
                                                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                                                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                                                 </svg>
@@ -525,7 +525,7 @@
                                                 type="email" 
                                                 id="email" 
                                                 name="email"
-                                                class="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                                class="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                                 value="{{ old('email') }}"
                                                 required
                                             >
@@ -542,7 +542,7 @@
                                             type="text" 
                                             id="address" 
                                             name="address"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
                                             value="{{ old('address') }}"
                                             required
                                         >
@@ -555,13 +555,13 @@
                         </div>
 
                         <div class="mt-8 flex justify-between">
-                            <button type="button" id="back-btn" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-150">
+                            <button type="button" id="back-btn" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-black bg-[#e6ffe6] hover:bg-[#d4ffd4] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#e6ffe6] transition duration-150">
                                 Back
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                                 </svg>
                             </button>
-                            <button type="submit" id="save-btn" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150">
+                            <button type="submit" id="save-btn" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-black bg-[#e6ffe6] hover:bg-[#d4ffd4] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#e6ffe6] transition duration-150">
                                 Save
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6a1 1 0 00-1-1H9a1 1 0 00-1 1v5.586l-1.293-1.293z" />
@@ -598,20 +598,20 @@
         nextBtn.addEventListener('click', () => {
             formSection1.classList.add('hidden');
             formSection2.classList.remove('hidden');
-            step1Indicator.classList.remove('bg-blue-600');
+            step1Indicator.classList.remove('bg-[#e6ffe6]');
             step1Indicator.classList.add('bg-gray-200', 'text-gray-600');
             step2Indicator.classList.remove('bg-gray-200', 'text-gray-600');
-            step2Indicator.classList.add('bg-blue-600', 'text-white');
+            step2Indicator.classList.add('bg-[#e6ffe6]', 'text-black');
             progressBar.classList.add('w-full');
         });
 
         backBtn.addEventListener('click', () => {
             formSection2.classList.add('hidden');
             formSection1.classList.remove('hidden');
-            step2Indicator.classList.remove('bg-blue-600', 'text-white');
+            step2Indicator.classList.remove('bg-[#e6ffe6]', 'text-black');
             step2Indicator.classList.add('bg-gray-200', 'text-gray-600');
             step1Indicator.classList.remove('bg-gray-200', 'text-gray-600');
-            step1Indicator.classList.add('bg-blue-600', 'text-white');
+            step1Indicator.classList.add('bg-[#e6ffe6]', 'text-black');
             progressBar.classList.remove('w-full');
         });
     </script>

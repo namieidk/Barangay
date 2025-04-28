@@ -10,11 +10,11 @@
     <title>BRGY INCIO, DAVAO CITY SYSTEM - Document Management</title>
     <style>
         :root {
-            --primary: rgb(100, 105, 205);
-            --primary-light: rgb(25, 14, 232);
-            --primary-dark: rgba(20, 71, 168, 0.75);
-            --accent: rgb(148, 177, 239);
-            --accent-light: rgb(94, 101, 235);
+            --primary:rgb(132, 177, 132);
+            --primary-light:rgb(90, 144, 90);
+            --primary-dark: black;
+            --accent: rgb(172, 241, 172);
+            --accent-light: rgb(147, 239, 147);
             --light-bg: #f8f9fa;
             --text-dark: #333;
             --text-light: #f8f9fa;
@@ -56,7 +56,7 @@
             margin-bottom: 2rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--border-color);
-            background-color: #e6ffe6;
+            background-color: white;
             color: var(--text-dark);
             border-radius: 8px;
             padding: 1rem 2rem;
@@ -108,7 +108,7 @@
         }
 
         .document-card {
-            background: #F0F8FF;
+            background: white;
             border-radius: 12px;
             box-shadow: var(--card-shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -123,7 +123,7 @@
         }
 
         .doc-header {
-            background-color: #e6ffe6;
+            background-color: white;
             color: black;
             padding: 1.5rem;
             display: flex;

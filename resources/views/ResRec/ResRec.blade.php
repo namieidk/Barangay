@@ -678,8 +678,17 @@
                             </div>
                             <div class="form-control">
                                 <label class="form-label required">Purok</label>
-                                <input type="text" name="purok" id="edit_purok" class="form-input" required>
-                            </div>
+                                <select name="purok" id="edit_purok" class="form-input @error('purok') border-red-500 @enderror" required>
+        <option value="">Select Purok</option>
+        <option value="Purok Sampaguita" {{ old('purok') == 'Purok Sampaguita' ? 'selected' : '' }}>Purok Sampaguita</option>
+        <option value="Purok Mabini" {{ old('purok') == 'Purok Mabini' ? 'selected' : '' }}>Purok Mabini</option>
+        <option value="Purok Ilaw" {{ old('purok') == 'Purok Ilaw' ? 'selected' : '' }}>Purok Ilaw</option>
+        <option value="Purok Bukid" {{ old('purok') == 'Purok Bukid' ? 'selected' : '' }}>Purok Bukid</option>
+    </select>
+    @error('purok')
+        <span class="text-red-500 text-sm">{{ $message }}</span>
+    @enderror
+</div>
 
                             <!-- Additional Details -->
                             <div class="form-control">

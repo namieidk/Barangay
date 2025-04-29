@@ -8,6 +8,10 @@
         @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
         @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
         @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
+        .required-asterisk {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -20,9 +24,6 @@
                     <div class="p-8">
                         <div class="flex justify-between items-center mb-6">
                             <h2 class="text-2xl font-semibold text-gray-800">Barangay Officials Management</h2>
-                            <a href="{{ route('officials.create') }}" class="text-[#333] bg-[#e6ffe6] hover:bg-[#d4f7d4] px-5 py-2.5 rounded-lg transition-all duration-300 shadow-md flex items-center">
-                                <span class="material-symbols-outlined mr-2">add</span> Add New Official
-                            </a>
                         </div>
 
                         @if (session('success'))
@@ -48,8 +49,8 @@
 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
-                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="position">Position</label>
-                                        <select id="position" name="position" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('position') border-red-500 @enderror">
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="position">Position <span class="required-asterisk">*</span></label>
+                                        <select id="position" name="position" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('position') border-red-500 @enderror" required>
                                             <option value="">Select Position</option>
                                             <option value="captain" {{ old('position', isset($official) ? $official->position : '') == 'captain' ? 'selected' : '' }}>Barangay Captain</option>
                                             <option value="secretary" {{ old('position', isset($official) ? $official->position : '') == 'secretary' ? 'selected' : '' }}>Barangay Secretary</option>
@@ -62,13 +63,13 @@
                                         @enderror
                                     </div>
                                     <div>
-                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="term">Term Period</label>
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="term">Term Period <span class="required-asterisk">*</span></label>
                                         <div class="grid grid-cols-2 gap-4">
-                                            <input type="date" id="term_start" name="term_start" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('term_start') border-red-500 @enderror" value="{{ old('term_start', isset($official) ? $official->term_start : '') }}">
+                                            <input type="date" id="term_start" name="term_start" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('term_start') border-red-500 @enderror" value="{{ old('term_start', isset($official) ? $official->term_start : '') }}" required>
                                             @error('term_start')
                                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                                             @enderror
-                                            <input type="date" id="term_end" name="term_end" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('term_end') border-red-500 @enderror" value="{{ old('term_end', isset($official) ? $official->term_end : '') }}">
+                                            <input type="date" id="term_end" name="term_end" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('term_end') border-red-500 @enderror" value="{{ old('term_end', isset($official) ? $official->term_end : '') }}" required>
                                             @error('term_end')
                                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                                             @enderror
@@ -78,36 +79,36 @@
 
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                                     <div>
-                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="first_name">First Name</label>
-                                        <input type="text" id="first_name" name="first_name" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('first_name') border-red-500 @enderror" placeholder="Enter first name" value="{{ old('first_name', isset($official) ? $official->first_name : '') }}">
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="first_name">First Name <span class="required-asterisk">*</span></label>
+                                        <input type="text" id="first_name" name="first_name" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('first_name') border-red-500 @enderror" placeholder="Enter first name" value="{{ old('first_name', isset($official) ? $official->first_name : '') }}" required>
                                         @error('first_name')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div>
-                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="middle_name">Middle Name</label>
-                                        <input type="text" id="middle_name" name="middle_name" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('middle_name') border-red-500 @enderror" placeholder="Enter middle name" value="{{ old('middle_name', isset($official) ? $official->middle_name : '') }}">
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="middle_name">Middle Name <span class="required-asterisk">*</span></label>
+                                        <input type="text" id="middle_name" name="middle_name" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('middle_name') border-red-500 @enderror" placeholder="Enter middle name" value="{{ old('middle_name', isset($official) ? $official->middle_name : '') }}" required>
                                         @error('middle_name')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div>
-                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="last_name">Last Name</label>
-                                        <input type="text" id="last_name" name="last_name" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('last_name') border-red-500 @enderror" placeholder="Enter last name" value="{{ old('last_name', isset($official) ? $official->last_name : '') }}">
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="last_name">Last Name <span class="required-asterisk">*</span></label>
+                                        <input type="text" id="last_name" name="last_name" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('last_name') border-red-500 @enderror" placeholder="Enter last name" value="{{ old('last_name', isset($official) ? $official->last_name : '') }}" required>
                                         @error('last_name')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div>
-                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="birthdate">Birthdate</label>
-                                        <input type="date" id="birthdate" name="birthdate" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('birthdate') border-red-500 @enderror" value="{{ old('birthdate', isset($official) ? $official->birthdate : '') }}">
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="birthdate">Birthdate <span class="required-asterisk">*</span></label>
+                                        <input type="date" id="birthdate" name="birthdate" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('birthdate') border-red-500 @enderror" value="{{ old('birthdate', isset($official) ? $official->birthdate : '') }}" required>
                                         @error('birthdate')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div>
-                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="gender">Gender</label>
-                                        <select id="gender" name="gender" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('gender') border-red-500 @enderror">
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="gender">Gender <span class="required-asterisk">*</span></label>
+                                        <select id="gender" name="gender" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('gender') border-red-500 @enderror" required>
                                             <option value="">Select Gender</option>
                                             <option value="male" {{ old('gender', isset($official) ? $official->gender : '') == 'male' ? 'selected' : '' }}>Male</option>
                                             <option value="female" {{ old('gender', isset($official) ? $official->gender : '') == 'female' ? 'selected' : '' }}>Female</option>
@@ -118,8 +119,8 @@
                                         @enderror
                                     </div>
                                     <div>
-                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="contact_number">Contact Number</label>
-                                        <input type="text" id="contact_number" name="contact_number" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('contact_number') border-red-500 @enderror" placeholder="Enter contact number" value="{{ old('contact_number', isset($official) ? $official->contact_number : '') }}">
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="contact_number">Contact Number <span class="required-asterisk">*</span></label>
+                                        <input type="text" id="contact_number" name="contact_number" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('contact_number') border-red-500 @enderror" placeholder="Enter contact number" value="{{ old('contact_number', isset($official) ? $official->contact_number : '') }}" required>
                                         @error('contact_number')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror
@@ -127,32 +128,16 @@
                                 </div>
 
                                 <div class="mt-6">
-                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="address">Address</label>
-                                    <input type="text" id="address" name="address" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('address') border-red-500 @enderror" placeholder="Enter complete address" value="{{ old('address', isset($official) ? $official->address : '') }}">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="address">Address <span class="required-asterisk">*</span></label>
+                                    <input type="text" id="address" name="address" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 @error('address') border-red-500 @enderror" placeholder="Enter complete address" value="{{ old('address', isset($official) ? $official->address : '') }}" required>
                                     @error('address')
                                         <span class="text-red-500 text-sm">{{ $message }}</span>
                                     @enderror
                                 </div>
 
-                                <div class="mt-6">
-                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="photo">Official Photo</label>
-                                    <div class="border border-dashed border-gray-300 rounded-lg p-6 text-center hover:bg-gray-50 transition-colors duration-200 cursor-pointer">
-                                        <span class="material-symbols-outlined text-4xl text-gray-400 mb-2">upload_file</span>
-                                        <p class="text-sm text-gray-500">Click to upload or drag and drop</p>
-                                        <p class="text-xs text-gray-400 mt-1">JPG, PNG or GIF (Max. 2MB)</p>
-                                        <input type="file" id="photo" name="photo" class="hidden @error('photo') border-red-500 @enderror">
-                                    </div>
-                                    @error('photo')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
-                                    @if(isset($official) && $official->photo)
-                                        <p class="text-sm text-gray-500 mt-2">Current photo: <a href="{{ Storage::url($official->photo) }}" target="_blank">View</a></p>
-                                    @endif
-                                </div>
-
                                 <div class="mt-8 flex justify-end space-x-4">
                                     <a href="{{ route('officials.index') }}" class="px-5 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all duration-300">Cancel</a>
-                                    <button type="submit" class="text-[#333] bg-[#e6ffe6] hover:bg-[#d4f7d4]  px-5 py-2.5 rounded-lg  transition-all duration-300 shadow-md">
+                                    <button type="submit" class="text-[#333] bg-[#e6ffe6] hover:bg-[#d4f7d4] px-5 py-2.5 rounded-lg transition-all duration-300 shadow-md">
                                         {{ isset($official) ? 'Update Official' : 'Save Official' }}
                                     </button>
                                 </div>
@@ -172,7 +157,6 @@
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
                                         <tr>
-                                           
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Term Period</th>
@@ -184,12 +168,13 @@
                                         @if(isset($officials) && $officials->isNotEmpty())
                                             @foreach ($officials as $official)
                                                 <tr class="hover:bg-gray-50 transition-colors duration-150">
-                                                    
                                                     <td class="px-6 py-4 whitespace-nowrap">
                                                         <div class="text-sm font-medium text-gray-900">{{ $official->first_name }} {{ $official->middle_name ? $official->middle_name . ' ' : '' }}{{ $official->last_name }}</div>
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap">
-                                                        <span class="px-2 py-1 text-xs font-medium rounded-full bg-primary-100 text-primary-800">{{ ucfirst($official->position) }}</span>
+                                                        <span class="px-2 py-1 text-xsรรม
+
+System: font-medium rounded-full bg-primary-100 text-primary-800">{{ ucfirst($official->position) }}</span>
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $official->term_start->format('Y') }} - {{ $official->term_end->format('Y') }}</td>
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $official->contact_number }}</td>
@@ -198,13 +183,6 @@
                                                             <a href="{{ route('officials.edit', $official) }}" class="text-primary-600 hover:text-primary-800 transition-colors duration-150">
                                                                 <span class="material-symbols-outlined">edit</span>
                                                             </a>
-                                                            <form action="{{ route('officials.destroy', $official) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this official?');">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-150">
-                                                                    <span class="material-symbols-outlined">delete</span>
-                                                                </button>
-                                                            </form>
                                                             <a href="{{ route('officials.show', $official) }}" class="text-gray-600 hover:text-gray-800 transition-colors duration-150">
                                                                 <span class="material-symbols-outlined">visibility</span>
                                                             </a>
@@ -225,6 +203,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>

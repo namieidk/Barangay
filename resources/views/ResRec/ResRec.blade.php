@@ -324,6 +324,7 @@
                     </svg>
                     <input type="search" id="resident-search" class="search-input" placeholder="Search by name, ID, or purok..." />
                 </div>
+                
             </div>
 
             <!-- Data Table -->

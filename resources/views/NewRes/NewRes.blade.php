@@ -7,7 +7,7 @@
     <title>BRGY INCIO, DAVAO CITY SYSTEM</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-[FAF9F6] min-h-screen flex">
+<body class="bg-var(--light) min-h-screen flex">
     <!-- Sidebar -->
     <x-sidebar></x-sidebar>
 
@@ -18,7 +18,7 @@
             <h1 class="text-5xl font-bold mb-8 pl-0 mt-[-50px]">New Residents</h1>
 
             <!-- Form Section -->
-            <div class="bg-[#F0F8FF] mr-[-180px] shadow-md rounded-lg overflow-hidden">
+            <div class="bg-white mr-[-180px] shadow-md rounded-lg overflow-hidden border border-gray-200">
                 <form action="{{ route('new-residence.store') }}" method="POST" enctype="multipart/form-data" class="p-8">
                     @csrf
                     
@@ -27,12 +27,12 @@
                         <div class="flex items-center justify-between">
                             <div class="w-full flex items-center">
                                 <div class="relative z-10">
-                                    <div id="step-1-indicator" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#e6ffe6] text-black font-semibold">
+                                    <div id="step-1-indicator" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#ECF9EC] text-black font-semibold">
                                         1
                                     </div>
                                 </div>
                                 <div class="w-full h-1 bg-gray-200">
-                                    <div id="progress-bar" class="h-full bg-[#e6ffe6] w-0 transition-all duration-300"></div>
+                                    <div id="progress-bar" class="h-full bg-[#4a4a4a] w-0 transition-all duration-300"></div>
                                 </div>
                                 <div class="relative z-10">
                                     <div id="step-2-indicator" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 text-gray-600 font-semibold">
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="flex justify-between mt-2">
-                            <span class="text-sm font-medium text-[#e6ffe6]">Personal Details</span>
+                            <span class="text-sm font-medium text-gray-500">Personal Details</span>
                             <span class="text-sm font-medium text-gray-500">Contact & Additional Info</span>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                                             type="text" 
                                             id="first-name" 
                                             name="first_name" 
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]" 
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500" 
                                             value="{{ old('first_name') }}"
                                             required
                                         >
@@ -78,7 +78,7 @@
                                             type="text" 
                                             id="last-name" 
                                             name="last_name" 
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]" 
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500" 
                                             value="{{ old('last_name') }}"
                                             required
                                         >
@@ -95,7 +95,7 @@
                                             type="text" 
                                             id="middle-name" 
                                             name="middle_name"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                             value="{{ old('middle_name') }}"
                                         >
                                         @error('middle_name')
@@ -111,7 +111,7 @@
                                             type="text" 
                                             id="alias-name" 
                                             name="alias_name"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                             value="{{ old('alias_name') }}"
                                         >
                                         @error('alias_name')
@@ -126,7 +126,7 @@
                                         <select 
                                             id="gender" 
                                             name="gender" 
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                             required
                                         >
                                             <option value="" disabled {{ old('gender') == '' ? 'selected' : '' }}>Select gender</option>
@@ -149,7 +149,7 @@
                                             type="date" 
                                             id="birth-date" 
                                             name="birth_date"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                             value="{{ old('birth_date') }}"
                                             required
                                         >
@@ -166,7 +166,7 @@
                                             type="text" 
                                             id="birth-place" 
                                             name="birth_place"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                             value="{{ old('birth_place') }}"
                                             required
                                         >
@@ -182,7 +182,7 @@
                                         <select 
                                             id="marital-status" 
                                             name="marital_status"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                             required
                                         >
                                             <option value="" disabled {{ old('marital_status') == '' ? 'selected' : '' }}>Select Status</option>
@@ -204,7 +204,7 @@
                                             type="text" 
                                             id="spouse-name" 
                                             name="spouse_name"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                             value="{{ old('spouse_name') }}"
                                         >
                                         @error('spouse_name')
@@ -219,7 +219,7 @@
                                         <select 
                                             id="purok" 
                                             name="purok"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                             required
                                         >
                                             <option value="" disabled {{ old('purok') == '' ? 'selected' : '' }}>Select Purok</option>
@@ -245,7 +245,7 @@
                                     type="text" 
                                     id="place" 
                                     name="place"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                     value="{{ old('place') }}"
                                     required
                                 >
@@ -262,7 +262,7 @@
                                     type="text" 
                                     id="height" 
                                     name="height"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                     value="{{ old('height') }}"
                                     required
                                 >
@@ -279,7 +279,7 @@
                                     type="text" 
                                     id="weight" 
                                     name="weight"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                     value="{{ old('weight') }}"
                                     required
                                 >
@@ -297,7 +297,7 @@
                                 <select 
                                     id="religionSelect" 
                                     name="religion"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]" 
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500" 
                                     onchange="toggleReligionInput()"
                                     required
                                 >
@@ -312,7 +312,7 @@
                                     type="text" 
                                     id="religionInput" 
                                     name="religion_other"
-                                    class="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6] hidden" 
+                                    class="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500 hidden" 
                                     placeholder="Enter your religion"
                                     value="{{ old('religion_other') }}"
                                 >
@@ -328,7 +328,7 @@
                                 <select 
                                     id="voters-status" 
                                     name="voters_status"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                     required
                                 >
                                     <option value="" disabled {{ old('voters_status') == '' ? 'selected' : '' }}>Select Voters Status</option>
@@ -347,13 +347,14 @@
                                 <select 
                                     id="employment-status" 
                                     name="employment_status"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                     required
                                 >
                                     <option value="" disabled {{ old('employment_status') == '' ? 'selected' : '' }}>Select Employment Status</option>
                                     <option value="worker" {{ old('employment_status') == 'worker' ? 'selected' : '' }}>Worker</option>
                                     <option value="self-employed" {{ old('employment_status') == 'self-employed' ? 'selected' : '' }}>Self Employed</option>
                                     <option value="employee" {{ old('employment_status') == 'employee' ? 'selected' : '' }}>Employee</option>
+                                    <option value="student" {{ old('employment_status') == 'student' ? 'selected' : '' }}>Student</option>
                                 </select>
                                 @error('employment_status')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -406,7 +407,7 @@
                                         <select 
                                             id="blood-type" 
                                             name="blood_type"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                             required
                                         >
                                             <option value="" disabled {{ old('blood_type') == '' ? 'selected' : '' }}>Select Blood Type</option>
@@ -431,7 +432,7 @@
                                             type="text" 
                                             id="occupation" 
                                             name="occupation"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]" 
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500" 
                                             placeholder="Enter occupation"
                                             value="{{ old('occupation') }}"
                                             required
@@ -447,7 +448,7 @@
                                         <select 
                                             id="education" 
                                             name="educational_attainment"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                             required
                                         >
                                             <option value="" disabled {{ old('educational_attainment') == '' ? 'selected' : '' }}>Select Educational Attainment</option>
@@ -478,7 +479,7 @@
                                                 type="text" 
                                                 id="phone" 
                                                 name="phone_number"
-                                                class="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                                class="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                                 placeholder="+63 XXX XXX XXXX"
                                                 value="{{ old('phone_number') }}"
                                                 required
@@ -502,7 +503,7 @@
                                                 type="text" 
                                                 id="land" 
                                                 name="land_number"
-                                                class="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                                class="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                                 value="{{ old('land_number') }}"
                                             >
                                         </div>
@@ -525,7 +526,7 @@
                                                 type="email" 
                                                 id="email" 
                                                 name="email"
-                                                class="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                                class="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                                 value="{{ old('email') }}"
                                                 required
                                             >
@@ -542,7 +543,7 @@
                                             type="text" 
                                             id="address" 
                                             name="address"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e6ffe6] focus:border-[#e6ffe6]"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-500"
                                             value="{{ old('address') }}"
                                             required
                                         >
@@ -561,7 +562,7 @@
                                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                                 </svg>
                             </button>
-                            <button type="submit" id="save-btn" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-black bg-[#e6ffe6] hover:bg-[#d4ffd4] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#e6ffe6] transition duration-150">
+                            <button type "submit" id="save-btn" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-black bg-[#e6ffe6] hover:bg-[#d4ffd4] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#e6ffe6] transition duration-150">
                                 Save
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6a1 1 0 00-1-1H9a1 1 0 00-1 1v5.586l-1.293-1.293z" />
@@ -609,7 +610,7 @@
             formSection2.classList.add('hidden');
             formSection1.classList.remove('hidden');
             step2Indicator.classList.remove('bg-[#e6ffe6]', 'text-black');
-            step2Indicator.classList.add('bg-gray-200', 'text-gray-600');
+            step2Indicator.classList.add('bg-gray-0', 'text-gray-600');
             step1Indicator.classList.remove('bg-gray-200', 'text-gray-600');
             step1Indicator.classList.add('bg-[#e6ffe6]', 'text-black');
             progressBar.classList.remove('w-full');

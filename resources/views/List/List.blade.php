@@ -298,7 +298,7 @@
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <input type="search" id="resident-search" class="search-input" placeholder="Search by name, ID, or purok..." oninput="searchResidents()" />
+                    <input type="search" id="resident-search" class="search-input" placeholder="Search by name, ID, or purok..." oninput="debouncedSearchResidents()" />
                 </div>
             </div>
 
@@ -320,42 +320,9 @@
                             </tr>
                         </thead>
                         <tbody id="residents-table-body">
-                            @if (empty($residents) || $residents->isEmpty())
-                                <tr>
-                                    <td colspan="9" class="text-center py-6 text-gray-500">No residents found</td>
-                                </tr>
-                            @else
-                                @foreach ($residents as $resident)
-                                    <tr>
-                                        <td>{{ $resident['type'] === 'head' ? ($resident['id'] ?? 'N/A') : ($resident['residence_id'] ?? 'N/A') }}</td>
-                                        <td>{{ ($resident['first_name'] ?? '') . ' ' . ($resident['last_name'] ?? '') }}</td>
-                                        <td>{{ ucfirst($resident['type'] ?? 'N/A') }}</td>
-                                        <td>{{ ucfirst($resident['gender'] ?? 'N/A') }}</td>
-                                        <td>
-                                            @php
-                                                $birthDate = !empty($resident['birth_date']) ? new DateTime($resident['birth_date']) : null;
-                                                $age = $birthDate ? (new DateTime())->diff($birthDate)->y : 'N/A';
-                                            @endphp
-                                            {{ $age }}
-                                        </td>
-                                        <td>{{ !empty($resident['purok']) ? str_replace('purok', 'Purok ', $resident['purok']) : 'N/A' }}</td>
-                                        <td>{{ ucfirst($resident['marital_status'] ?? 'N/A') }}</td>
-                                        <td>
-                                            <span class="badge {{ ($resident['voters_status'] ?? '') === 'registered' ? 'badge-green' : 'badge-red' }}">
-                                                {{ ($resident['voters_status'] ?? '') === 'registered' ? 'Yes' : 'No' }}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span class="btn-action" onclick="editResident('{{ $resident['id'] ?? '' }}', '{{ $resident['type'] ?? '' }}')">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                                </svg>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endif
+                            <tr>
+                                <td colspan="9" class="text-center py-6 text-gray-500">Loading residents...</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -695,6 +662,11 @@
 
     const debouncedSearchResidents = debounce(searchResidents, 300);
     document.getElementById('resident-search').addEventListener('input', debouncedSearchResidents);
+
+    // Fetch residents on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        searchResidents();
+    });
 </script>
 </body>
 </html>

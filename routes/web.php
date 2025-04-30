@@ -15,6 +15,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\OfficialController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ResPersonDataController;
+use App\Http\Controllers\ListController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -104,6 +105,10 @@ Route::get('/Officials', function() {
     return view('Officials.Officials');
 });
 
+Route::get('/List', function() {
+    return view('List.List');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -169,5 +174,9 @@ Route::get('/officials/{official}/edit', [OfficialController::class, 'edit'])->n
 Route::put('/officials/{official}', [OfficialController::class, 'update'])->name('officials.update');
 Route::delete('/officials/{official}', [OfficialController::class, 'destroy'])->name('officials.destroy');
 Route::get('/officials/{official}', [OfficialController::class, 'show'])->name('officials.show');
+
+Route::get('/list', [ListController::class, 'index'])->name('list.index');
+Route::get('/list/{id}/{type}/edit', [ListController::class, 'edit']);
+Route::put('/list/{id}/{type}', [ListController::class, 'update']);
 
 require __DIR__.'/auth.php';

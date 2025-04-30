@@ -9,17 +9,13 @@ class CreateNarrativeTable extends Migration
     public function up()
     {
         Schema::create('narrative', function (Blueprint $table) {
+            $table->engine = 'InnoDB'; // Ensure InnoDB for foreign key support
             $table->id();
-            $table->string('res_person_data_id');
+            $table->foreignId('res_person_data_id')->constrained('reporting_person_data')->onDelete('cascade');
             $table->dateTime('date_time');
             $table->string('place_of_incident');
             $table->text('incident_narrative');
             $table->timestamps();
-
-            $table->foreign('res_person_data_id')
-                  ->references('id')
-                  ->on('reporting_person_data')
-                  ->onDelete('cascade');
         });
     }
 

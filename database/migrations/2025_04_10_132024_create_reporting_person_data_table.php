@@ -9,9 +9,10 @@ class CreateReportingPersonDataTable extends Migration
     public function up()
     {
         Schema::create('reporting_person_data', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('type_of_incident'); 
-            $table->string('first_name'); 
+            $table->engine = 'InnoDB';
+            $table->id(); // unsignedBigInteger primary key
+            $table->string('type_of_incident');
+            $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name');
             $table->string('nickname');

@@ -9,6 +9,7 @@ class CreateSuspectDataTable extends Migration
     public function up()
     {
         Schema::create('suspect_data', function (Blueprint $table) {
+            $table->engine = 'InnoDB'; // Add this for consistency
             $table->id();
             $table->foreignId('res_person_data_id')->constrained('reporting_person_data')->onDelete('cascade');
             $table->string('type_of_incident');

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Resident;
-use App\Models\Residence;
+use App\Models\NewResidence;
+use App\Models\FamMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class ResidentController extends Controller
+class ListController extends Controller
 {
     /**
      * Fetch residents for the table, with optional search filtering.
@@ -20,8 +20,11 @@ class ResidentController extends Controller
         try {
             $search = $request->query('search', '');
 
-            // Query for heads (from residences table)
-            $headsQuery = Residence::query()
+            // Log the search parameter for debugging
+            Log::info('Fetching residents with search: ' . $search);
+
+            // Query for heads (from new_residences table)
+            $headsQuery = NewResidence::query()
                 ->select([
                     'id',
                     'first_name',
@@ -62,8 +65,8 @@ class ResidentController extends Controller
                     return $head;
                 });
 
-            // Query for members (from residents table)
-            $membersQuery = Resident::query()
+            // Query for members (from fam_members table)
+            $membersQuery = FamMember::query()
                 ->select([
                     'id',
                     'residence_id',
@@ -113,7 +116,8 @@ class ResidentController extends Controller
         } catch (\Exception $e) {
             Log::error('Error fetching residents: ' . $e->getMessage(), [
                 'exception' => $e->getTraceAsString(),
-                'request_data' => $request->all()
+                'request_data' => $request->all(),
+                'search_query' => $search
             ]);
             return response()->json(['error' => 'Failed to fetch residents'], 500);
         }
@@ -130,12 +134,13 @@ class ResidentController extends Controller
     {
         try {
             if ($type === 'head') {
-                $resident = Residence::findOrFail($id);
+                $resident = NewResidence::findOrFail($id);
+                $resident->type = 'head';
             } else {
-                $resident = Resident::where('id', $id)->where('type', 'member')->firstOrFail();
+                $resident = FamMember::where('id', $id)->firstOrFail();
+                $resident->type = 'member';
             }
 
-            $resident->type = $type;
             return response()->json($resident);
         } catch (\Exception $e) {
             Log::error('Error fetching resident for edit: ' . $e->getMessage(), [

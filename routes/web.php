@@ -16,6 +16,7 @@ use App\Http\Controllers\OfficialController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ResPersonDataController;
 use App\Http\Controllers\ListController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -178,5 +179,7 @@ Route::get('/officials/{official}', [OfficialController::class, 'show'])->name('
 Route::get('/list', [ListController::class, 'index'])->name('list.index');
 Route::get('/list/{id}/{type}/edit', [ListController::class, 'edit']);
 Route::put('/list/{id}/{type}', [ListController::class, 'update']);
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 require __DIR__.'/auth.php';

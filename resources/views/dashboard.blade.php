@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRGY INCIO, DAVAO CITY SYSTEM</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --primary:rgb(231, 238, 232);
-            --primary-light:rgb(243, 249, 243);
-            --primary-dark:rgb(244, 249, 244);
+            --primary: rgb(231, 238, 232);
+            --primary-light: rgb(243, 249, 243);
+            --primary-dark: rgb(244, 249, 244);
             --secondary: #8FB98A;
-            --secondary-light:rgb(253, 254, 252);
+            --secondary-light: rgb(253, 254, 252);
             --text-light: #FFFFFF;
             --text-dark: #1A1A1A;
-            --accent:rgb(236, 233, 223);
+            --accent: rgb(236, 233, 223);
             --bg-light: #F8FFF5;
             --border-radius: 8px;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -90,7 +90,7 @@
         }
 
         .chart-container {
-            height: 300px; /* Increased height for larger charts */
+            height: 300px;
             width: 100%;
         }
 
@@ -127,18 +127,18 @@
     <x-sidebar></x-sidebar>
 
     <!-- Main Content Area -->
-    <div class="flex-1 ml-64 pt-20"> <!-- Adjusted margin-left to align with header -->
-        <div class="p-8 w-full max-w-7xl mx-auto"> <!-- Increased max-width and padding -->
+    <div class="flex-1 ml-64 pt-20">
+        <div class="p-8 w-full max-w-7xl mx-auto">
             <!-- Dashboard Heading -->
-            <h1 class="text-4xl font-bold mb-8 text-gray-800">Dashboard Overview</h1> <!-- Larger font size -->
+            <h1 class="text-4xl font-bold mb-8 text-gray-800">Dashboard Overview</h1>
 
             <!-- Stats Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8"> <!-- Increased gap -->
-                <div class="bg-white rounded-lg shadow-md p-8 stat-card"> <!-- Larger padding -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div class="bg-white rounded-lg shadow-md p-8 stat-card">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-base font-medium text-gray-500">Total Population</p> <!-- Larger text -->
-                            <h3 class="text-4xl font-bold text-gray-800 mt-2">2,854</h3> <!-- Larger font -->
+                            <p class="text-base font-medium text-gray-500">Total Population</p>
+                            <h3 class="text-4xl font-bold text-gray-800 mt-2">{{ number_format($totalPopulation) }}</h3>
                             <p class="text-sm text-green-600 mt-2">
                                 <span class="font-medium">↑ 3.2%</span> from last month
                             </p>
@@ -155,7 +155,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-base font-medium text-gray-500">Male</p>
-                            <h3 class="text-4xl font-bold text-gray-800 mt-2">1,382</h3>
+                            <h3 class="text-4xl font-bold text-gray-800 mt-2">{{ number_format($maleCount) }}</h3>
                             <p class="text-sm text-green-600 mt-2">
                                 <span class="font-medium">↑ 2.8%</span> from last month
                             </p>
@@ -172,7 +172,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-base font-medium text-gray-500">Female</p>
-                            <h3 class="text-4xl font-bold text-gray-800 mt-2">1,472</h3>
+                            <h3 class="text-4xl font-bold text-gray-800 mt-2">{{ number_format($femaleCount) }}</h3>
                             <p class="text-sm text-green-600 mt-2">
                                 <span class="font-medium">↑ 3.5%</span> from last month
                             </p>
@@ -189,8 +189,8 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-base font-medium text-gray-500">Registered Voters</p>
-                            <h3 class="text-4xl font-bold text-gray-800 mt-2">1,924</h3>
-                            <p class="text-sm text-green-600 mt-2">
+                            <h3 class="text-4xl font-bold text-gray-800 mt-2">{{ number_format($registeredVoters) }}</h3>
+                            <p class="text-sm text-green protagonista-600 mt-2">
                                 <span class="font-medium">↑ 1.2%</span> from last month
                             </p>
                         </div>
@@ -204,63 +204,45 @@
             </div>
 
             <!-- Main Content Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8"> <!-- Increased gap -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Officials Table -->
                 <div class="lg:col-span-1">
                     <div class="bg-white rounded-lg shadow-md">
-                        <div class="bg-green-700 text-white p-6 rounded-t-lg"> <!-- Larger padding -->
-                            <h2 class="text-xl font-semibold">Current Barangay Officials</h2> <!-- Larger font -->
+                        <div class="bg-green-700 text-white p-6 rounded-t-lg">
+                            <h2 class="text-xl font-semibold">Current Barangay Officials</h2>
                         </div>
                         <div class="overflow-x-auto">
-                            <table class="w-full text-base text-left text-gray-700"> <!-- Larger text -->
+                            <table class="w-full text-base text-left text-gray-700">
                                 <thead class="text-sm uppercase bg-gray-50 border-b">
                                     <tr>
-                                        <th scope="col" class="px-6 py-4">Full Name</th> <!-- Larger padding -->
-                                        <th scope="col" class="px-6 py-4">Committee</th>
+                                        <th scope="col" class="px-6 py-4">Full Name</th>
                                         <th scope="col" class="px-6 py-4">Position</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="border-b hover:bg-gray-50">
-                                        <td class="px-6 py-4 font-medium">Juan Dela Cruz</td>
-                                        <td class="px-6 py-4">Peace and Order</td>
-                                        <td class="px-6 py-4">Barangay Captain</td>
-                                    </tr>
-                                    <tr class="border-b hover:bg-gray-50">
-                                        <td class="px-6 py-4 font-medium">Maria Santos</td>
-                                        <td class="px-6 py-4">Health and Sanitation</td>
-                                        <td class="px-6 py-4">Secretary</td>
-                                    </tr>
-                                    <tr class="border-b hover:bg-gray-50">
-                                        <td class="px-6 py-4 font-medium">Pedro Reyes</td>
-                                        <td class="px-6 py-4">Finance</td>
-                                        <td class="px-6 py-4">Treasurer</td>
-                                    </tr>
-                                    <tr class="border-b hover:bg-gray-50">
-                                        <td class="px-6 py-4 font-medium">Ana Lim</td>
-                                        <td class="px-6 py-4">Education</td>
-                                        <td class="px-6 py-4">Kagawad</td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 font-medium">Ramon Garcia</td>
-                                        <td class="px-6 py-4">Infrastructure</td>
-                                        <td class="px-6 py-4">Kagawad</td>
-                                    </tr>
+                                    @foreach ($officials as $official)
+                                        <tr class="border-b hover:bg-gray-50">
+                                            <td class="px-6 py-4 font-medium">
+                                                {{ $official->first_name }} {{ $official->middle_name ? $official->middle_name . ' ' : '' }}{{ $official->last_name }}
+                                            </td>
+                                            <td class="px-6 py-4">{{ $official->position }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                         <div class="p-6 text-center">
-                            <a href="#" class="text-base text-green-600 hover:text-green-800">View All Officials</a> <!-- Larger text -->
+                            <a href="{{ route('officials.index') }}" class="text-base text-green-600 hover:text-green-800">View All Officials</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Charts Section -->
                 <div class="lg:col-span-2">
-                    <div class="bg-white rounded-lg shadow-md p-8 mb-8"> <!-- Larger padding -->
+                    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
                         <div class="flex justify-between items-center mb-6">
-                            <h2 class="text-xl font-semibold text-gray-800">Population Demographics</h2> <!-- Larger font -->
-                            <select class="bg-gray-50 border border-gray-300 text-gray-700 text-base rounded-lg focus:ring-green-500 focus:border-green-500 p-3"> <!-- Larger select -->
+                            <h2 class="text-xl font-semibold text-gray-800">Population Demographics</h2>
+                            <select class="bg-gray-50 border border-gray-300 text-gray-700 text-base rounded-lg focus:ring-green-500 focus:border-green-500 p-3">
                                 <option>Last 30 Days</option>
                                 <option>Last 90 Days</option>
                                 <option>This Year</option>
@@ -271,10 +253,10 @@
                         </div>
                     </div>
 
-                    <div class="bg-white rounded-lg shadow-md p-8"> <!-- Larger padding -->
+                    <div class="bg-white rounded-lg shadow-md p-8">
                         <div class="flex justify-between items-center mb-6">
-                            <h2 class="text-xl font-semibold text-gray-800">Age Distribution</h2> <!-- Larger font -->
-                            <button class="text-base text-green-600 hover:text-green-800"> <!-- Larger text -->
+                            <h2 class="text-xl font-semibold text-gray-800">Age Distribution</h2>
+                            <button class="text-base text-green-600 hover:text-green-800">
                                 View Details
                             </button>
                         </div>
@@ -284,49 +266,18 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Blotter Records Summary -->
-            <div class="mt-8">
-                <h2 class="text-3xl font-bold mb-6 text-gray-800">Blotter Records Summary</h2> <!-- Larger font -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"> <!-- Increased gap -->
-                    <!-- Settled Cases Card -->
-                    <div class="bg-green-100 p-6 rounded-lg flex flex-col items-center shadow-md"> <!-- Larger padding -->
-                        <h3 class="text-base font-medium text-green-800 mb-4">Settled Cases</h3> <!-- Larger text -->
-                        <span class="text-4xl font-bold text-green-700">28</span> <!-- Larger font -->
-                    </div>
-
-                    <!-- Scheduled Cases Card -->
-                    <div class="bg-blue-100 p-6 rounded-lg flex flex-col items-center shadow-md">
-                        <h3 class="text-base font-medium text-blue-800 mb-4">Scheduled Cases</h3>
-                        <span class="text-4xl font-bold text-blue-700">12</span>
-                    </div>
-
-                    <!-- Unsettled Cases Card -->
-                    <div class="bg-red-100 p-6 rounded-lg flex flex-col items-center shadow-md">
-                        <h3 class="text-base font-medium text-red-800 mb-4">Unsettled Cases</h3>
-                        <span class="text-4xl font-bold text-red-700">7</span>
-                    </div>
-
-                    <!-- Unscheduled Cases Card -->
-                    <div class="bg-yellow-100 p-6 rounded-lg flex flex-col items-center shadow-md">
-                        <h3 class="text-base font-medium text-yellow-800 mb-4">Unscheduled Cases</h3>
-                        <span class="text-4xl font-bold text-yellow-700">5</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
     <script>
-        // Chart.js initialization (example)
         document.addEventListener('DOMContentLoaded', function() {
             new Chart(document.getElementById('populationChart'), {
                 type: 'bar',
                 data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    labels: [@foreach ($months as $month)'{{ $month }}'@if (!$loop->last),@endif @endforeach],
                     datasets: [{
                         label: 'Population',
-                        data: [1200, 1250, 1300, 1350, 1400, 1450],
+                        data: [@foreach ($populationData as $count){{ $count }}@if (!$loop->last),@endif @endforeach],
                         backgroundColor: 'rgba(45, 95, 46, 0.2)',
                         borderColor: 'rgba(45, 95, 46, 1)',
                         borderWidth: 1
@@ -344,7 +295,12 @@
                 data: {
                     labels: ['0-18', '19-35', '36-50', '51+'],
                     datasets: [{
-                        data: [30, 40, 20, 10],
+                        data: [
+                            {{ $ageGroups['0-18'] }},
+                            {{ $ageGroups['19-35'] }},
+                            {{ $ageGroups['36-50'] }},
+                            {{ $ageGroups['51+'] }}
+                        ],
                         backgroundColor: ['#2D5F2E', '#4A7D4B', '#8FB98A', '#C5E2C1']
                     }]
                 }

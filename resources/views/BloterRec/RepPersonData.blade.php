@@ -19,7 +19,7 @@
             max-width: 1200px;
             margin: 30px auto;
             background-color: #fff;
-            border-radius: 12px;
+            border-radius: 16px; 
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
@@ -212,7 +212,7 @@
     <x-sidebar></x-sidebar>
 
     <div class="flex-1 ml-64 pt-10">
-        <div class="p-10 w-full max-w-6xl mx-auto">
+        <div class="p-10 w-full max-w-6xl mx-auto mt-[-20px]">
         <nav class="flex border-b border-gray-200 bg-[#537B2F] text-[#ffffff]">
     <x-resbar href="{{ route('BloterRec.ResPersonData') }}" active="{{ request()->routeIs('blotter.reporting.*') }}" id="repperdataBtn" class="px-6 py-4 text-sm font-medium text-[#ffffff] bg-[#537B2F]  hover:bg-[#2D5128] transition-all duration-200">
         Reporting Person Data

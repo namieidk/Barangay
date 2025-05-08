@@ -17,6 +17,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ResPersonDataController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ArchiveController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -110,6 +111,10 @@ Route::get('/List', function() {
     return view('List.List');
 });
 
+Route::get('/Archive', function() {
+    return view('Archive.Archive');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -125,7 +130,10 @@ Route::put('/new-residence/{newResidence}', [NewResidenceController::class, 'upd
 Route::get('/ResRec', [ResidenceController::class, 'index'])->name('ResRec.ResRec');
 Route::get('/residents/{resident}/edit', [ResidenceController::class, 'edit'])->name('ResRec.edit');
 Route::put('/residents/{resident}', [ResidenceController::class, 'update'])->name('ResRec.update');
-Route::delete('/residents/{resident}/archive', [ResidenceController::class, 'archive'])->name('ResRec.archive');
+Route::delete('/residents/{resident}/archive', [ResidenceController::class, 'archive'])->name('residents.archive');
+Route::get('/archive', [ArchiveController::class, 'index'])->name('Archive.archive');
+Route::post('/residents/{resident}/restore', [ArchiveController::class, 'restore'])->name('residents.restore');
+Route::get('/archive/{resident}', [ArchiveController::class, 'show'])->name('archive.show');
 
 Route::get('/family-members', [FamilyMemberController::class, 'index'])->name('family-members.index');
 Route::get('/family-members/create', [FamilyMemberController::class, 'create'])->name('family-members.create');

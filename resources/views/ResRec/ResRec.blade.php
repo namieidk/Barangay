@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -118,7 +119,7 @@
         
         .search-input {
             width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.5rem; /* Adjusted padding to account for icon */
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
             border: 1px solid #E2E8F0;
             border-radius: 0.5rem;
             font-size: 0.875rem;
@@ -232,7 +233,7 @@
         
         .progress-step.active .step-circle { background-color: var(--primary); border-color: var(--primary); color: black; }
         .progress-step.completed .step-circle { background-color: var(--accent); border-color: var(--accent); color: black; }
-        .step-text { font-size: 0.75rem; color:rgb(16, 16, 17); font-weight: 500; }
+        .step-text { font-size: 0.75rem; color: rgb(16, 16, 17); font-weight: 500; }
         .progress-step.active .step-text { color: #000000; font-weight: 600; }
         
         .form-control { margin-bottom: 1.5rem; }
@@ -402,6 +403,14 @@
                                             </svg>
                                             <span class="sr-only">Show Family</span>
                                         </a>
+                                        <button onclick="showArchiveModal('{{ $residence->id }}')" class="btn-action">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M20 5H4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z"/>
+                                                <path d="M8 17h8"/>
+                                                <path d="M10 13h4"/>
+                                            </svg>
+                                            <span class="sr-only">Archive</span>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -593,7 +602,7 @@
                                 <select name="blood_type" class="form-select" required>
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
-                                    <option value="B+">B+.html</option>
+                                    <option value="B+">B+</option>
                                     <option value="B-">B-</option>
                                     <option value="AB+">AB+</option>
                                     <option value="AB-">AB-</option>
@@ -936,3 +945,4 @@
     </script>
 </body>
 </html>
+```

@@ -85,6 +85,14 @@
         <span class="ms-3">Residents List</span>
     </a>
 </li>
+<li>
+    <a href="Archive" class="flex items-center p-2 rounded-lg hover:bg-[#5A7A46] group">
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17 0H3a3 3 0 0 0-3 3v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V3a3 3 0 0 0-3-3Zm1 7H2a2 2 0 0 0-2 2v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V9a2 2 0 0 0-2-2Zm-5 3a1 1 0 0 0-1 1v2H8v-2a1 1 0 0 0-2 0v2a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2a1 1 0 0 0-1-1Z"/>
+        </svg>
+        <span class="ms-3">Archive</span>
+    </a>
+</li>
          <li>
             <a href="Reports" class="flex items-center p-2 rounded-lg hover:bg-[#5A7A46] group">
                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

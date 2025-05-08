@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers;
@@ -6,7 +7,6 @@ use App\Models\ArchivedResident;
 use App\Models\NewResidence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\View;
 
 class ArchiveController extends Controller
 {
@@ -15,19 +15,8 @@ class ArchiveController extends Controller
      */
     public function index()
     {
-        $archivedResidents = ArchivedResident::withoutTrashed()->get();
+        $archivedResidents = ArchivedResident::all();
         return view('Archive.archive', compact('archivedResidents'));
-    }
-
-    /**
-     * Display the specified archived resident.
-     */
-    public function show($id)
-    {
-        $archivedResidents = ArchivedResident::withoutTrashed()->get();
-        $resident = ArchivedResident::withoutTrashed()->findOrFail($id);
-        
-        return view('Archive.show', compact('archivedResidents', 'resident'));
     }
 
     /**
@@ -37,9 +26,8 @@ class ArchiveController extends Controller
     {
         DB::beginTransaction();
         try {
-            $archivedResident = ArchivedResident::withoutTrashed()->findOrFail($resident);
+            $archivedResident = ArchivedResident::findOrFail($resident);
 
-            // Create new resident record
             NewResidence::create([
                 'first_name' => $archivedResident->first_name,
                 'last_name' => $archivedResident->last_name,
@@ -68,14 +56,14 @@ class ArchiveController extends Controller
                 'address' => $archivedResident->address,
             ]);
 
-            // Delete from archived_residents table - use forceDelete since we're using SoftDeletes
-            $archivedResident->forceDelete();
+            // Delete from archived_residents table
+            $archivedResident->delete();
 
             DB::commit();
-            return redirect()->route('archive.index')->with('success', 'Resident restored successfully.');
+            return redirect()->route('Archive.archive')->with('success', 'Resident restored successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->route('archive.index')->with('error', 'Failed to restore resident: ' . $e->getMessage());
+            return redirect()->route('Archive.archive')->with('error', 'Failed to restore resident: ' . $e->getMessage());
         }
     }
 }

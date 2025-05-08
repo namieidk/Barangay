@@ -131,9 +131,11 @@ Route::get('/ResRec', [ResidenceController::class, 'index'])->name('ResRec.ResRe
 Route::get('/residents/{resident}/edit', [ResidenceController::class, 'edit'])->name('ResRec.edit');
 Route::put('/residents/{resident}', [ResidenceController::class, 'update'])->name('ResRec.update');
 Route::delete('/residents/{resident}/archive', [ResidenceController::class, 'archive'])->name('residents.archive');
-Route::get('/archive', [ArchiveController::class, 'index'])->name('Archive.archive');
-Route::post('/residents/{resident}/restore', [ArchiveController::class, 'restore'])->name('residents.restore');
+
+Route::get('/archive', [ArchiveController::class, 'index'])->name('archive.archive');
 Route::get('/archive/{resident}', [ArchiveController::class, 'show'])->name('archive.show');
+Route::post('/archive/{resident}/restore', [ArchiveController::class, 'restore'])->name('archive.restore');
+
 
 Route::get('/family-members', [FamilyMemberController::class, 'index'])->name('family-members.index');
 Route::get('/family-members/create', [FamilyMemberController::class, 'create'])->name('family-members.create');

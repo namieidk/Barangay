@@ -249,11 +249,6 @@
             @endif
         </div>
 
-        <!-- Page Header -->
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-bold text-gray-800">Archived Residents</h1>
-        </div>
-
         <!-- Search Bar -->
         <div class="card mb-6">
             <div class="search-container">
@@ -291,17 +286,17 @@
                                         <div class="text-xs text-gray-500">{{ $resident->alias_name }}</div>
                                     </td>
                                     <td>{{ ucfirst($resident->gender) }}</td>
-                                    <td>{{ sprintf('%02d', abs(now()->diffInYears($resident->birth_date))) }}</td>
+                                    <td>{{ $resident->birth_date ? $resident->birth_date->diffInYears(now()) : 'N/A' }}</td>
                                     <td>{{ ucfirst($resident->purok) }}</td>
                                     <td>{{ ucfirst($resident->marital_status) }}</td>
-                                    <td>{{ $resident->archived_at->format('Y-m-d') }}</td>
+                                    <td>{{ $resident->archived_at ? $resident->archived_at->format('Y-m-d') : 'N/A' }}</td>
                                     <td>
                                         <button onclick="showRestoreModal('{{ $resident->id }}')" class="btn-action">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M3 12a9 9 0 1 1 18 0 9 9 0 0 1-18 0z"/>
                                                 <path d="M12 7v5l4 2"/>
                                             </svg>
-                                            <span class="sr-only">Restore</span>
+                                            <span class="ml-1">Restore</span>
                                         </button>
                                     </td>
                                 </tr>
@@ -343,7 +338,10 @@
             const form = document.getElementById('restoreResidentForm');
             const residentIdInput = document.getElementById('restore_resident_id');
             
-            form.action = `{{ route('residents.restore', ['resident' => '']) }}/${residentId}`;
+            // Use a placeholder in the route that we can replace
+            const baseUrl = "{{ route('archive.restore', ['resident' => ':residentId']) }}";
+            form.action = baseUrl.replace(':residentId', residentId);
+            
             residentIdInput.value = residentId;
             modal.style.display = 'block';
         }

@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ArchivedResident extends Model
 {
-    use SoftDeletes;
-    
-    protected $table = 'archived_residents';
+    use HasFactory, SoftDeletes;
 
+    protected $table = 'archived_residents';
+    
     protected $fillable = [
         'first_name',
         'last_name',
@@ -39,10 +40,26 @@ class ArchivedResident extends Model
         'address',
         'archived_at',
     ];
-
-    protected $casts = [
-        'has_disability' => 'boolean',
-        'birth_date' => 'date',
-        'archived_at' => 'datetime',
-    ];
+    
+    protected $dates = ['archived_at', 'deleted_at', 'birth_date'];
+    
+    /**
+     * Get the resident's full name.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->middle_name} {$this->last_name}";
+    }
+    
+    /**
+     * Get the resident's age based on birth date.
+     *
+     * @return int
+     */
+    public function getAgeAttribute()
+    {
+        return $this->birth_date->diffInYears(now());
+    }
 }

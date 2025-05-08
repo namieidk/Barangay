@@ -187,7 +187,7 @@
             <!-- Main Reports Card -->
             <div class="bg-white rounded-xl shadow-lg overflow-hidden">
                 <!-- Card Header -->
-                <div class="bg-green-700 p-4 text-white">
+                <div class="bg-[#537B2F] p-4 text-white">
                     <h2 class="text-xl font-semibold">Barangay Document Reports</h2>
                     <p class="text-green-100 text-sm">Generate, view, and print official barangay documents</p>
                 </div>
@@ -280,7 +280,7 @@
                                 <a href="#" class="px-5 py-2 bg-gray-100 rounded-lg text-gray-700 hover:bg-gray-200 transition font-medium">
                                     <i class="fas fa-eye mr-2"></i> View Full Document
                                 </a>
-                                <a href="#" class="px-5 py-2 bg-green-600 rounded-lg text-white hover:bg-green-700 transition font-medium">
+                                <a href="#" class="px-5 py-2 bg-[#e6ffe6] rounded-lg text-dark hover:bg-[#d4f7d4] transition font-medium">
                                     <i class="fas fa-pen mr-2"></i> Edit Document
                                 </a>
                             </div>

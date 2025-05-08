@@ -109,10 +109,13 @@
         table tbody tr:hover td { background-color: #F0F8FF !important; }
         table td { padding: 1rem; vertical-align: middle; border-bottom: 1px solid #E2E8F0; }
         
-        .search-container { position: relative; max-width: 24rem; }
+        .search-container { 
+            position: relative; 
+            max-width: 24rem; 
+        }
         .search-input {
             width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            padding: 0.75rem 1rem 0.75rem 2.75rem; /* Increased left padding to avoid icon overlap */
             border: 1px solid #E2E8F0;
             border-radius: 0.5rem;
             font-size: 0.875rem;
@@ -132,6 +135,8 @@
             top: 50%;
             transform: translateY(-50%);
             color: #718096;
+            width: 18px; /* Ensure consistent icon size */
+            height: 18px;
         }
         
         .modal {
@@ -337,7 +342,7 @@
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
-                <input type="search" id="family-search" class="search-input" placeholder="Search by name, ID, or purok..." />
+                <input type="search" id="family-search" class="search-input" placeholder="       Search by name, ID, or purok..." />
             </div>
         </div>
 
@@ -379,16 +384,16 @@
                                     @endif
                                 </td>
                                 <td>
-    <div class="flex space-x-3">
-        <button type="button" class="btn-action" data-id="{{ $member->id }}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-            </svg>
-            <span class="sr-only">Edit</span>
-        </button>
-    </div>
-</td>
+                                    <div class="flex space-x-3">
+                                        <button type="button" class="btn-action" data-id="{{ $member->id }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                            </svg>
+                                            <span class="sr-only">Edit</span>
+                                        </button>
+                                    </div>
+                                </td>
                             </tr>
                         @empty
                             <tr>
@@ -585,136 +590,136 @@
 
     <script>
         // Edit Modal Functions
-function showEditModal(memberId) {
-    const modal = document.getElementById('editModal');
-    const form = document.getElementById('editFamilyForm');
-    
-    // Show the modal immediately
-    modal.style.display = 'block';
-    
-    // Set the form action and member ID
-    form.action = `/family-members/${memberId}`;
-    document.getElementById('edit_family_member_id').value = memberId;
-    
-    // Get CSRF token from the page
-    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || 
-                      document.querySelector('input[name="_token"]')?.value || '';
-    
-    // Add loading indicator
-    const formContent = document.querySelector('.modal-content');
-    const loadingElement = document.createElement('div');
-    loadingElement.id = 'loading-indicator';
-    loadingElement.style.cssText = 'position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.7); display: flex; justify-content: center; align-items: center; z-index: 10;';
-    loadingElement.innerHTML = '<div>Loading...</div>';
-    formContent.appendChild(loadingElement);
-    
-    // Fetch the member data
-    fetch(`/family-members/${memberId}/edit`, {
-        method: 'GET',
-        headers: {
-            'X-CSRF-TOKEN': csrfToken,
-            'Accept': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest'
+        function showEditModal(memberId) {
+            const modal = document.getElementById('editModal');
+            const form = document.getElementById('editFamilyForm');
+            
+            // Show the modal immediately
+            modal.style.display = 'block';
+            
+            // Set the form action and member ID
+            form.action = `/family-members/${memberId}`;
+            document.getElementById('edit_family_member_id').value = memberId;
+            
+            // Get CSRF token from the page
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || 
+                            document.querySelector('input[name="_token"]')?.value || '';
+            
+            // Add loading indicator
+            const formContent = document.querySelector('.modal-content');
+            const loadingElement = document.createElement('div');
+            loadingElement.id = 'loading-indicator';
+            loadingElement.style.cssText = 'position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.7); display: flex; justify-content: center; align-items: center; z-index: 10;';
+            loadingElement.innerHTML = '<div>Loading...</div>';
+            formContent.appendChild(loadingElement);
+            
+            // Fetch the member data
+            fetch(`/family-members/${memberId}/edit`, {
+                method: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Remove loading indicator
+                document.getElementById('loading-indicator')?.remove();
+                
+                // Populate form fields with data
+                document.getElementById('edit_residence_id').value = data.residence_id || '';
+                document.getElementById('edit_relationship').value = data.relationship || '';
+                document.getElementById('edit_first_name').value = data.first_name || '';
+                document.getElementById('edit_last_name').value = data.last_name || '';
+                document.getElementById('edit_middle_name').value = data.middle_name || '';
+                document.getElementById('edit_alias_name').value = data.alias_name || '';
+                document.getElementById('edit_gender').value = data.gender || '';
+                document.getElementById('edit_marital_status').value = data.marital_status || '';
+                document.getElementById('edit_spouse_name').value = data.spouse_name || '';
+                document.getElementById('edit_purok').value = data.purok || '';
+                document.getElementById('edit_employment_status').value = data.employment_status || '';
+                document.getElementById('edit_birth_date').value = data.birth_date || '';
+                document.getElementById('edit_birth_place').value = data.birth_place || '';
+                document.getElementById('edit_place').value = data.place || '';
+                document.getElementById('edit_height').value = data.height || '';
+                document.getElementById('edit_weight').value = data.weight || '';
+                document.getElementById('edit_religion').value = data.religion || '';
+                document.getElementById('edit_religion_other').value = data.religion_other || '';
+                document.getElementById('edit_voters_status').value = data.voters_status || '';
+                document.getElementById('edit_has_disability').value = data.has_disability ? '1' : '0';
+                document.getElementById('edit_blood_type').value = data.blood_type || '';
+                document.getElementById('edit_occupation').value = data.occupation || '';
+                document.getElementById('edit_educational_attainment').value = data.educational_attainment || '';
+                document.getElementById('edit_phone_number').value = data.phone_number || '';
+                document.getElementById('edit_land_number').value = data.land_number || '';
+                document.getElementById('edit_email').value = data.email || '';
+                document.getElementById('edit_address').value = data.address || '';
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                document.getElementById('loading-indicator')?.remove();
+                
+                // Show error message to user
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded';
+                errorDiv.innerHTML = `<strong>Error!</strong> Failed to load family member data. Please try again.`;
+                formContent.prepend(errorDiv);
+                
+                // Remove error message after 3 seconds
+                setTimeout(() => {
+                    errorDiv.remove();
+                }, 3000);
+            });
         }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+
+        function hideEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+            document.getElementById('editFamilyForm').reset();
         }
-        return response.json();
-    })
-    .then(data => {
-        // Remove loading indicator
-        document.getElementById('loading-indicator')?.remove();
-        
-        // Populate form fields with data
-        document.getElementById('edit_residence_id').value = data.residence_id || '';
-        document.getElementById('edit_relationship').value = data.relationship || '';
-        document.getElementById('edit_first_name').value = data.first_name || '';
-        document.getElementById('edit_last_name').value = data.last_name || '';
-        document.getElementById('edit_middle_name').value = data.middle_name || '';
-        document.getElementById('edit_alias_name').value = data.alias_name || '';
-        document.getElementById('edit_gender').value = data.gender || '';
-        document.getElementById('edit_marital_status').value = data.marital_status || '';
-        document.getElementById('edit_spouse_name').value = data.spouse_name || '';
-        document.getElementById('edit_purok').value = data.purok || '';
-        document.getElementById('edit_employment_status').value = data.employment_status || '';
-        document.getElementById('edit_birth_date').value = data.birth_date || '';
-        document.getElementById('edit_birth_place').value = data.birth_place || '';
-        document.getElementById('edit_place').value = data.place || '';
-        document.getElementById('edit_height').value = data.height || '';
-        document.getElementById('edit_weight').value = data.weight || '';
-        document.getElementById('edit_religion').value = data.religion || '';
-        document.getElementById('edit_religion_other').value = data.religion_other || '';
-        document.getElementById('edit_voters_status').value = data.voters_status || '';
-        document.getElementById('edit_has_disability').value = data.has_disability ? '1' : '0';
-        document.getElementById('edit_blood_type').value = data.blood_type || '';
-        document.getElementById('edit_occupation').value = data.occupation || '';
-        document.getElementById('edit_educational_attainment').value = data.educational_attainment || '';
-        document.getElementById('edit_phone_number').value = data.phone_number || '';
-        document.getElementById('edit_land_number').value = data.land_number || '';
-        document.getElementById('edit_email').value = data.email || '';
-        document.getElementById('edit_address').value = data.address || '';
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-        document.getElementById('loading-indicator')?.remove();
-        
-        // Show error message to user
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded';
-        errorDiv.innerHTML = `<strong>Error!</strong> Failed to load family member data. Please try again.`;
-        formContent.prepend(errorDiv);
-        
-        // Remove error message after 3 seconds
-        setTimeout(() => {
-            errorDiv.remove();
-        }, 3000);
-    });
-}
 
-function hideEditModal() {
-    document.getElementById('editModal').style.display = 'none';
-    document.getElementById('editFamilyForm').reset();
-}
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const editModal = document.getElementById('editModal');
+            if (event.target === editModal) {
+                hideEditModal();
+            }
+        }
 
-// Close modal when clicking outside
-window.onclick = function(event) {
-    const editModal = document.getElementById('editModal');
-    if (event.target === editModal) {
-        hideEditModal();
-    }
-}
-
-// Make sure the page loads all listeners
-document.addEventListener('DOMContentLoaded', function() {
-    // Ensure we have CSRF token for AJAX requests
-    if (!document.querySelector('meta[name="csrf-token"]')) {
-        const meta = document.createElement('meta');
-        meta.name = 'csrf-token';
-        meta.content = document.querySelector('input[name="_token"]')?.value || '';
-        document.head.appendChild(meta);
-    }
-    
-    // Debug logging for edit buttons
-    document.querySelectorAll('.btn-action').forEach(button => {
-        button.addEventListener('click', function(event) {
-            // Prevent any default behavior
-            event.preventDefault();
-            event.stopPropagation();
+        // Make sure the page loads all listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure we have CSRF token for AJAX requests
+            if (!document.querySelector('meta[name="csrf-token"]')) {
+                const meta = document.createElement('meta');
+                meta.name = 'csrf-token';
+                meta.content = document.querySelector('input[name="_token"]')?.value || '';
+                document.head.appendChild(meta);
+            }
             
-            // Get the member ID
-            const memberId = this.getAttribute('data-id') || 
-                             this.closest('tr').querySelector('td:first-child').textContent;
-            
-            // Log for debugging
-            console.log('Edit button clicked for member ID:', memberId);
-            
-            // Show the edit modal
-            showEditModal(memberId);
+            // Debug logging for edit buttons
+            document.querySelectorAll('.btn-action').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    // Prevent any default behavior
+                    event.preventDefault();
+                    event.stopPropagation();
+                    
+                    // Get the member ID
+                    const memberId = this.getAttribute('data-id') || 
+                                    this.closest('tr').querySelector('td:first-child').textContent;
+                    
+                    // Log for debugging
+                    console.log('Edit button clicked for member ID:', memberId);
+                    
+                    // Show the edit modal
+                    showEditModal(memberId);
+                });
+            });
         });
-    });
-});
     </script>
 </body>
 </html>

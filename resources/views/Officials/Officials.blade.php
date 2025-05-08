@@ -20,7 +20,7 @@
     <div class="flex-1 ml-20 pt-14">
         <div class="p-6 w-full max-w-5xl mx-auto">
             <div id="webcrumbs">
-                <div class="w-[1024px] bg-white font-sans rounded-xl shadow-lg">
+                <div class="w-[1024px] bg-white font-sans rounded-xl shadow-md border border-gray-200">
                     <div class="p-8">
                         <div class="flex justify-between items-center mb-6">
                             <h2 class="text-2xl font-semibold text-gray-800">Barangay Officials Management</h2>
@@ -39,7 +39,7 @@
                             </div>
                         @endif
 
-                        <div class="bg-[#F0F8FF] rounded-xl shadow-md p-6 mb-8 border border-gray-200">
+                        <div class="bg-[#FFFF] rounded-xl shadow-md p-6 mb-8 border border-gray-200">
                             <h3 class="text-xl font-medium text-gray-800 mb-4">{{ isset($official) ? 'Edit Barangay Official' : 'Add New Barangay Official' }}</h3>
                             <form action="{{ isset($official) ? route('officials.update', $official) : route('officials.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                                 @csrf
@@ -150,7 +150,7 @@
                         </div>
 
                         <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
-                            <div class="px-6 py-4 bg-[#F0F8FF] border-b border-gray-200">
+                            <div class="px-6 py-4 bg-[#e6ffe6] border-b border-gray-200">
                                 <h3 class="text-lg font-medium text-gray-800">Current Barangay Officials</h3>
                             </div>
                             <div class="overflow-x-auto">

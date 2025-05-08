@@ -128,9 +128,10 @@ Route::put('/residents/{resident}', [ResidenceController::class, 'update'])->nam
 Route::delete('/residents/{resident}/archive', [ResidenceController::class, 'archive'])->name('ResRec.archive');
 
 Route::get('/family-members', [FamilyMemberController::class, 'index'])->name('family-members.index');
+Route::get('/family-members/create', [FamilyMemberController::class, 'create'])->name('family-members.create');
+Route::post('/family-members', [FamilyMemberController::class, 'store'])->name('family-members.store');
 Route::get('/family-members/{id}/edit', [FamilyMemberController::class, 'edit'])->name('family-members.edit');
-Route::put('/family-members-update', [FamilyMemberController::class, 'update'])->name('family-members.update');
-Route::post('/family/store', [FamilyMemberController::class, 'store'])->name('family.store');
+Route::put('/family-members/{id}', [FamilyMemberController::class, 'update'])->name('family-members.update');   
 
 Route::get('/RepPersonData', [ResPersonDataController::class, 'create'])
     ->name('BloterRec.ResPersonData');
@@ -164,9 +165,10 @@ Route::post('/IncidentReport-search', [IncidentReportController::class, 'search'
 Route::get('/BloterRecView', [BlotterRecordsController::class, 'index'])->name('blotter.records.index');
 
 Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index');
-Route::post('/search-residents', [DocumentController::class, 'searchResidents'])->name('documents.search-residents');
-Route::post('/request-certificate', [DocumentController::class, 'requestCertificate'])->name('documents.request-certificate');
-Route::post('/request-clearance', [DocumentController::class, 'requestClearance'])->name('documents.request-clearance');
+Route::get('/documents/search-residents', [DocumentController::class, 'searchResidents'])->name('documents.search-residents');
+Route::post('/documents/certificate', [DocumentController::class, 'requestCertificate'])->name('documents.request-certificate');
+Route::post('/documents/clearance', [DocumentController::class, 'requestClearance'])->name('documents.request-clearance');
+Route::get('/documents/{id}', [DocumentController::class, 'show']);
 
 Route::get('/officials', [OfficialController::class, 'index'])->name('officials.index');
 Route::get('/officials-create', [OfficialController::class, 'create'])->name('officials.create');

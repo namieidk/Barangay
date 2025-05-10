@@ -9,9 +9,20 @@ use Barryvdh\Snappy\Facades\SnappyPdf as PDF; // <-- Add this for Snappy
 class ReportController extends Controller
 {
     // The existing index method from your friend's file
-    public function index()
+    public function index(Request $request)
     {
-        return view('Reports.Reports'); // This loads the main report page
+        $activeReportType = 'residents_information'; // Indicates which report preview to show
+
+        // $residents = NewResidence::orderBy('last_name')->orderBy('first_name')->get();
+        $residents = NewResidence::orderBy('last_name')->orderBy('first_name')->paginate(15);
+
+        $data = [
+            'activeReportType' => $activeReportType,
+            'residents' => $residents,
+            // You can add more data here if other report types need initial data
+        ];
+
+        return view('Reports.Reports', $data);
     }
 
     // New method to download the Residents Information PDF

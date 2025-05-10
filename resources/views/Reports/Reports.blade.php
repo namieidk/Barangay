@@ -262,16 +262,27 @@
                             <div class="border border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm">
                                 <div class="bg-gray-50 p-2 border-b text-xs text-gray-500 flex justify-between">
                                     <span>Document ID: RPT-123-20250429</span>
-                                    <span>Last Updated: April 29, 2025</span>
+                                    <span>Last Updated: April 29, 2025</span> {{-- This header part can be dynamic later too --}}
                                 </div>
-                                
-                                <!-- Document Content Preview -->
-                                <div class="p-6 flex justify-center">
-                                    <div class="border border-gray-200 p-1 bg-white shadow-sm">
-                                        <div class="w-full md:w-[400px] h-[520px] flex items-center justify-center text-gray-500">
-                                            Document preview will appear here
+
+                                <div class="w-full h-[520px] overflow-y-auto bg-white"> {{-- Ensured bg-white and fixed width from parent is md:w-[400px] --}}
+                                    @if(isset($activeReportType) && $activeReportType == 'residents_information')
+                                        @if(isset($residents) && $residents->count() > 0)
+                                            @include('reports_partials._residents_information_preview', ['residents' => $residents])
+                                        @else
+                                            <div class="p-6 flex items-center justify-center h-full text-gray-500">
+                                                No residents data available for preview.
+                                            </div>
+                                        @endif
+                                    @else
+                                        {{-- Placeholder for other report types or default message --}}
+                                        <div class="p-6 flex items-center justify-center h-full text-gray-500">
+                                            <p class="text-center">
+                                                Select a report type from the left to see a preview.
+                                                <br><span class="text-xs">(Currently, only "Residents Information Report" preview is active for demo)</span>
+                                            </p>
                                         </div>
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
                             

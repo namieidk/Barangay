@@ -240,9 +240,9 @@
                                 <h3 class="text-lg font-medium text-gray-700">Document Preview</h3>
                                 
                                 <div class="flex space-x-3">
-                                    <span class="p-2 bg-blue-50 rounded-lg text-blue-700 hover:bg-blue-100 transition" title="Download PDF">
+                                    <a href="{{ route('reports.residents_information.download.pdf') }}" class="p-2 bg-blue-50 rounded-lg text-blue-700 hover:bg-blue-100 transition" title="Download PDF">
                                         <i class="fas fa-file-pdf"></i>
-                                    </span>
+                                    </a>
                                     <span class="p-2 bg-green-50 rounded-lg text-green-700 hover:bg-green-100 transition" title="Print Document">
                                         <i class="fas fa-print"></i>
                                     </span>

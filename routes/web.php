@@ -27,91 +27,98 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/NewRes', function() {
+Route::get('/NewRes', function () {
     return view('NewRes.NewRes');
 });
 
-Route::get('/ResRec', function() {
+Route::get('/ResRec', function () {
     return view('ResRec.ResRec');
 });
 
-Route::get('/PersonalInfo', function() {
+Route::get('/PersonalInfo', function () {
     return view('NewRes.PersonalInfo');
 });
 
-Route::get('/OtherInfo', function() {
+Route::get('/OtherInfo', function () {
     return view('NewRes.OtherInfo');
 });
 
-Route::get('/Contacts', function() {
+Route::get('/Contacts', function () {
     return view('NewRes.Contacts');
 });
 
-Route::get('/ResRecPerInfo', function() {
+Route::get('/ResRecPerInfo', function () {
     return view('ResRec.ResRecPerInfo');
 });
 
-Route::get('/BrgyClear', function() {
+Route::get('/BrgyClear', function () {
     return view('ResRec.BrgyClear');
 });
 
-Route::get('/ResRecOtherInfo', function() {
+Route::get('/ResRecOtherInfo', function () {
     return view('ResRec.ResRecOtherInfo');
 });
 
-Route::get('/ResRecContacts', function() {
+Route::get('/ResRecContacts', function () {
     return view('ResRec.ResRecOtherInfo');
 });
 
-Route::get('/BloterRecView', function() {
+Route::get('/BloterRecView', function () {
     return view('BloterRec.BloterRecView');
 });
 
-Route::get('/RepPersonData', function() {
+Route::get('/RepPersonData', function () {
     return view('BloterRec.RepPersonData');
 });
 
-Route::get('/SuspectData', function() {
+Route::get('/SuspectData', function () {
     return view('BloterRec.SuspectData');
 });
 
-Route::get('/ChildLaw', function() {
+Route::get('/ChildLaw', function () {
     return view('BloterRec.ChildLaw');
 });
 
-Route::get('/VictimData', function() {
+Route::get('/VictimData', function () {
     return view('BloterRec.VictimData');
 });
 
-Route::get('/Narative', function() {
+Route::get('/Narative', function () {
     return view('BloterRec.Narative');
 });
 
-Route::get('/IncidentReport', function() {
+Route::get('/IncidentReport', function () {
     return view('BloterRec.IncidentReport');
 });
 
-Route::get('/Reslist', function() {
+Route::get('/Reslist', function () {
     return view('Reslist.Reslist');
 });
 
-Route::get('/Reports', function() {
+// Integrate ReportController for PDF generation
+
+// Keep nako ni kay para dili mag error (Jeriel)
+Route::get('/Reports', function () {
     return view('Reports.Reports');
 });
 
-Route::get('/FamMember', function() {
+Route::get('/Reports', [ReportController::class, 'index'])->name('reports.index');
+Route::get('/reports/residents-information/download/pdf', [ReportController::class, 'downloadResidentsInformationPdf'])
+    ->name('reports.residents_information.download.pdf');
+
+Route::get('/FamMember', function () {
     return view('NewRes.FamMem');
 });
 
-Route::get('/Officials', function() {
+Route::get('/Officials', function () {
     return view('Officials.Officials');
 });
 
-Route::get('/List', function() {
+Route::get('/List', function () {
     return view('List.List');
 });
 
-Route::get('/Archive', function() {
+Route::get('/Archive', function () {
     return view('Archive.Archive');
 });
 
@@ -141,7 +148,7 @@ Route::get('/family-members', [FamilyMemberController::class, 'index'])->name('f
 Route::get('/family-members/create', [FamilyMemberController::class, 'create'])->name('family-members.create');
 Route::post('/family-members', [FamilyMemberController::class, 'store'])->name('family-members.store');
 Route::get('/family-members/{id}/edit', [FamilyMemberController::class, 'edit'])->name('family-members.edit');
-Route::put('/family-members/{id}', [FamilyMemberController::class, 'update'])->name('family-members.update');   
+Route::put('/family-members/{id}', [FamilyMemberController::class, 'update'])->name('family-members.update');
 
 Route::get('/RepPersonData', [ResPersonDataController::class, 'create'])
     ->name('BloterRec.ResPersonData');
@@ -149,12 +156,12 @@ Route::post('/RepPersonData/store', [ResPersonDataController::class, 'store'])
     ->name('BloterRec.ResPersonData.store');
 Route::get('/reporting-person/{id}/edit', [ResPersonDataController::class, 'edit'])->name('reporting-person.edit');
 
-    Route::get('/suspect-data', [SuspectDataController::class, 'index'])->name('blotter.suspect.index');
-    Route::get('/suspect-data-create', [SuspectDataController::class, 'create'])->name('blotter.suspect.create');
-    Route::post('/suspect-data-store', [SuspectDataController::class, 'store'])->name('blotter.suspect.store');
-    Route::post('/suspect-data-search', [SuspectDataController::class, 'search'])->name('blotter.suspect.search');
+Route::get('/suspect-data', [SuspectDataController::class, 'index'])->name('blotter.suspect.index');
+Route::get('/suspect-data-create', [SuspectDataController::class, 'create'])->name('blotter.suspect.create');
+Route::post('/suspect-data-store', [SuspectDataController::class, 'store'])->name('blotter.suspect.store');
+Route::post('/suspect-data-search', [SuspectDataController::class, 'search'])->name('blotter.suspect.search');
 
-    Route::get('/victim-data', [VictimDataController::class, 'index'])->name('blotter.victim.index');
+Route::get('/victim-data', [VictimDataController::class, 'index'])->name('blotter.victim.index');
 Route::get('/victim-data-create', [VictimDataController::class, 'create'])->name('blotter.victim.create');
 Route::post('/victim-data-store', [VictimDataController::class, 'store'])->name('blotter.victim.store');
 Route::post('/victim-data-search', [VictimDataController::class, 'search'])->name('blotter.victim.search');
@@ -194,4 +201,4 @@ Route::put('/list/{id}/{type}', [ListController::class, 'update']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

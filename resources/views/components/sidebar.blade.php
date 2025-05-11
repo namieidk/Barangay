@@ -19,7 +19,7 @@
 <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
    <div class="h-full px-3 py-4 overflow-y-auto bg-[#384331] text-white flex flex-col">
       <!-- Logo -->
-      <div class="flex justify-center" style="margin-top: 100;">
+      <div class="flex justify-center" style="margin-top: -10;">
          <div class="w-100 h-100 rounded-full flex items-center justify-center">
             <img src="{{ asset('/logo.png') }}" class="h-100 w-100 rounded-full" alt="Logo" />
          </div>
@@ -85,14 +85,14 @@
         <span class="ms-3">Residents List</span>
     </a>
 </li>
-<li>
+<!--<li>
     <a href="Archive" class="flex items-center p-2 rounded-lg hover:bg-[#5A7A46] group">
         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
             <path d="M17 0H3a3 3 0 0 0-3 3v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V3a3 3 0 0 0-3-3Zm1 7H2a2 2 0 0 0-2 2v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V9a2 2 0 0 0-2-2Zm-5 3a1 1 0 0 0-1 1v2H8v-2a1 1 0 0 0-2 0v2a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2a1 1 0 0 0-1-1Z"/>
         </svg>
         <span class="ms-3">Archive</span>
     </a>
-</li>
+</li> -->
          <li>
             <a href="Reports" class="flex items-center p-2 rounded-lg hover:bg-[#5A7A46] group">
                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -103,7 +103,7 @@
          </li>
         
          <li>
-            <a href="#" class="flex items-center p-2 rounded-lg hover:bg-[#5A7A46] group">
+            <a href="welcome" class="flex items-center p-2 rounded-lg hover:bg-[#5A7A46] group">
                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/>
                </svg>

@@ -190,7 +190,7 @@
                         <div>
                             <p class="text-base font-medium text-gray-500">Registered Voters</p>
                             <h3 class="text-4xl font-bold text-gray-800 mt-2">{{ number_format($registeredVoters) }}</h3>
-                            <p class="text-sm text-green protagonista-600 mt-2">
+                            <p class="text-sm text-green-600 protagonista-600 mt-2">
                                 <span class="font-medium">↑ 1.2%</span> from last month
                             </p>
                         </div>
@@ -272,7 +272,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             new Chart(document.getElementById('populationChart'), {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: [@foreach ($months as $month)'{{ $month }}'@if (!$loop->last),@endif @endforeach],
                     datasets: [{
@@ -289,6 +289,7 @@
                     }
                 }
             });
+});
 
             new Chart(document.getElementById('ageChart'), {
                 type: 'pie',

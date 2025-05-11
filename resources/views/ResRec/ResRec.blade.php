@@ -403,14 +403,14 @@
                                             </svg>
                                             <span class="sr-only">Show Family</span>
                                         </a>
-                                        <button onclick="showArchiveModal('{{ $residence->id }}')" class="btn-action">
+                                       <!--  <button onclick="showArchiveModal('{{ $residence->id }}')" class="btn-action">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M20 5H4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z"/>
                                                 <path d="M8 17h8"/>
                                                 <path d="M10 13h4"/>
                                             </svg>
                                             <span class="sr-only">Archive</span>
-                                        </button>
+                                        </button> -->
                                     </div>
                                 </td>
                             </tr>

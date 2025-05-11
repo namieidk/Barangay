@@ -186,6 +186,8 @@ Route::get('/documents/search-residents', [DocumentController::class, 'searchRes
 Route::post('/documents/certificate', [DocumentController::class, 'requestCertificate'])->name('documents.request-certificate');
 Route::post('/documents/clearance', [DocumentController::class, 'requestClearance'])->name('documents.request-clearance');
 Route::get('/documents/{id}', [DocumentController::class, 'show']);
+Route::get('/documents/{id}/view', [DocumentController::class, 'view'])->name('documents.view');
+Route::get('/documents/{id}/download', [DocumentController::class, 'download'])->name('documents.download');
 
 Route::get('/officials', [OfficialController::class, 'index'])->name('officials.index');
 Route::get('/officials-create', [OfficialController::class, 'create'])->name('officials.create');

@@ -1,9 +1,8 @@
-{{-- resources/views/reports_partials/_residents_information_preview.blade.php --}}
 <div class="p-4 text-sm">
     <div class="text-center mb-3">
         <p class="text-xs text-gray-500">Republic of the Philippines</p>
-        <p class="text-xs text-gray-500">City of Davao</p> {{-- Assuming Davao City from previous context --}}
-        <p class="text-xs text-gray-500">Barangay Incio</p> {{-- Adjust if needed --}}
+        <p class="text-xs text-gray-500">City of Davao</p>
+        <p class="text-xs text-gray-500">Barangay Incio</p>
         <h3 class="font-semibold text-gray-700 mt-1">Residents Information List</h3>
     </div>
 
@@ -15,6 +14,7 @@
                     <th class="pb-1 text-left font-medium text-gray-600">Name</th>
                     <th class="pb-1 text-left font-medium text-gray-600">Purok</th>
                     <th class="pb-1 text-left font-medium text-gray-600">Contact</th>
+                    <th class="pb-1 text-left font-medium text-gray-600">Family Members</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,16 +24,17 @@
                         <td class="py-1">{{ $resident->last_name }}, {{ $resident->first_name }} {{ $resident->middle_name ? substr($resident->middle_name, 0, 1).'.' : '' }}</td>
                         <td class="py-1">{{ $resident->purok ?? 'N/A' }}</td>
                         <td class="py-1">{{ $resident->phone_number ?? 'N/A' }}</td>
+                        <td class="py-1">{{ $resident->family_members_string }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        @if($residents->hasPages()) {{-- Basic pagination info if you implement pagination --}}
+        @if($residents->hasPages())
             <div class="mt-2 text-xs text-gray-500">
                 Showing {{ $residents->firstItem() }} to {{ $residents->lastItem() }} of {{ $residents->total() }} residents.
             </div>
         @else
-             <div class="mt-2 text-xs text-gray-500">
+            <div class="mt-2 text-xs text-gray-500">
                 Total Residents: {{ $residents->count() }}
             </div>
         @endif

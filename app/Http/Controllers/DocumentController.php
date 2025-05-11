@@ -7,6 +7,7 @@ use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
+use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 
 class DocumentController extends Controller
 {
@@ -43,7 +44,6 @@ class DocumentController extends Controller
                         ];
                     }),
                     'documents' => $documents->map(function ($doc) {
-                        // Safely handle date_requested
                         $dateRequested = $doc->date_requested;
                         if (is_string($dateRequested)) {
                             try {
@@ -185,6 +185,64 @@ class DocumentController extends Controller
                 'trace' => $e->getTraceAsString(),
             ]);
             return response()->json(['error' => 'Failed to request clearance'], 500);
+        }
+    }
+
+    public function view($id)
+    {
+        try {
+            $document = Document::select('documents.id', 'documents.type', 'documents.purpose', 'documents.status', 'documents.date_requested', 'new_residence.first_name', 'new_residence.last_name')
+                ->join('new_residence', 'documents.resident_id', '=', 'new_residence.id')
+                ->where('documents.id', $id)
+                ->first();
+
+            if (!$document) {
+                Log::warning('Document not found for viewing', ['document_id' => $id]);
+                return redirect()->route('documents.index')->with('error', 'Document not found.');
+            }
+
+            Log::info('Document viewed', ['document_id' => $id]);
+            return view('Reslist.view', compact('document'));
+        } catch (\Exception $e) {
+            Log::error('Error in DocumentController::view', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return redirect()->route('documents.index')->with('error', 'Failed to load document. Please try again later.');
+        }
+    }
+
+    public function download($id)
+    {
+        try {
+            $document = Document::select('documents.id', 'documents.type', 'documents.purpose', 'documents.status', 'documents.date_requested', 'new_residence.first_name', 'new_residence.last_name')
+                ->join('new_residence', 'documents.resident_id', '=', 'new_residence.id')
+                ->where('documents.id', $id)
+                ->first();
+
+            if (!$document) {
+                Log::warning('Document not found for download', ['document_id' => $id]);
+                return redirect()->route('documents.index')->with('error', 'Document not found.');
+            }
+
+            $data = [
+                'document' => $document,
+                'currentDate' => now()->format('F j, Y'),
+            ];
+
+            // Load the PDF view from Reslist folder
+            $pdf = PDF::loadView('Reslist.pdf', $data);
+            $pdf->setPaper('a4', 'portrait');
+
+            // Download the PDF
+            $fileName = strtolower($document->type) . '_document_' . $document->id . '_' . date('Y-m-d') . '.pdf';
+            return $pdf->download($fileName);
+        } catch (\Exception $e) {
+            Log::error('Error in DocumentController::download', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return redirect()->route('documents.index')->with('error', 'Failed to download document. Please try again later.');
         }
     }
 

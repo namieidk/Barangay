@@ -36,8 +36,8 @@ return [
     'pdf' => [
         'enabled' => true,
         // i-remove lang ang comment ani don para mu run saimo since naka macbook ka
-        // 'binary'  => env('WKHTML_PDF_BINARY', '/usr/local/bin/wkhtmltopdf'),
-        'binary'  => '"C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe"',
+         'binary'  => env('WKHTML_PDF_BINARY', '/usr/local/bin/wkhtmltopdf'),
+        //'binary'  => '"C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe"',
         'timeout' => false,
         'options' => [],
         'env'     => [],

@@ -199,9 +199,9 @@
                         <h3 class="text-lg font-medium text-gray-700 mb-4">Select Document Type</h3>
                         
                         <div class="space-y-1">
-                            <div class="flex items-center w-full p-3 rounded-lg hover:bg-green-50 text-left transition duration-150 text-gray-700 hover:text-green-700 font-medium bg-green-50 text-green-700">
+                            <div onclick="toggleArchiveTable()" class="flex items-center w-full p-3 rounded-lg hover:bg-yellow-100 text-left transition duration-150 text-yellow-700 hover:text-yellow-700 font-medium cursor-pointer">
                                 <i class="fas fa-file-alt mr-3 text-green-600"></i>
-                                Residents Information Report
+        Residents Information Report
                             </div>
                             
                             <div class="flex items-center w-full p-3 rounded-lg hover:bg-green-50 text-left transition duration-150 text-gray-700 hover:text-green-700 font-medium">
@@ -222,13 +222,7 @@
                             <div class="flex items-center w-full p-3 rounded-lg hover:bg-green-50 text-left transition duration-150 text-gray-700 hover:text-green-700 font-medium">
                                 <i class="fas fa-home mr-3 text-gray-500"></i>
                                 Certificate of Residency Report
-                            </div>
-                            
-                            <!-- Archive Button - Added in document type section -->
-                            <div onclick="toggleArchiveTable()" class="flex items-center w-full p-3 rounded-lg hover:bg-yellow-100 text-left transition duration-150 text-yellow-700 hover:text-yellow-700 font-medium cursor-pointer">
-                                <i class="fas fa-archive mr-3 text-yellow-700"></i>
-                                Archived Reports
-                            </div>
+    </div>
                         </div>
                     </div>
                     
@@ -325,86 +319,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>RPT-122-20250428</td>
-                                                <td>Juan Dela Cruz</td>
-                                                <td>April 28, 2025</td>
-                                                <td>Archived</td>
-                                                <td>
-                                                    <div class="flex space-x-2">
-                                                        <span class="p-1 bg-blue-50 rounded-lg text-blue-700 hover:bg-blue-100 transition cursor-pointer" title="View">
-                                                            <i class="fas fa-eye"></i>
-                                                        </span>
-                                                        <span class="p-1 bg-green-50 rounded-lg text-green-700 hover:bg-green-100 transition cursor-pointer" title="Restore">
-                                                            <i class="fas fa-undo"></i>
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>RPT-119-20250426</td>
-                                                <td>Maria Santos</td>
-                                                <td>April 26, 2025</td>
-                                                <td>Archived</td>
-                                                <td>
-                                                    <div class="flex space-x-2">
-                                                        <span class="p-1 bg-blue-50 rounded-lg text-blue-700 hover:bg-blue-100 transition cursor-pointer" title="View">
-                                                            <i class="fas fa-eye"></i>
-                                                        </span>
-                                                        <span class="p-1 bg-green-50 rounded-lg text-green-700 hover:bg-green-100 transition cursor-pointer" title="Restore">
-                                                            <i class="fas fa-undo"></i>
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>RPT-115-20250423</td>
-                                                <td>Pedro Reyes</td>
-                                                <td>April 23, 2025</td>
-                                                <td>Archived</td>
-                                                <td>
-                                                    <div class="flex space-x-2">
-                                                        <span class="p-1 bg-blue-50 rounded-lg text-blue-700 hover:bg-blue-100 transition cursor-pointer" title="View">
-                                                            <i class="fas fa-eye"></i>
-                                                        </span>
-                                                        <span class="p-1 bg-green-50 rounded-lg text-green-700 hover:bg-green-100 transition cursor-pointer" title="Restore">
-                                                            <i class="fas fa-undo"></i>
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>RPT-112-20250420</td>
-                                                <td>Ana Gonzales</td>
-                                                <td>April 20, 2025</td>
-                                                <td>Archived</td>
-                                                <td>
-                                                    <div class="flex space-x-2">
-                                                        <span class="p-1 bg-blue-50 rounded-lg text-blue-700 hover:bg-blue-100 transition cursor-pointer" title="View">
-                                                            <i class="fas fa-eye"></i>
-                                                        </span>
-                                                        <span class="p-1 bg-green-50 rounded-lg text-green-700 hover:bg-green-100 transition cursor-pointer" title="Restore">
-                                                            <i class="fas fa-undo"></i>
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>RPT-109-20250417</td>
-                                                <td>Ramon Diaz</td>
-                                                <td>April 17, 2025</td>
-                                                <td>Archived</td>
-                                                <td>
-                                                    <div class="flex space-x-2">
-                                                        <span class="p-1 bg-blue-50 rounded-lg text-blue-700 hover:bg-blue-100 transition cursor-pointer" title="View">
-                                                            <i class="fas fa-eye"></i>
-                                                        </span>
-                                                        <span class="p-1 bg-green-50 rounded-lg text-green-700 hover:bg-green-100 transition cursor-pointer" title="Restore">
-                                                            <i class="fas fa-undo"></i>
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>

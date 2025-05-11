@@ -856,11 +856,12 @@
         // Attach event listeners for action buttons
         function attachActionButtonListeners() {
             document.querySelectorAll('.view-btn').forEach(button => {
-                button.addEventListener('click', () => {
-                    const id = button.dataset.id;
-                    showAlert(`Viewing document ${id} (Functionality to be implemented)`, 'success');
-                });
-            });
+        button.addEventListener('click', () => {
+            const id = button.dataset.id;
+            // Redirect to the view page
+            window.location.href = `/documents/${id}/view`;
+        });
+    });
 
             document.querySelectorAll('.edit-btn').forEach(button => {
                 button.addEventListener('click', () => {
